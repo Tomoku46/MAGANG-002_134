@@ -10,14 +10,10 @@
 <main>
   <div class="p-6">
     <!-- Judul -->
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
             <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Master Data</h1>
               <div class="relative w-full max-w-sm">
-    <input 
-      type="text" 
-      placeholder="Cari data..." 
-      class="w-full pl-10 pr-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-    >
+                 <input type="text" placeholder="Cari data..." class="w-full pl-10 pr-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
     <!-- Icon Search -->
     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
       <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -25,8 +21,13 @@
       </svg>
     </div>
   </div>
+</div>
 
-        </div>
+<div class="mb-8">
+  <p>
+    Lihat Proses Data PBPD yang sudah diinput
+  </p>
+</div>
 
 
       <!-- Table -->
@@ -35,7 +36,7 @@
          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
           <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
            <table class="w-full text-sm text-left rtl:text-right text-white-500 text-white-400">
-             <thead class="text-xs text-white uppercase bg-[#176B87] text-white-400">
+             <thead class="text-xs text-white uppercase bg-[#30173b]  text-white-400">
             <tr>
                 <th scope="col" class="p-4">
                     <div class="flex items-center">
@@ -44,28 +45,91 @@
                     </div>
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Product name
+                    IDPel
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Color
+                    Nama
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Category
+                    Tanggal
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Accessories
+                    Whatsapp
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Available
+                    AMS
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    Daya Lama
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Weight
+                    Daya Baru
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Action
+                    Selisih Daya 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Ampere 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    BP 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    OPSI 1 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    OPSI 2
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Tanggal 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Nomor Nodin 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Kebtutuhan APP
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    KKF (Tahun)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Penyulang 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    BEBAN PENYULANG (A) 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    BEBAN (MW)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    GARDU INDUK 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    TRAFO GI 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    KAPASITAS TRAVO (MWA)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    BEBAN TRAVO GI (A)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    BEBAS TRAVO GI (MW)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    BEBAN TRAFO GI SETELAH PELANGGAN ENERGIZE (MW)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    STATUS BEBAN TRAFO DIBANDING KAPASITAS TRAFO
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    TAGGING LOKASI
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    KETERANGAN
                 </th>
             </tr>
         </thead>

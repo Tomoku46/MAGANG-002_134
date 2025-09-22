@@ -21,22 +21,21 @@
             </div>
         </div>
 
-        <div class="mb-[2em]">
-            <div class="bg-[#176B87] rounded-xl shadow-main p-6">
-                <h2 class="text-xl font-bold text-white mb-1">Selamat Datang Administrator!</h2>
-                <p class="text-white text-sm">Di Website Pendataan PDPB PLN UP3 Daerah Istimewa Yogyakarta</p>
-            </div>
-        </div>
-
-        <div class="mb-2">
-            <h1 class="text-2xl font-bold text-main mb-4 md:mb-0">Statistik</h1>
-        </div>
-
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-blue-600 rounded-xl shadow-main p-6 text-white flex flex-col items-start">
+            <div class="bg-white shadow rounded-xl shadow-main p-6 text-black flex flex-col items-start">
                 <span class="font-bold text-lg mb-2">Daftar Permohonan PBPD</span>
-                <span class="text-3xl font-bold mb-2">0</span>
-                <a href="#" class="text-white underline text-sm">Selengkapnya</a>
+                <div class="flex justify-between items-center w-full mb-2">
+                    <span class="text-3xl font-bold text-gray-900">0</span>
+                    <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+            <!-- Tempat icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 4v16m8-8H4" />
+            </svg>
+        </div>
+                </div>
+                <a href="#" class="text-gray-500 underline text-sm">Selengkapnya</a>
             </div>
             <div class="bg-yellow-500 rounded-xl shadow-main p-6 text-white flex flex-col items-start">
                 <span class="font-bold text-lg mb-2">Permohonan PBPD tersurvey</span>
@@ -49,6 +48,8 @@
                 <a href="#" class="text-white underline text-sm">Selengkapnya</a>
             </div>
         </div>
+
+        
 
         <div class="mb-2">
             <h1 class="text-2xl font-bold text-main mb-4 md:mb-0">Peta Persebaran</h1>

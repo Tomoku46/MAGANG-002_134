@@ -10,7 +10,7 @@
 <main>
   <div class="p-6">
     <!-- Judul -->
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between ">
             <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Permohonan PBPD</h1>
               <div class="relative w-full max-w-sm">
     <input 
@@ -25,8 +25,13 @@
       </svg>
     </div>
   </div>
-
         </div>
+
+        <div class="mb-8">
+  <p>
+    Masukan Permohonan PBPD yang anda ingin ajukan
+  </p>
+</div>
     <!-- Batas Waktu -->
     <div class=" bg-[#176B87] p-6 rounded mb-6">
       <table class="min-w-full border-separate border-spacing-x-4 border-spacing-y-2">
@@ -38,6 +43,7 @@
         </thead>
       </table>
     </div>
+    
 
     <!-- Riwayat Pengajuan -->
     <div class="bg-white shadow rounded">

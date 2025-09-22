@@ -28,12 +28,12 @@
 
         </div>
     <!-- Batas Waktu -->
-    <div class="bg-white shadow p-6 rounded mb-6">
+    <div class="bg-[#176B87] shadow p-6 rounded mb-6">
       <table class="min-w-full border-separate border-spacing-x-4 border-spacing-y-2">
         <thead>
           <tr>
-            <th class="px-4 py-2 text-left"><p class="text-2xl">Jumlah Permohonan PBPD Tersurvei</p></th>
-            <th> <p class="text-3xl font-bold mt-4">XX</p></th>
+            <th class="px-4 py-2 text-left text-white"><p class="text-2xl">Jumlah Permohonan PBPD Tersurvei</p></th>
+            <th> <p class="text-3xl font-bold mt-4 text-white">XX</p></th>
           </tr>
         </thead>
       </table>

@@ -4,7 +4,7 @@
     @include('partial.head')
     @yield('style')
 </head>
-<body class="overflow-x-auto bg-gray-100">
+<body class="bg-gray-100">
 
 <div class="flex min-h-screen">
   <!-- Sidebar -->
@@ -20,8 +20,10 @@
     <div class="flex flex-col justify-between h-[40em] p-4">
       <!-- Menu Atas -->
       <ul class="space-y-3">
+        <p class="font-light">Navigasi</p>
         <li><a href="{{ url('/dash') }}" class="block p-2 rounded hover:bg-gray-200">Dashboard</a></li>
-        <li><a href="{{ url('/masterdata') }}" class="block p-2 rounded hover:bg-gray-200">Master Data</a></li>
+        <li><a href="{{ url('/masterdata') }}" class="block p-2 rounded hover:bg-gray-200 mb-7">Master Data</a></li>
+        <p class="font-light">PBPD</p>
         <li><a href="{{ url('/permohonanpbpd') }}" class="block p-2 rounded hover:bg-gray-200">Permohonan PBPD</a></li>
         <li><a href="{{ url('/pbpdtersurvei') }}" class="block p-2 rounded hover:bg-gray-200">PBPD Tersurvei</a></li>
         <li><a href="{{ url('/riwayathapus') }}" class="block p-2 rounded hover:bg-gray-200">Riwayat hapus</a></li>
@@ -37,8 +39,8 @@
   <!-- Main Section -->
   <div id="mainContent" class="flex-1 flex flex-col transition-all duration-300 ease-in-out ml-0">
     <!-- Header -->
-    <header class="bg-white shadow p-3 flex items-center justify-between">
-      <button id="toggleBtn" class="px-3 py-2 bg-[#176B87] text-white rounded">
+    <header class="bg-[#30173b] shadow p-3 flex items-center justify-between">
+      <button id="toggleBtn" class="px-3 py-2 bg-white text-black rounded">
         ☰
       </button>
       <h1 class="font-bold text-xl"></h1>

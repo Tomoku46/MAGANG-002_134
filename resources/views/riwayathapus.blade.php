@@ -11,7 +11,7 @@
   <div class="p-6">
     <!-- Judul -->
     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-            <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Master Data</h1>
+            <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Riwayat Hapus</h1>
               <div class="relative w-full max-w-sm">
     <input 
       type="text" 
