@@ -28,7 +28,7 @@
 
         </div>
     <!-- Batas Waktu -->
-    <div class="bg-[#176B87] shadow p-6 rounded mb-6">
+    <div class="bg-[#14a2ba] shadow p-6 rounded mb-6">
       <table class="min-w-full border-separate border-spacing-x-4 border-spacing-y-2">
         <thead>
           <tr>
@@ -83,7 +83,7 @@
                   Permohonan
                 </span>
               </td>
-              <td class="px-4 py-3"><button class="bg-blue-500 text-white px-4 py-1 rounded">Terkirim ke pemasaran</button></td>
+              <td class="px-4 py-3"><button class="bg-[#14a2ba] text-white px-4 py-1 rounded">Terkirim ke pemasaran</button></td>
               <td class="px-4 py-3">
                 <button class="bg-green-500 text-white px-4 py-1 rounded">Detail</button>
               </td>
@@ -105,7 +105,7 @@
                   Permohonan
                 </span>
               </td>
-              <td class="px-4 py-3"><button class="bg-blue-500 text-white px-4 py-1 rounded">Terkirim ke pemasaran</button></td>
+              <td class="px-4 py-3"><button class="bg-[#14a2ba] text-white px-4 py-1 rounded">Terkirim ke pemasaran</button></td>
               <td class="px-4 py-3">
                 <button class="bg-green-500 text-white px-4 py-1 rounded">Detail</button>
               </td>

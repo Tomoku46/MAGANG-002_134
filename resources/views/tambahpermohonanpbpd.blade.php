@@ -10,7 +10,7 @@
     <!-- Main Content -->
     <main>
             <div class="bg-white rounded-xl shadow-main p-8 mb-8">
-                    <h2 class="text-xl font-semibold text-blue-700 mb-6">Form Input Data PBPD</h2>
+                    <h2 class="text-xl font-semibold text-[#14a2ba] mb-6">Form Input Data PBPD</h2>
                     <form>
                         <div class="mb-6">
                             <label class="block text-base font-medium text-gray-700 mb-2">IDPel</label>
