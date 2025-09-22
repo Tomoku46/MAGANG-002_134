@@ -33,7 +33,7 @@
   </p>
 </div>
     <!-- Batas Waktu -->
-    <div class=" bg-[#176B87] p-6 rounded mb-6">
+    <div class=" bg-[#14a2ba] p-6 rounded mb-6">
       <table class="min-w-full border-separate border-spacing-x-4 border-spacing-y-2">
         <thead>
           <tr>
@@ -51,7 +51,7 @@
         <h2 class="font-semibold text-lg">Riwayat Permohonan PBPD</h2>
         <div class="flex space-x-2">
           
-          <a href="{{ url('/tambahpermohonanpbpd') }}"class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">+ Tambahkan Permohonan PBPD</a>
+          <a href="{{ url('/tambahpermohonanpbpd') }}"class="bg-[#14a2ba] text-white px-6 py-2 rounded hover:bg-blue-600">+ Tambahkan Permohonan PBPD</a>
         </div>
       </div>
 
@@ -93,7 +93,7 @@
                   Permohonan
                 </span>
               </td>
-              <td class="px-4 py-3"><div class="flex space-x-2"><a href="{{ url('/tambahhasilsurvei') }}"class="bg-blue-500 text-white text-center px-6 py-2 rounded hover:bg-blue-600">+ Hasil survei</a>
+              <td class="px-4 py-3"><div class="flex space-x-2"><a href="{{ url('/tambahhasilsurvei') }}"class="bg-[#14a2ba] text-white text-center px-6 py-2 rounded hover:bg-blue-600">+ Hasil survei</a>
         </div></td>
               <td class="px-4 py-3">
                 <button class="bg-green-500 text-white px-4 py-1 rounded">Detail</button>
@@ -116,7 +116,7 @@
                   Permohonan
                 </span>
               </td>
-              <td class="px-4 py-3"><button class="bg-blue-500 text-white px-4 py-1 rounded">+ Hasil Survey</button></td>
+              <td class="px-4 py-3"><button class="bg-[#14a2ba] text-white px-4 py-1 rounded">+ Hasil Survey</button></td>
               <td class="px-4 py-3">
                 <button class="bg-green-500 text-white px-4 py-1 rounded">Detail</button>
               </td>

@@ -22,10 +22,10 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-white shadow rounded-xl shadow-main p-6 text-black flex flex-col items-start">
+            <div class="bg-[#14a2ba] shadow rounded-xl shadow-main p-6 text-white flex flex-col items-start">
                 <span class="font-bold text-lg mb-2">Daftar Permohonan PBPD</span>
                 <div class="flex justify-between items-center w-full mb-2">
-                    <span class="text-3xl font-bold text-gray-900">0</span>
+                    <span class="text-3xl font-bold text-white">0</span>
                     <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
             <!-- Tempat icon -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none"
@@ -35,9 +35,9 @@
             </svg>
         </div>
                 </div>
-                <a href="#" class="text-gray-500 underline text-sm">Selengkapnya</a>
+                <a href="#" class="text-white underline text-sm">Selengkapnya</a>
             </div>
-            <div class="bg-yellow-500 rounded-xl shadow-main p-6 text-white flex flex-col items-start">
+            <div class="bg-[#efe62f] rounded-xl shadow-main p-6 text-white flex flex-col items-start">
                 <span class="font-bold text-lg mb-2">Permohonan PBPD tersurvey</span>
                 <span class="text-3xl font-bold mb-2">0</span>
                 <a href="#" class="text-white underline text-sm">Selengkapnya</a>
