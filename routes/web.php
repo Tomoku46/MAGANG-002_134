@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('dash');
+    return view('dashboard.index');
 });
 
 Route::get('/masterdata', function () {
-    return view('masterdata');
+    return view('dashboard.masterdata');
 });
 
 Route::get('/inputdatapbpd', function () {
@@ -33,6 +33,4 @@ Route::get('/pbpdtersurvei', function () {
 Route::get('/riwayathapus', function () {
     return view('riwayathapus');
 });
-Route::get('/dash', function () {
-    return view('dash');
-});
+
