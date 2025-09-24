@@ -81,20 +81,18 @@
             <div class="w-full">
                 <div class="bg-white py-4 md:py-7  md:px-8 xl:px-10 rounded-md">
                    <div class="flex justify-between items-center p-2">
-                     <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Master Data</h1>
+                     <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Riwayat Hapus</h1>
                      <div class="flex space-x-2"> 
-                        <a href="{{ url('/tambahpermohonanpbpd') }}"class="bg-green-500 text-white px-6 py-2 rounded hover:bg-blue-600">Export to Excel</a>
+                        <a href="{{ url('/tambahpermohonanpbpd') }}"class="bg-[#14a2ba] text-white px-6 py-2 rounded hover:bg-blue-600">+ Tambahkan Permohonan PBPD</a>
                     </div>
                 </div>
-                <div class="mb-8 px-2"> <p> Lihat semua progress data permohonan PBPD </p></div>
-      
-
+                <div class="mb-8 px-2"> <p> Lihat dan pulihkan data PBPD yang terhapus</p></div>
                     <!-- Container dengan scroll horizontal -->
                     <div class="table-scroll-container">
-                        <table id="myTable" class="display text-center">
+                        <table id="myTable" class="display">
                             <thead>
                                 <tr>
-                                    <th rowspan="2" class="text-center">IdPel</th>
+                                    <th rowspan="2">IdPel</th>
                                     <th rowspan="2">Nama</th>
                                     <th colspan="3">Surat diterima REN</th>
                                     <th colspan="2">Permohonan Daya (VA)</th>
@@ -117,7 +115,6 @@
                                     <th rowspan="2">TAGGING LOKASI</th>
                                     <th rowspan="2">KATERANGAN</th>
                                     <th rowspan="2">Action</th>
-                                    <th rowspan="2"></th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal</th>
@@ -162,8 +159,6 @@
                                     <td>tomo</td>
                                     <td>tomo</td>
                                     <td>1</td>
-                                    <td>tomo</td>
-                                    <td>tomo</td>
                                     <td>tomo</td>
                                     <td>tomo</td>
                                     <td>tomo</td>

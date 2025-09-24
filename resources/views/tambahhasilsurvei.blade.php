@@ -69,6 +69,96 @@
                                 <input type="number" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Rp">
                             </div>
                         </div>
+                        <div class="mb-6 flex gap-6">
+                            <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">Kebutuhan APP</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukan APP">
+                            </div>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                            <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">KKF</label>
+                                <input type="number" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tahun">
+                            </div>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                            <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">Penyulang</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukan Penyulang">
+                            </div>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                                <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">Beban Penyulang</label>
+                                <input type="number" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="A">
+                            </div>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                                <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">Beban</label>
+                                <input type="number" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="MW">
+                            </div>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                                <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">Gardu Induk</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukan Gardu Induk">
+                            </div>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                                <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">Travo GI</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukan Travo">
+                            </div>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                                <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">kapasitas Travo</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="MWA">
+                            </div>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                                <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">Beban Travo GI</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="A">
+                            </div>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                                <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">Beban Travo GI</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="MW">
+                            </div>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                                <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">Beban Trafo GI Setelah Pelanggan Energize</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="MW">
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-base font-medium text-gray-700 mb-2">
+                                Status Beban Trafo Dibanding Kapasitas Trafo
+                            </label>
+                            <select class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="kurang">Kurang</option>
+                                <option value="cukup">Cukup</option>
+                                <option value="lebih">Lebih</option>
+                                <option value="berlebihan">Berlebihan</option>
+                            </select>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                                <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">Tangging Lokasi</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukan Kordinat">
+                            </div>
+                        </div>
+                        <div class="mb-6 flex gap-6">
+                                <div class="flex-1">
+                                <label class="block text-base font-medium text-gray-700 mb-2">Keterangan</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tambahkan Keterangan Jika Ada">
+                            </div>
+                        </div>
+
                     </form>
                     <!-- Button Tambah Data Permohonan PBPD -->
                     <button 

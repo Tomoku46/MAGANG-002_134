@@ -46,7 +46,7 @@
         <!-- Main Section -->
         <div id="mainContent" class="flex-1 flex flex-col transition-all duration-300 ease-in-out ml-0 overflow-hidden">
             <!-- Header -->
-            <header class="bg-[#125d72] shadow p-3 flex items-center justify-between">
+            <header class="bg-[#14a2ba]  shadow p-3 flex items-center justify-between">
                 <button id="toggleBtn" class="px-3 py-2 bg-white text-black rounded">
                     ☰
                 </button>

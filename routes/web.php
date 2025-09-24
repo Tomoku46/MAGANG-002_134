@@ -15,7 +15,7 @@ Route::get('/inputdatapbpd', function () {
 });
 
 Route::get('/permohonanpbpd', function () {
-    return view('permohonanpbpd');
+    return view('dashboard.permohonanpbpd');
 });
 
 Route::get('/tambahpermohonanpbpd', function () {
@@ -27,10 +27,10 @@ Route::get('/tambahhasilsurvei', function () {
 });
 
 Route::get('/pbpdtersurvei', function () {
-    return view('pbpdtersurvei');
+    return view('dashboard.pbpdtersurvei');
 });
 
 Route::get('/riwayathapus', function () {
-    return view('riwayathapus');
+    return view('dashboard.riwayathapus');
 });
 
