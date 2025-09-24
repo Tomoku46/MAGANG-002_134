@@ -1,6 +1,10 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MahasiswaController;
+
+Route :: resource('/coba', MahasiswaController::class);
 
 Route::get('/', function () {
     return view('dashboard.index');
