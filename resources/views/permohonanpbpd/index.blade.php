@@ -80,15 +80,19 @@
         <div class="flex flex-col w-full">
             <div class="w-full">
                 <div class="bg-white py-4 md:py-7  md:px-8 xl:px-10 rounded-md">
-                   <div class="flex justify-between items-center p-2">
-                     <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Permohonan PBPD</h1>
-                     <div class="flex space-x-2"> 
-                        <a href="{{ url('/tambahpermohonanpbpd') }}"class="bg-[#14a2ba] text-white px-6 py-2 rounded hover:bg-blue-600">+ Tambahkan Permohonan PBPD</a>
+                    <div class="flex justify-between items-center p-2">
+                        <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Permohonan PBPD</h1>
+                        <div class="flex space-x-2">
+                            <a
+                                href="{{Route('permohonanpbpd.create')}}"class="bg-[#14a2ba] text-white px-6 py-2 rounded hover:bg-blue-600">+
+                                Tambahkan Permohonan PBPD</a>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-8 px-2"> <p> Masukan Permohonan PBPD yang anda ingin ajukan</p></div>
-      
-      
+                    <div class="mb-8 px-2">
+                        <p> Masukan Permohonan PBPD yang anda ingin ajukan</p>
+                    </div>
+
+
 
                     <!-- Container dengan scroll horizontal -->
                     <div class="table-scroll-container">
@@ -114,7 +118,7 @@
                                     <th>Daya Baru</th>
 
                                 </tr>
-                                
+
 
                             </thead>
                             <tbody>
@@ -130,12 +134,17 @@
                                     <td>tomo</td>
                                     <td class="px-4 py-3 text-center">
                                         <span class="bg-pink-500 text-white px-3 py-1 rounded text-sm">Permohonan
-                                             </span>
+                                        </span>
                                     </td>
-                                    <td class="px-4 py-3"><div class="flex space-x-2"><a href="{{ url('/tambahhasilsurvei') }}"class="bg-[#14a2ba] text-white text-center px-6 py-2 rounded hover:bg-blue-600">+ Hasil survei</a></div></td>
-                                    <td class="px-4 py-3"><button class="bg-green-500 text-white px-4 py-1 rounded">Detail</button></td>
-                                    
-                                    
+                                    <td class="px-4 py-3">
+                                        <div class="flex space-x-2"><a
+                                                href="{{ url('/tambahhasilsurvei') }}"class="bg-[#14a2ba] text-white text-center px-6 py-2 rounded hover:bg-blue-600">+
+                                                Hasil survei</a></div>
+                                    </td>
+                                    <td class="px-4 py-3"><button
+                                            class="bg-green-500 text-white px-4 py-1 rounded">Detail</button></td>
+
+
                                 </tr>
                             </tbody>
                         </table>
