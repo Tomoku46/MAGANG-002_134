@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('permohonan_pbpd', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('iduser')->constrained('users')->onDelete('cascade');
-            $table->integer('IdPel')->uniqid;
+            $table->string('IdPel')->uniqid;
             $table->string('NamaPemohon');
             $table->date('TglSuratDiterima');
             $table->string('NoWhatsapp');
@@ -23,6 +22,7 @@ return new class extends Migration
             $table->string('PermoDayaBaru');
             $table->string('SelisihDaya');
             $table->string('Ampere');
+            $table->string('Status');
             $table->timestamps();
         });
     }

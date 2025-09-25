@@ -12,8 +12,8 @@ class PbpdController extends Controller
      */
     public function index()
     {
-        $coba = PermohonanPbpd::all();
-        return view('permohonanpbpd.index', compact('coba'));
+        $data = PermohonanPbpd::all();
+        return view('permohonanpbpd.index', compact('data'));
     }
 
     /**
@@ -37,9 +37,11 @@ class PbpdController extends Controller
             'AplManajemenSurat' => 'required',
             'PermoDayaLama' => 'required',
             'PermoDayaBaru' => 'required',
-            'SelisihDaya' => 'required',
+            'SelisihDaaya' => 'nullable',
             'Ampere' => 'required',
+            
         ]);
+        $SelisihDaya = $request->PermoDayaBaru - $request->PermoDayaLama;
         PermohonanPbpd::create([
             'IdPel' => $request->IdPel,
             'NamaPemohon' => $request->NamaPemohon,
@@ -48,10 +50,12 @@ class PbpdController extends Controller
             'AplManajemenSurat' => $request->AplManajemenSurat,
             'PermoDayaLama' => $request->PermoDayaLama,
             'PermoDayaBaru' => $request->PermoDayaBaru,
-            'SelisihDaya' => $request->SelisihDaya,
+            'SelisihDaya' => $SelisihDaya,
             'Ampere' => $request->Ampere,
+            'Status' => 'Permohonan',
 
         ]);
+        
         return redirect()->route('permohonanpbpd.index');
     }
 
@@ -68,7 +72,8 @@ class PbpdController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $editpbpd = PermohonanPbpd::find($id);
+        return view('permohonanpbpd.edit', compact('editpbpd'));
     }
 
     /**
@@ -76,7 +81,32 @@ class PbpdController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'IdPel' => 'required',
+            'NamaPemohon' => 'required',
+            'TglSuratDiterima' => 'required',
+            'NoWhatsapp' => 'required',
+            'AplManajemenSurat' => 'required',
+            'PermoDayaLama' => 'required',
+            'PermoDayaBaru' => 'required',
+            'SelisihDaaya' => 'nullable',
+            'Ampere' => 'required',
+        ]);
+        $SelisihDaya = $request->PermoDayaBaru - $request->PermoDayaLama;
+        $editpbpd = PermohonanPbpd::find($id);
+        $editpbpd->update([
+            'IdPel' => $request->IdPel,
+            'NamaPemohon' => $request->NamaPemohon,
+            'TglSuratDiterima' => $request->TglSuratDiterima,
+            'NoWhatsapp' => $request->NoWhatsapp,
+            'AplManajemenSurat' => $request->AplManajemenSurat,
+            'PermoDayaLama' => $request->PermoDayaLama,
+            'PermoDayaBaru' => $request->PermoDayaBaru,
+            'SelisihDaya' => $SelisihDaya,
+            'Ampere' => $request->Ampere,
+            'Status' => 'Permohonan',
+        ]);
+        return redirect()->route('permohonanpbpd.index');
     }
 
     /**
@@ -84,6 +114,9 @@ class PbpdController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $hapupbpd = PermohonanPbpd::find($id);
+        $hapupbpd->delete();
+
+        return redirect()->route('permohonanpbpd.index');
     }
 }

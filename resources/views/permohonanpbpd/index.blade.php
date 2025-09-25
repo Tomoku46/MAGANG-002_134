@@ -84,7 +84,7 @@
                         <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Permohonan PBPD</h1>
                         <div class="flex space-x-2">
                             <a
-                                href="{{Route('permohonanpbpd.create')}}"class="bg-[#14a2ba] text-white px-6 py-2 rounded hover:bg-blue-600">+
+                                href="{{ Route('permohonanpbpd.create') }}"class="bg-[#14a2ba] text-white px-6 py-2 rounded hover:bg-blue-600">+
                                 Tambahkan Permohonan PBPD</a>
                         </div>
                     </div>
@@ -99,6 +99,7 @@
                         <table id="myTable" class="display">
                             <thead>
                                 <tr>
+                                    <th rowspan="2">No</th>
                                     <th rowspan="2">IdPel</th>
                                     <th rowspan="2">Nama</th>
                                     <th colspan="3">Surat diterima REN</th>
@@ -122,30 +123,46 @@
 
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>tomo</td>
-                                    <td>tomo</td>
-                                    <td>tomo</td>
-                                    <td>tomo</td>
-                                    <td>tomo</td>
-                                    <td>tomo</td>
-                                    <td>1</td>
-                                    <td>tomo</td>
-                                    <td class="px-4 py-3 text-center">
-                                        <span class="bg-pink-500 text-white px-3 py-1 rounded text-sm">Permohonan
-                                        </span>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <div class="flex space-x-2"><a
-                                                href="{{ url('/tambahhasilsurvei') }}"class="bg-[#14a2ba] text-white text-center px-6 py-2 rounded hover:bg-blue-600">+
-                                                Hasil survei</a></div>
-                                    </td>
-                                    <td class="px-4 py-3"><button
-                                            class="bg-green-500 text-white px-4 py-1 rounded">Detail</button></td>
+                                @foreach ($data as $index => $item)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $item->IdPel }}</td>
+                                        <td>{{ $item->NamaPemohon }}</td>
+                                        <td>{{ $item->TglSuratDiterima }}</td>
+                                        <td>{{ $item->NoWhatsapp }}</td>
+                                        <td>{{ $item->AplManajemenSurat }}</td>
+                                        <td>{{ $item->PermoDayaLama }}</td>
+                                        <td>{{ $item->PermoDayaBaru }}</td>
+                                        <td>{{ $item->SelisihDaya }}</td>
+                                        <td>{{ $item->Ampere }}</td>
+                                        <td class="px-4 py-3 text-center"><span class="bg-pink-500 text-white px-3 py-1 rounded text-sm">{{ $item->Status }}</span></td>
+                                        <td class="px-4 py-3">
+                                            <div class="flex space-x-2">
+                                                <a href="#"class="inline-block group relative bg-[#14a2ba] text-white px-4 py-2 rounded transition-all duration-300 overflow-hidden whitespace-nowrap">
+                                                    <span class="block group-hover:hidden">+</span>
+                                                    <span class="hidden group-hover:inline">+ Hasil Survey</span>
+                                                </a>
+                                                <a href="{{Route('permohonanpbpd.edit', $item->id)}}"class="inline-block group relative bg-yellow-500 text-white px-4 py-2 rounded transition-all duration-300 overflow-hidden whitespace-nowrap">
+                                                    <span class="block group-hover:hidden"><img src="{{ asset('img/iconedit.png') }}" alt="Logo" class="w-5 h-auto"></span>
+                                                    <span class="hidden group-hover:inline"><img src="{{ asset('img/iconedit.png') }}" alt="Logo" class="w-5 h-5">Edit Data</span>
+                                                </a>
+                                                <form action="{{Route('permohonanpbpd.destroy', $item->id)}}" method="POST"class="inline-block group relative bg-red-500 text-white px-4 py-2 rounded transition-all duration-300 overflow-hidden whitespace-nowrap">
+                                                     @csrf
+                                                     @method('DELETE')
+                                                     <button type="submit"> 
+                                                        <span class="block group-hover:hidden">-</span>
+                                                        <span class="hidden group-hover:inline">- Hapus Data</span>
+                                                    </button>
+                                                </form>
+                                                
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-3"><button
+                                                class="bg-green-500 text-white px-4 py-1 rounded">Detail</button></td>
 
 
-                                </tr>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
