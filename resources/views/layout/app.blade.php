@@ -30,7 +30,7 @@
                     <p class="font-light">PBPD</p>
                     <li><a href="{{ url('/permohonanpbpd') }}" class="block p-2 rounded hover:bg-gray-200">Permohonan
                             PBPD</a></li>
-                    <li><a href="{{ url('/pbpdtersurvei') }}" class="block p-2 rounded hover:bg-gray-200">PBPD
+                    <li><a href="{{ url('pbpdtersurvei') }}" class="block p-2 rounded hover:bg-gray-200">PBPD
                             Tersurvei</a></li>
                     <li><a href="{{ url('/riwayathapus') }}" class="block p-2 rounded hover:bg-gray-200">Riwayat
                             hapus</a></li>

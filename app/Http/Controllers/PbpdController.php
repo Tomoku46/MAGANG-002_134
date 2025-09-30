@@ -12,7 +12,8 @@ class PbpdController extends Controller
      */
     public function index()
     {
-        $data = PermohonanPbpd::all();
+        // Hanya ambil permohonan yang statusnya masih "permohonan"
+        $data = PermohonanPbpd::where('Status', 'permohonan')->get();
         return view('permohonanpbpd.index', compact('data'));
     }
 
@@ -39,7 +40,7 @@ class PbpdController extends Controller
             'PermoDayaBaru' => 'required',
             'SelisihDaaya' => 'nullable',
             'Ampere' => 'required',
-            
+            'Status' => 'Permohonan',
         ]);
         $SelisihDaya = $request->PermoDayaBaru - $request->PermoDayaLama;
         PermohonanPbpd::create([
@@ -53,18 +54,18 @@ class PbpdController extends Controller
             'SelisihDaya' => $SelisihDaya,
             'Ampere' => $request->Ampere,
             'Status' => 'Permohonan',
-
         ]);
-        
+
         return redirect()->route('permohonanpbpd.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $detailpbpd = PermohonanPbpd::find($id);
+        return view('permohonanpbpd.detail', compact('detailpbpd'));
     }
 
     /**
@@ -91,6 +92,7 @@ class PbpdController extends Controller
             'PermoDayaBaru' => 'required',
             'SelisihDaaya' => 'nullable',
             'Ampere' => 'required',
+            'Status' => 'permohonan',
         ]);
         $SelisihDaya = $request->PermoDayaBaru - $request->PermoDayaLama;
         $editpbpd = PermohonanPbpd::find($id);
@@ -104,7 +106,7 @@ class PbpdController extends Controller
             'PermoDayaBaru' => $request->PermoDayaBaru,
             'SelisihDaya' => $SelisihDaya,
             'Ampere' => $request->Ampere,
-            'Status' => 'Permohonan',
+            'Status' => 'permohonan',
         ]);
         return redirect()->route('permohonanpbpd.index');
     }
@@ -116,6 +118,20 @@ class PbpdController extends Controller
     {
         $hapupbpd = PermohonanPbpd::find($id);
         $hapupbpd->delete();
+
+        return redirect()->route('permohonanpbpd.index');
+    }
+
+    /**
+     * Update the status of a specific permohonan.
+     */
+    public function updateStatus(Request $request, $id)
+    {
+        // Debug
+        // dd($request->IdPermohonan);
+
+        PermohonanPbpd::where('id', $request->IdPermohonan)
+            ->update(['Status' => 'tersurvei']);
 
         return redirect()->route('permohonanpbpd.index');
     }

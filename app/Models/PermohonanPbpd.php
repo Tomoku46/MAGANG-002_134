@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class PermohonanPbpd extends Model
 {
-    protected $table ='permohonan_pbpd';
-    protected $fillable = ['IdPel','NamaPemohon', 'TglSuratDiterima', 'NoWhatsapp', 'AplManajemenSurat', 'PermoDayaLama', 'PermoDayaBaru', 'SelisihDaya', 'Ampere'];
+    protected $table = 'permohonan_pbpd';
+    
+    protected $fillable = ['IdPel','NamaPemohon', 'TglSuratDiterima', 'NoWhatsapp', 'AplManajemenSurat', 'PermoDayaLama', 'PermoDayaBaru', 'SelisihDaya', 'Ampere','Status'];
+    
+    public function PbpdTersurvei()
+    {
+        return $this->hasMany(PbpdTersurvei::class, 'permohonan_pbpd_id');
+    }
 }

@@ -25,20 +25,14 @@
             <div class="bg-[#14a2ba] shadow rounded-xl shadow-main p-6 text-white flex flex-col items-start">
                 <span class="font-bold text-lg mb-2">Daftar Permohonan PBPD</span>
                 <div class="flex justify-between items-center w-full mb-2">
-                    <span class="text-3xl font-bold text-white">0</span>
-                    <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                        <!-- Tempat icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </div>
+                    <span class="text-3xl font-bold text-white">{{ $jumlahPermohonan }}</span>
+                    
                 </div>
                 <a href="#" class="text-white underline text-sm">Selengkapnya</a>
             </div>
             <div class="bg-[#efe62f] rounded-xl shadow-main p-6 text-white flex flex-col items-start">
                 <span class="font-bold text-lg mb-2">Permohonan PBPD tersurvey</span>
-                <span class="text-3xl font-bold mb-2">0</span>
+                <span class="text-3xl font-bold mb-2">{{ $jumlahTersurvei }}</span>
                 <a href="#" class="text-white underline text-sm">Selengkapnya</a>
             </div>
             <div class="bg-green-600 rounded-xl shadow-main p-6 text-white flex flex-col items-start">
@@ -65,10 +59,43 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var map = L.map('map').setView([-7.797068, 110.370529], 12); // Koordinat Yogyakarta
+            var map = L.map('map').setView([-7.797068, 110.370529], 12); // Koordinat default
+
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
             }).addTo(map);
+
+            // Custom icon kuning
+            var yellowIcon = L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png',
+                shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            var lokasi = @json($lokasi);
+
+            lokasi.forEach(function(item) {
+                var koordinat = item.TaggingLokasi.split(',');
+                if (koordinat.length === 2) {
+                    var lat = parseFloat(koordinat[0]);
+                    var lng = parseFloat(koordinat[1]);
+                    if (!isNaN(lat) && !isNaN(lng)) {
+                        var popupContent = `
+                            <div>
+                                <strong>IDPEL:</strong> ${item.permohonan_pbpd?.IdPel ?? '-'}<br>
+                                <strong>Nama Pemohon:</strong> ${item.permohonan_pbpd?.NamaPemohon ?? '-'}<br>
+                                <strong>Status:</strong> ${item.permohonan_pbpd?.Status ?? '-'}
+                            </div>
+                        `;
+                        L.marker([lat, lng], {
+                            icon: yellowIcon
+                        }).addTo(map).bindPopup(popupContent);
+                    }
+                }
+            });
         });
     </script>
 @endsection
