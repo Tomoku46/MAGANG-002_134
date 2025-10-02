@@ -24,7 +24,7 @@
                 <!-- Menu Atas -->
                 <ul class="space-y-3">
                     <p class="font-light">Navigasi</p>
-                    <li><a href="{{ url('/') }}" class="block p-2 rounded hover:bg-gray-200">Dashboard</a></li>
+                    <li><a href="{{ url('/dashboard') }}" class="block p-2 rounded hover:bg-gray-200">Dashboard</a></li>
                     <li><a href="{{ url('/masterdata') }}" class="block p-2 rounded hover:bg-gray-200 mb-7">Master
                             Data</a></li>
                     <p class="font-light">PBPD</p>

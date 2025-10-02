@@ -24,7 +24,7 @@ class PenggunaController extends Controller
             $request->session()->put('UserId', $user->id);
             $request->session()->put('username', $user->Username);
             $request->session()->put('role', $user->Role);
-            return redirect()->intended('/');
+            return redirect()->intended('/dashboard');
         }
 
         // Jika gagal

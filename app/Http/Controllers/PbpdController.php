@@ -41,6 +41,7 @@ class PbpdController extends Controller
             'SelisihDaaya' => 'nullable',
             'Ampere' => 'required',
             'Status' => 'Permohonan',
+            'deleted_at' => 'nullable',
         ], [
             'IdPel.unique' => 'IDPel sudah terdaftar, silakan gunakan IDPel lain.'
         ]);

@@ -22,10 +22,9 @@ class MasterDataController extends Controller
     }
 public function index()
 {
-        $data = PermohonanPbpd::with(['pbpdTersurvei', 'pbpdTerkirim'])
+    $data = \App\Models\PermohonanPbpd::with(['pbpdTersurvei', 'pbpdTerkirim'])
         ->whereIn('Status', ['Permohonan', 'Tersurvei', 'Terkirim'])
-        ->get();
-
+        ->get(); // HANYA data yang belum di-soft delete
     return view('masterdata.index', compact('data'));
 }
 

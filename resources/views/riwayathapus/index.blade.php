@@ -103,15 +103,16 @@
             <div class="w-full">
                 <div class="bg-white py-4 md:py-7  md:px-8 xl:px-10 rounded-md">
                     <div class="flex justify-between items-center p-2 mb-2">
-                        <h1 class="text-3xl font-bold text-main">Master Data</h1>
-                        <a href="{{ route('masterdata.export') }}"
-                            class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                            Export Excel
+                        <h1 class="text-3xl font-bold text-main">Riwayat Hapus</h1>
+                        <a href="{{ route('riwayathapus.restoreAll') }}"
+                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                            onclick="return confirm('Pulihkan semua data yang terhapus?')">
+                            Pulihkan Semua Data
                         </a>
                     </div>
 
                     <div class="mb-8 px-2">
-                        <p> Kumpulan data PBPD</p>
+                        <p> Kumpulan data yang sudah terhapus</p>
                     </div>
 
                     <!-- Tombol Export Excel -->
@@ -197,18 +198,8 @@
                                         <td>{{ $item->pbpdTersurvei->TaggingLokasi ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->Keterangan ?? '-' }}</td>
                                         <td>
-                                            @php
-                                                $status = strtolower($item->Status ?? '');
-                                                $statusClass = 'bg-gray-400';
-                                                if ($status === 'permohonan') {
-                                                    $statusClass = 'bg-pink-500';
-                                                } elseif ($status === 'tersurvei') {
-                                                    $statusClass = 'bg-yellow-500';
-                                                } elseif ($status === 'terkirim') {
-                                                    $statusClass = 'bg-green-700';
-                                                }
-                                            @endphp
-                                            <span class="{{ $statusClass }} text-white px-3 py-1 rounded text-sm">
+
+                                            <span class="bg-gray-500 text-white px-3 py-1 rounded text-sm">
                                                 {{ $item->Status ?? '-' }}
                                             </span>
                                         </td>
@@ -244,15 +235,28 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Konfirmasi Pulihkan Data -->
+    <div id="restoreConfirmModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-80">
+            <h2 class="text-lg font-bold mb-4">Konfirmasi Pulihkan Data</h2>
+            <p class="mb-6">Apakah Anda ingin memulihkan data ini?</p>
+            <div class="flex justify-end gap-2">
+                <button id="cancelRestoreBtn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Batal</button>
+                <a id="restoreDataBtn" href="#"
+                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Pulihkan</a>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable({
-                "scrollX": true, // Enable horizontal scrolling
-                "autoWidth": false, // Disable automatic column width calculation
-                "responsive": false, // Disable responsive features untuk scroll horizontal
+                "scrollX": true,
+                "autoWidth": false,
+                "responsive": false,
                 "columnDefs": [{
                     "targets": "_all",
                     "className": "text-center"
@@ -280,13 +284,13 @@
                 const row = $(this).closest('tr');
                 selectedId = row.data('id');
                 if (selectedId) {
-                    $('#pdfConfirmModal').removeClass('hidden');
-                    $('#printPdfBtn').attr('href', '/masterdata/' + selectedId + '/pdf');
+                    $('#restoreConfirmModal').removeClass('hidden');
+                    $('#restoreDataBtn').attr('href', '/riwayathapus/' + selectedId + '/restore');
                 }
             });
             // Hide modal on cancel
-            $('#cancelPdfBtn').on('click', function() {
-                $('#pdfConfirmModal').addClass('hidden');
+            $('#cancelRestoreBtn').on('click', function() {
+                $('#restoreConfirmModal').addClass('hidden');
             });
         });
     </script>

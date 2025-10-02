@@ -16,7 +16,7 @@
     <main class="flex-1 p-10 pt-1 overflow-hidden">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
             <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Dashboard</h1>
-            
+
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -28,7 +28,7 @@
                 </div>
                 <a href="{{ url('/permohonanpbpd') }}" class="text-white underline text-sm">Selengkapnya</a>
             </div>
-            <div class="bg-[#efe62f] rounded-xl shadow-main p-6 text-white flex flex-col items-start">
+            <div class="bg-purple-600 rounded-xl shadow-main p-6 text-white flex flex-col items-start">
                 <span class="font-bold text-lg mb-2">Permohonan PBPD tersurvey</span>
                 <span class="text-3xl font-bold mb-2">{{ $jumlahTersurvei }}</span>
                 <a href="{{ url('/pbpdtersurvei') }}" class="text-white underline text-sm">Selengkapnya</a>
@@ -66,7 +66,7 @@
             // Definisikan icon untuk masing-masing status
             var icons = {
                 'tersurvei': L.icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png',
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png', // purple
                     shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
                     iconSize: [25, 41],
                     iconAnchor: [12, 41],

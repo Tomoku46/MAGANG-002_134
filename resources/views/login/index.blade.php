@@ -59,7 +59,7 @@
                    <button 
                         type="submit" class="mt-6 w-full text-white py-3 rounded-lg font-semibold text-base transition"
                         style="background-color: #14A2BA;"
-                        onmouseover="this.style.backgroundColor='#28a745'" onmouseout="this.style.backgroundColor='#14A2BA'">
+                        onmouseover="this.style.backgroundColor='#117e91'" onmouseout="this.style.backgroundColor='#14A2BA'">
                         Login
                     </button>
                 </form>
@@ -69,7 +69,7 @@
 
         <!-- Image Section -->
         <div class="w-1/2 shadow-2xl">
-            <img class="object-cover w-full h-screen hidden md:block" src="img/bg-login.jpg">
+            <img class="object-cover w-full h-screen hidden md:block" src="img/plnlogin.png">
         </div>
     </div>
 

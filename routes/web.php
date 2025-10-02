@@ -7,25 +7,24 @@ use App\Http\Controllers\PbpdController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PbpdTersurveiController;
 use App\Http\Controllers\PbpdTerkirimController;
-
+use App\Http\Controllers\RiwayatHapusController;
 
 Route :: resource('/permohonanpbpd', PbpdController::class);
 Route :: resource('/pbpdtersurvei', PbpdTersurveiController::class);
 Route :: resource('/pbpdterkirim', PbpdTerkirimController::class);
-Route :: resource('/', DashboardController::class);
-
+Route :: resource('/dashboard', DashboardController::class);
+Route::get('/riwayathapus/restoreAll', [RiwayatHapusController::class, 'restoreAll'])->name('riwayathapus.restoreAll');
+Route :: resource('/riwayathapus', RiwayatHapusController::class);
+Route::get('/riwayathapus/{id}/restore', [RiwayatHapusController::class, 'restore'])->name('riwayathapus.restore');
 Route::get('/masterdata/export', [MasterDataController::class, 'export'])->name('masterdata.export');
 Route::get('/masterdata/{id}/pdf', [MasterDataController::class, 'cetakPdf'])->name('masterdata.cetakpdf');
 Route :: resource('/masterdata', MasterDataController::class);
 
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('login.index');
 });
 
 Route::post('/login', [PenggunaController::class, 'login'])->name('pengguna.post');
 
-Route::get('/riwayathapus', function () {
-    return view('dashboard.riwayathapus');
-});
 
