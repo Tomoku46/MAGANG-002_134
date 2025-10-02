@@ -39,7 +39,7 @@ class PbpdTerkirimController extends Controller
         PbpdTerkirim::create([
             'IdPermohonan' => $request->IdPermohonan,
             'IdTersurvei' => $request->IdTersurvei,
-            'TanggalNota' => $request->TglNotaDinas,
+            'TanggalNota' => $request->TanggalNota,
             'Nodin' => $request->Nodin,
             
         ]);
@@ -59,24 +59,24 @@ class PbpdTerkirimController extends Controller
     public function edit($id)
     {
         $edit = PbpdTerkirim::findOrFail($id);
-        $permohonan = PermohonanPbpd::all();
-        $tersurvei = PbpdTersurvei::all();
+        $permohonan = PermohonanPbpd::find($edit->IdPermohonan);
+        $tersurvei = PbpdTersurvei::find($edit->IdTersurvei);
         return view('pbpdterkirim.edit', compact('edit', 'permohonan', 'tersurvei'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'permohonan_pbpd_id' => 'required|exists:permohonan_pbpd,id',
-            'pbpd_tersurvei_id' => 'required|exists:pbpd_tersurvei,id',
-            'TanggalNota' => 'nullable|date',
-            'Nodin' => 'nullable|string',
+            'TanggalNota' => 'required|date',
+            'Nodin' => 'required|string|max:255',
         ]);
 
-        $edit = PbpdTerkirim::findOrFail($id);
-        $edit->update($request->all());
+        $pbpdTerkirim = \App\Models\PbpdTerkirim::findOrFail($id);
+        $pbpdTerkirim->TanggalNota = $request->TanggalNota;
+        $pbpdTerkirim->Nodin = $request->Nodin;
+        $pbpdTerkirim->save();
 
-        return redirect()->route('pbpdterkirim.index');
+        return redirect()->route('pbpdterkirim.index')->with('success', 'Data berhasil diupdate!');
     }
 
     public function destroy($id)

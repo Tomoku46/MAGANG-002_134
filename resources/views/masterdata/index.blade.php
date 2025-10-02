@@ -176,8 +176,8 @@
                                         <td>{{ $item->pbpdTersurvei->BP ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->NilaiRabOpsi1 ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->NilaiRabOpsi2 ?? '-' }}</td>
-                                        <td>{{ $item->TglNotaDinas ?? '-' }}</td>
-                                        <td>{{ $item->Nodin ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTerkirim->TanggalNota ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTerkirim->Nodin ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->KebutuhanApp ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->KKF ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->Penyulang ?? '-' }}</td>
@@ -211,8 +211,8 @@
                                         <td class="px-4 py-3">
                                             <div class="flex space-x-2">
 
-                                                <a href="{{ route('pbpdtersurvei.show', $item->id) }}"
-                                                    class="bg-green-500 text-white px-4 py-1 rounded">Detail</a>
+                                                <a href="{{ route('masterdata.show', $item->id) }}"
+                                                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
                                             </div>
                                         </td>
 

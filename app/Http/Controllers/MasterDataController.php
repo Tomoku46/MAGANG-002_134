@@ -17,4 +17,10 @@ public function index()
 
     return view('masterdata.index', compact('data'));
 }
+
+public function show($id)
+    {
+        $detailmaster = PermohonanPbpd::with(['pbpdTerkirim', 'pbpdTersurvei'])->findOrFail($id);
+return view('masterdata.detail', compact('detailmaster'));
+    }
 }

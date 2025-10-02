@@ -76,6 +76,7 @@
             background: white;
             z-index: 3;
         }
+
         .table-scroll-container th,
         .table-scroll-container td {
             text-align: center !important;
@@ -103,7 +104,7 @@
                         <table id="myTable" class="display text-center">
                             <thead>
                                 <tr>
-                                    
+
                                     <th rowspan="2">IdPel</th>
                                     <th rowspan="2">Nama</th>
                                     <th colspan="3">Surat diterima REN</th>
@@ -127,7 +128,7 @@
                                     <th rowspan="2">KATERANGAN</th>
                                     <th rowspan="2">Status</th>
                                     <th rowspan="2">Aksi</th>
-                                    
+
                                 </tr>
                                 <tr>
                                     <th>Tanggal</th>
@@ -161,20 +162,20 @@
                                         <td>{{ $item->permohonanPbpd->SelisihDaya ?? '-' }}</td>
                                         <td>{{ $item->permohonanPbpd->Ampere ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->BP ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->NilaiRabOpsi1 ?? '-'}}</td>
-                                        <td>{{ $item->pbpdTersurvei->NilaiRabOpsi2?? '-' }}</td>
-                                        <td>{{ $item->TglNotaDinas ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->NilaiRabOpsi1 ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->NilaiRabOpsi2 ?? '-' }}</td>
+                                        <td>{{ $item->TanggalNota ?? '-' }}</td>
                                         <td>{{ $item->Nodin ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->KebutuhanApp ?? '-'}}</td>
+                                        <td>{{ $item->pbpdTersurvei->KebutuhanApp ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->KKF ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->Penyulang ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->BebanPenyulang ?? '-'}}</td>
+                                        <td>{{ $item->pbpdTersurvei->BebanPenyulang ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->GarduInduk ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->TrafoGI ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->KapasitasTrafo ?? '-'}}</td>
+                                        <td>{{ $item->pbpdTersurvei->KapasitasTrafo ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->BebanTrafoGI ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->BebanTrafoGISetelah ??'-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->StatusBeban ?? '-'}}</td>
+                                        <td>{{ $item->pbpdTersurvei->BebanTrafoGISetelah ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->StatusBeban ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->TaggingLokasi ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->Keterangan ?? '-' }}</td>
                                         <td>
@@ -188,7 +189,7 @@
                                             <div class="flex space-x-2">
 
                                                 <!-- Tombol Edit -->
-                                                <a href="{{ Route('pbpdtersurvei.edit', $item->id) }}"
+                                                <a href="{{ Route('pbpdterkirim.edit', $item->id) }}"
                                                     class="inline-flex items-center gap-2 group bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap">
                                                     <img src="{{ asset('img/iconedit.png') }}" alt="Edit"
                                                         class="w-5 h-5">
@@ -197,7 +198,7 @@
                                                 </a>
 
                                                 <!-- Tombol Hapus -->
-                                                <form action="{{ Route('pbpdtersurvei.destroy', $item->id) }}"
+                                                <form action="{{ Route('pbpdterkirim.destroy', $item->id) }}"
                                                     method="POST"
                                                     class="inline-flex items-center gap-2 group bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap">
                                                     @csrf
@@ -210,11 +211,11 @@
                                                     </button>
                                                 </form>
 
-                                                <a href="{{ route('pbpdtersurvei.show', $item->id) }}"
-                                                class="bg-green-500 text-white px-4 py-1 rounded">Detail</a>
+                                                <a href="{{ route('pbpdterkirim.show', $item->id) }}"
+                                                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
                                             </div>
                                         </td>
-                                        
+
                                     </tr>
                                 @endforeach
                             </tbody>

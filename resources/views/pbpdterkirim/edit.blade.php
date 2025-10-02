@@ -16,19 +16,20 @@
             <div class="mb-8 px-2">
                 <p> Masukan tanggal dan NODIN sebagai tanda permohonan terkirim kepada pihak pemasaran</p>
             </div>
-            <form action="{{ route('pbpdterkirim.store') }}" method="POST">
+            <form action="{{ route('pbpdterkirim.update', $edit->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="mb-6">
                     <label class="block text-base font-medium text-gray-700 mb-2">Tanggal Nodin</label>
-                    <input type="date" name="TanggalNota" class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
+                    <input type="date" name="TanggalNota" value="{{ $edit->TanggalNota}}" class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
                 </div>
                 <div class="mb-6">
                     <label class="block text-base font-medium text-gray-700 mb-2">NODIN</label>
-                    <input type="text" name="Nodin" class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
+                    <input type="text" name="Nodin"  value="{{ $edit->Nodin }}" class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
                 </div>
                 <button type="submit"
                     class="mb-6 w-full bg-green-600 text-white py-3  rounded-lg font-semibold text-base hover:bg-green-700 transition">
-                    Tambah Data Permohonan PBPD Terkirim
+                    Edit Data Permohonan PBPD Terkirim
                 </button>
                 @if ($permohonan)
                     <input type="hidden" name="IdPermohonan" value="{{ $permohonan->id }}">
