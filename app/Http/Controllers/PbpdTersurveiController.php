@@ -10,7 +10,12 @@ class PbpdTersurveiController extends Controller
 {
     public function index()
     {
-        $data = PbpdTersurvei::with('permohonanPbpd')->get();
+        $data = PbpdTersurvei::with('permohonanPbpd')
+            ->whereHas('permohonanPbpd', function($q) {
+                $q->where('Status', 'Tersurvei');
+            })
+            ->get();
+
         return view('pbpdtersurvei.index', compact('data'));
     }
 
@@ -68,7 +73,6 @@ class PbpdTersurveiController extends Controller
     public function edit($id)
     {
         $edittersurvei = PbpdTersurvei::find($id);
-        // Ambil satu data permohonan, bukan collection
         $permohonan = PermohonanPbpd::find($edittersurvei->IdPermohonan);
         return view('pbpdtersurvei.edit', compact('edittersurvei', 'permohonan'));
     }
@@ -111,6 +115,17 @@ class PbpdTersurveiController extends Controller
         PermohonanPbpd::where('id', $delete->IdPermohonan)->delete();
     }
         $delete->delete();
+
+        return redirect()->route('pbpdtersurvei.index');
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        // Debug
+        // dd($request->IdPermohonan);
+
+        PermohonanPbpd::where('id', $request->IdPermohonan)
+            ->update(['Status' => 'terkirim']);
 
         return redirect()->route('pbpdtersurvei.index');
     }

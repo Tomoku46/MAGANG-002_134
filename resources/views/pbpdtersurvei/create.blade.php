@@ -19,70 +19,6 @@
             <form action="{{ route('pbpdtersurvei.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="IdPermohonan" value="{{ $permohonan->id }}">
-                @if ($permohonan)
-                    <div class="mb-6">
-                        <label class="block text-base font-medium text-gray-700 mb-2">IDPel</label>
-                        <input type="text" name="IdPel" value="{{ $permohonan->IdPel }}" readonly
-                            class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
-                    </div>
-                    <div class="mb-6">
-                        <label class="block text-base font-medium text-gray-700 mb-2">Nama Pemohon</label>
-                        <input type="text" name="NamaPemohon" value="{{ $permohonan->NamaPemohon }}" readonly
-                            class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
-                    </div>
-                    <div>
-                        <h1 class="text-1xl font-bold text-main mb-4 md:mb-0">Surat Di terima REN</h1>
-                    </div>
-                    <div class="mb-6 flex gap-6">
-                        <div class="flex-1">
-                            <label class="block text-base font-medium text-gray-700 mb-2">Tanggal </label>
-                            <input type="date" name="TglSuratDiterima"
-                                class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                value="{{ $permohonan->TglSuratDiterima }}" readonly>
-                        </div>
-                        <div class="flex-1">
-                            <label class="block text-base font-medium text-gray-700 mb-2">No Whatsapp</label>
-                            <input type="text" name="NoWhatsapp"
-                                class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="08xxxx" value="{{ $permohonan->NoWhatsapp }}" readonly>
-                        </div>
-                        <div class="flex-1">
-                            <label class="block text-base font-medium text-gray-700 mb-2">AMS</label>
-                            <input type="text" name="AplManajemenSurat"
-                                class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="AMS" value="{{ $permohonan->AplManajemenSurat }}" readonly>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h1 class="text-1xl font-bold text-main mb-4 md:mb-0">Permohonan Daya</h1>
-                    </div>
-                    <div class="mb-6 flex gap-6">
-                        <div class="flex-1">
-                            <label class="block text-base font-medium text-gray-700 mb-2">Daya Lama</label>
-                            <input type="text" name="PermoDayaLama" value="{{ $permohonan->PermoDayaLama }}" readonly
-                                class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
-                        </div>
-                        <div class="flex-1">
-                            <label class="block text-base font-medium text-gray-700 mb-2">Daya Baru</label>
-                            <input type="text" name="PermoDayaBaru" value="{{ $permohonan->PermoDayaBaru }}" readonly
-                                class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
-                        </div>
-                    </div>
-
-                    <div class="mb-6">
-                        <label class="block text-base font-medium text-gray-700 mb-2">SelisihDaya</label>
-                        <input type="text" name="SelisihDaya" value="{{ $permohonan->SelisihDaya }}" readonly
-                            class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
-                    </div>
-                    <div class="mb-6">
-                        <label class="block text-base font-medium text-gray-700 mb-2">Ampere</label>
-                        <input type="text" name="Ampere" value="{{ $permohonan->Ampere }}" readonly
-                            class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
-                    </div>
-                    <!-- Tambahkan field lain dari $permohonan jika ingin ditampilkan -->
-                @endif
-
                 <div class="mb-6">
                     <label class="block text-base font-medium text-gray-700 mb-2">BP</label>
                     <input type="number" name="BP"
@@ -212,7 +148,7 @@
                         <label class="block text-base font-medium text-gray-700 mb-2">Tagging Lokasi</label>
                         <input type="text" name="TaggingLokasi"
                             class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Masukan Kordinat">
+                            placeholder="-7.782998662270575, 110.36857589443142">
                     </div>
                 </div>
                 <div class="mb-6 flex gap-6">
@@ -228,8 +164,55 @@
                     Tambah Data Permohonan PBPD
                 </button>
             </form>
-            <!-- Button Tambah Data Permohonan PBPD -->
+        </div>
 
+
+        <div class="bg-white rounded-xl shadow-main p-8 mb-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-main mb-8">Data Permohonan PBPD</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <span class="block text-gray-500 text-sm">IDPel</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $permohonan->IdPel }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Nama Pemohon</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $permohonan->NamaPemohon }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Tanggal Surat Diterima</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $permohonan->TglSuratDiterima }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">No Whatsapp</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $permohonan->NoWhatsapp }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">AMS</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $permohonan->AplManajemenSurat }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Daya Lama</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $permohonan->PermoDayaLama }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Daya Baru</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $permohonan->PermoDayaBaru }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Selisih Daya</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $permohonan->SelisihDaya }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Ampere</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $permohonan->Ampere }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Status</span>
+                        <span class="bg-pink-500 text-white px-3 py-1 rounded text-sm">{{ $permohonan->Status }}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 @endsection

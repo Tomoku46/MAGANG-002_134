@@ -31,7 +31,7 @@ class PbpdController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'IdPel' => 'required',
+            'IdPel' => 'required|numeric|unique:permohonan_pbpd,IdPel',
             'NamaPemohon' => 'required',
             'TglSuratDiterima' => 'required',
             'NoWhatsapp' => 'required',
@@ -41,6 +41,8 @@ class PbpdController extends Controller
             'SelisihDaaya' => 'nullable',
             'Ampere' => 'required',
             'Status' => 'Permohonan',
+        ], [
+            'IdPel.unique' => 'IDPel sudah terdaftar, silakan gunakan IDPel lain.'
         ]);
         $SelisihDaya = $request->PermoDayaBaru - $request->PermoDayaLama;
         PermohonanPbpd::create([

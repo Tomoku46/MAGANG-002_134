@@ -32,6 +32,8 @@
                             PBPD</a></li>
                     <li><a href="{{ url('pbpdtersurvei') }}" class="block p-2 rounded hover:bg-gray-200">PBPD
                             Tersurvei</a></li>
+                    <li><a href="{{ url('pbpdterkirim') }}" class="block p-2 rounded hover:bg-gray-200">PBPD
+                            Terkirim</a></li>
                     <li><a href="{{ url('/riwayathapus') }}" class="block p-2 rounded hover:bg-gray-200">Riwayat
                             hapus</a></li>
                 </ul>

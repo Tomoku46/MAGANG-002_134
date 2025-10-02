@@ -16,6 +16,15 @@
             <div class="mb-8 px-2">
                 <p> Masukkan data Permohonan PBPD yang ingin anda ajukan.</p>
             </div>
+            @if ($errors->any())
+                <div class="mb-4">
+                    @foreach ($errors->all() as $error)
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-2">
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                </div>
+            @endif
             <form action="{{ Route('permohonanpbpd.store') }}" method="POST">
                 @csrf
                 <div class="mb-6">
@@ -30,7 +39,9 @@
                         class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Masukan Nama">
                 </div>
-                <div><h1 class="text-1xl font-bold text-main mb-4 md:mb-0">Surat Di terima REN</h1></div>
+                <div>
+                    <h1 class="text-1xl font-bold text-main mb-4 md:mb-0">Surat Di terima REN</h1>
+                </div>
                 <div class="mb-6 flex gap-6">
                     <div class="flex-1">
                         <label class="block text-base font-medium text-gray-700 mb-2">Tanggal</label>
@@ -50,7 +61,9 @@
                             placeholder="00/XXX/000">
                     </div>
                 </div>
-                <div><h1 class="text-1xl font-bold text-main mb-4 md:mb-0">Permohonan Daya</h1></div>
+                <div>
+                    <h1 class="text-1xl font-bold text-main mb-4 md:mb-0">Permohonan Daya</h1>
+                </div>
                 <div class="mb-6 flex gap-6">
                     <div class="flex-1">
                         <label class="block text-base font-medium text-gray-700 mb-2">Daya Lama (VA)</label>
@@ -64,7 +77,7 @@
                             class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="VA">
                     </div>
-                  
+
                 </div>
                 <div class="mb-6">
                     <label class="block text-base font-medium text-gray-700 mb-2">Ampere</label>
@@ -72,9 +85,10 @@
                         class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="A">
                 </div>
-                <button  type="submit" class="mt-6 w-full bg-green-600 text-white py-3 rounded-lg font-semibold text-base hover:bg-green-700 transition">
-                        Tambah Data Permohonan PBPD
-                    </button>
+                <button type="submit"
+                    class="mt-6 w-full bg-green-600 text-white py-3 rounded-lg font-semibold text-base hover:bg-green-700 transition">
+                    Tambah Data Permohonan PBPD
+                </button>
             </form>
             <!-- Button Tambah Data Permohonan PBPD -->
 

@@ -6,48 +6,62 @@
 @section('content')
 
     <body class="bg-gray-100 font-sans">
-        
-        <div class="flex flex-col w-full">
+
+        <div class="bg-white rounded-xl shadow-main p-8 mb-8">
             <div class="flex justify-between items-center p-2">
-                        <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Detail</h1>
-                    </div>
-                    <div class="mb-8 px-2">
-                        <p> Informasi lengkap tentang permohonan yang sudah diajukan.</p>
-                    </div>
-            <!-- Judul -->
-            
+                <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Detail</h1>
+            </div>
+            <div class="mb-8 px-2">
+                <p> Informasi lengkap tentang permohonan yang sudah diajukan.</p>
+            </div>
 
-            <!-- Card Container -->
-            <div class="bg-white rounded shadow p-6 flex flex-col lg:flex-row justify-between gap-6">
-                
-                <!-- Kolom Kiri -->
-                <div class="flex-1 space-y-3 text-sm">
-                    <div><span class="font-semibold">IdPel:</span> {{ $detailpbpd->IdPel }}</div>
-                    <div><span class="font-semibold">Nama Pemohon:</span> {{ $detailpbpd->NamaPemohon }}</div>
-                    <div><span class="font-semibold">Tanggal Surat Diterima:</span> {{ $detailpbpd->TglSuratDiterima }}</div>
-                    <div><span class="font-semibold">No Whatsapp:</span> {{ $detailpbpd->NoWhatsapp }}</div>
-                    <div><span class="font-semibold">Aplikasi Manajemen Surat:</span> {{ $detailpbpd->AplManajemenSurat }}
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold text-main mb-4">Data Permohonan PBPD</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <span class="block text-gray-500 text-sm">IDPel</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $detailpbpd->IdPel }}</span>
                     </div>
-                    <div><span class="font-semibold">Permohonan Daya Lama:</span> {{ $detailpbpd->PermoDayaLama }}</div>
-                    <div><span class="font-semibold">Permohonan Daya Baru:</span> {{ $detailpbpd->PermoDayaBaru }}</div>
-                    <div><span class="font-semibold">Selisih Daya:</span> {{ $detailpbpd->SelisihDaya }}</div>
-                    <div><span class="font-semibold">Ampere:</span> {{ $detailpbpd->Ampere }}</div>
-                    <div><span class="font-semibold">Status:</span> <span class="bg-pink-500 text-white px-3 py-1 rounded text-sm">{{ $detailpbpd->Status }}</span></div>
-                    
-
-                   
-                </div>
-
-                <!-- Kolom Kanan -->
-                <div class="w-full lg:w-1/3 space-y-4">
-                    <div class="flex justify-between">
-                        <span class="font-semibold"></span>
-                        <span class="font-semibold">Status:</span> <span class="bg-pink-500 text-white px-3 py-1 rounded text-sm">{{ $detailpbpd->Status }}</span>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Nama Pemohon</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $detailpbpd->NamaPemohon }}</span>
                     </div>
-                    
+                    <div>
+                        <span class="block text-gray-500 text-sm">Tanggal Surat Diterima</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $detailpbpd->TglSuratDiterima }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">No Whatsapp</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $detailpbpd->NoWhatsapp }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">AMS</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $detailpbpd->AplManajemenSurat }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Daya Lama</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $detailpbpd->PermoDayaLama }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Daya Baru</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $detailpbpd->PermoDayaBaru }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Selisih Daya</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $detailpbpd->SelisihDaya }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Ampere</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $detailpbpd->Ampere }}</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-sm">Status</span>
+                        <span class="bg-pink-500 text-white px-3 py-1 rounded text-sm">{{ $detailpbpd->Status }}</span>
                     </div>
                 </div>
             </div>
+        </div>
+
         </div>
     </body>
 @endsection

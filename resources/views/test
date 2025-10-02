@@ -71,12 +71,7 @@
         .table-scroll-container th:last-child,
         .table-scroll-container td:last-child {
             border-right: none;
-            position: sticky;
-            right: 0;
-            background: white;
-            z-index: 3;
         }
-        
 
         .table-scroll-container th,
         .table-scroll-container td {
@@ -92,10 +87,10 @@
             <div class="w-full">
                 <div class="bg-white py-4 md:py-7  md:px-8 xl:px-10 rounded-md">
                     <div class="flex justify-between items-center p-2">
-                        <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">PBPD Tersurvei</h1>
+                        <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">PBPD Terkirim</h1>
                     </div>
                     <div class="mb-8 px-2">
-                        <p> Masukan Hasil Suvei PBPD pada permohonan PBPD</p>
+                        <p> Data permohonan PBPD yang terkirim ke pihak pemasaran</p>
                     </div>
 
 
@@ -113,6 +108,7 @@
                                     <th rowspan="2">Ampere</th>
                                     <th rowspan="2">BP (Rp)</th>
                                     <th colspan="2">Nilai RAB (Rp)</th>
+                                    <th colspan="2">Nota Dinas dikirim ke SAR</th>
                                     <th rowspan="2">Kebutuhan APP</th>
                                     <th rowspan="2">KKF (Tahun)</th>
                                     <th rowspan="2">Penyulang</th>
@@ -127,17 +123,26 @@
                                     <th rowspan="2">KATERANGAN</th>
                                     <th rowspan="2">Status</th>
                                     <th rowspan="2">Aksi</th>
+                                    <th rowspan="2">Detail</th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal</th>
                                     <th>No whatsapp</th>
                                     <th>AMS</th>
+
                                     <th>Daya Lama</th>
                                     <th>Daya Baru</th>
+
+
                                     <th>Opsi 1</th>
-                                    <th style="z-index: 1">Opsi 2</th>
-                                    
+                                    <th>Opsi 2</th>
+
+
+                                    <th>Tanggal</th>
+                                    <th>No nodin</th>
                                 </tr>
+
+
                             </thead>
                             <tbody>
                                 @foreach ($data as $item)
@@ -154,7 +159,8 @@
                                         <td>{{ $item->BP }}</td>
                                         <td>{{ $item->NilaiRabOpsi1 }}</td>
                                         <td>{{ $item->NilaiRabOpsi2 }}</td>
-
+                                        <td>{{ $item->permohonanPbpd->TglNotaDinas ?? '-' }}</td>
+                                        <td>{{ $item->permohonanPbpd->NoNotaDinas ?? '-' }}</td>
                                         <td>{{ $item->KebutuhanApp }}</td>
                                         <td>{{ $item->KKF }}</td>
                                         <td>{{ $item->Penyulang }}</td>
@@ -168,7 +174,7 @@
                                         <td>{{ $item->TaggingLokasi }}</td>
                                         <td>{{ $item->Keterangan }}</td>
                                         <td>
-                                            <span class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">
+                                            <span class="bg-green-700 text-white px-3 py-1 rounded text-sm">
                                                 {{ $item->permohonanPbpd->Status ?? '-' }}
                                             </span>
                                         </td>
@@ -176,14 +182,6 @@
 
                                         <td class="px-4 py-3">
                                             <div class="flex space-x-2">
-                                                <!-- Tombol Tambah -->
-                                                <a href="{{ route('pbpdterkirim.create', ['IdTersurvei' => $item->id]) }}"
-                                                    class="inline-flex items-center gap-2 group bg-[#14a2ba] hover:bg-[#117e91] text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap">
-                                                    <img src="{{ asset('img/icontambah.png') }}" alt="Tambah"
-                                                        class="w-5 h-5">
-                                                    <span class="hidden group-hover:inline text-sm font-medium">Kirim
-                                                        Ke Pemasaran</span>
-                                                </a>
 
                                                 <!-- Tombol Edit -->
                                                 <a href="{{ Route('pbpdtersurvei.edit', $item->id) }}"
@@ -207,12 +205,12 @@
                                                             Data</span>
                                                     </button>
                                                 </form>
-
-                                                <a href="{{ route('pbpdtersurvei.show', $item->id) }}"
-                                                    class="bg-green-500  hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
                                             </div>
                                         </td>
-
+                                        <td class="px-4 py-3">
+                                            <a href="{{ route('pbpdtersurvei.show', $item->id) }}"
+                                                class="bg-green-500 text-white px-4 py-1 rounded">Detail</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -254,3 +252,71 @@
         });
     </script>
 @endsection
+
+
+
+
+<!--form yang fieldnya berisi data permohonan(ini bagian dari  file create tersurvei)-->
+@if ($permohonan)
+                    <div class="mb-6">
+                        <label class="block text-base font-medium text-gray-700 mb-2">IDPel</label>
+                        <input type="text" name="IdPel" value="{{ $permohonan->IdPel }}" readonly
+                            class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-base font-medium text-gray-700 mb-2">Nama Pemohon</label>
+                        <input type="text" name="NamaPemohon" value="{{ $permohonan->NamaPemohon }}" readonly
+                            class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
+                    </div>
+                    <div>
+                        <h1 class="text-1xl font-bold text-main mb-4 md:mb-0">Surat Di terima REN</h1>
+                    </div>
+                    <div class="mb-6 flex gap-6">
+                        <div class="flex-1">
+                            <label class="block text-base font-medium text-gray-700 mb-2">Tanggal </label>
+                            <input type="date" name="TglSuratDiterima"
+                                class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                value="{{ $permohonan->TglSuratDiterima }}" readonly>
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-base font-medium text-gray-700 mb-2">No Whatsapp</label>
+                            <input type="text" name="NoWhatsapp"
+                                class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="08xxxx" value="{{ $permohonan->NoWhatsapp }}" readonly>
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-base font-medium text-gray-700 mb-2">AMS</label>
+                            <input type="text" name="AplManajemenSurat"
+                                class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="AMS" value="{{ $permohonan->AplManajemenSurat }}" readonly>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h1 class="text-1xl font-bold text-main mb-4 md:mb-0">Permohonan Daya</h1>
+                    </div>
+                    <div class="mb-6 flex gap-6">
+                        <div class="flex-1">
+                            <label class="block text-base font-medium text-gray-700 mb-2">Daya Lama</label>
+                            <input type="text" name="PermoDayaLama" value="{{ $permohonan->PermoDayaLama }}" readonly
+                                class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-base font-medium text-gray-700 mb-2">Daya Baru</label>
+                            <input type="text" name="PermoDayaBaru" value="{{ $permohonan->PermoDayaBaru }}" readonly
+                                class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-base font-medium text-gray-700 mb-2">SelisihDaya</label>
+                        <input type="text" name="SelisihDaya" value="{{ $permohonan->SelisihDaya }}" readonly
+                            class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-base font-medium text-gray-700 mb-2">Ampere</label>
+                        <input type="text" name="Ampere" value="{{ $permohonan->Ampere }}" readonly
+                            class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
+                    </div>
+                    <!-- Tambahkan field lain dari $permohonan jika ingin ditampilkan -->
+                @endif

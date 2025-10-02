@@ -12,6 +12,11 @@ class PermohonanPbpd extends Model
     
     public function PbpdTersurvei()
     {
-        return $this->hasMany(PbpdTersurvei::class, 'permohonan_pbpd_id');
+        return $this->hasOne(\App\Models\PbpdTersurvei::class, 'IdPermohonan', 'id');
+
     }
+    public function pbpdTerkirim() {
+    return $this->hasOne(\App\Models\PbpdTerkirim::class, 'IdPermohonan');
+    }
+    
 }

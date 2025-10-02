@@ -14,15 +14,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $jumlahPermohonan = PermohonanPbpd::where('Status', 'permohonan')->count();
-        $jumlahTersurvei = PermohonanPbpd::where('Status', 'tersurvei')->count();
+        $jumlahPermohonan = \App\Models\PermohonanPbpd::where('Status', 'Permohonan')->count();
+        $jumlahTersurvei = \App\Models\PermohonanPbpd::where('Status', 'Tersurvei')->count();
+        $jumlahTerkirim = \App\Models\PermohonanPbpd::where('Status', 'Terkirim')->count();
 
-        // Ambil semua tagging lokasi dari database tersurvei
-        $lokasi = \App\Models\PbpdTersurvei::with('permohonanPbpd')
-            ->whereNotNull('TaggingLokasi')
-            ->get(['TaggingLokasi', 'IdPermohonan']); // Ambil field yang dibutuhkan
+        // Data lokasi untuk peta, sesuaikan dengan kebutuhan Anda
+        $lokasi = \App\Models\PbpdTersurvei::with('permohonanPbpd')->get();
 
-        return view('dashboard.index', compact('jumlahPermohonan', 'jumlahTersurvei', 'lokasi'));
+        return view('dashboard.index', compact('jumlahPermohonan', 'jumlahTersurvei', 'jumlahTerkirim', 'lokasi'));
     }
 
     /**

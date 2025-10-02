@@ -74,9 +74,10 @@
             position: sticky;
             right: 0;
             background: white;
+            z-index: 3;
         }
-
-        .text-center {
+        .table-scroll-container th,
+        .table-scroll-container td {
             text-align: center !important;
             vertical-align: middle !important;
         }
@@ -89,15 +90,10 @@
             <div class="w-full">
                 <div class="bg-white py-4 md:py-7  md:px-8 xl:px-10 rounded-md">
                     <div class="flex justify-between items-center p-2">
-                        <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Permohonan PBPD</h1>
-                        <div class="flex space-x-2">
-                            <a
-                                href="{{ Route('permohonanpbpd.create') }}"class="bg-[#14a2ba] text-white px-6 py-2 rounded hover:bg-[#117e91]">+
-                                Tambahkan Permohonan PBPD</a>
-                        </div>
+                        <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">PBPD Terkirim</h1>
                     </div>
                     <div class="mb-8 px-2">
-                        <p> Kumpulan Permohonan PBPD yang telah diajukan</p>
+                        <p> Data permohonan PBPD yang terkirim ke pihak pemasaran</p>
                     </div>
 
 
@@ -107,13 +103,28 @@
                         <table id="myTable" class="display text-center">
                             <thead>
                                 <tr>
-                                    <th rowspan="2">No</th>
+                                    
                                     <th rowspan="2">IdPel</th>
                                     <th rowspan="2">Nama</th>
-                                    <th class="text-center" colspan="3">Surat diterima REN</th>
-                                    <th class="text-center" colspan="2">Permohonan Daya (VA)</th>
+                                    <th colspan="3">Surat diterima REN</th>
+                                    <th colspan="2">Permohonan Daya (VA)</th>
                                     <th rowspan="2">Selisih Daya</th>
                                     <th rowspan="2">Ampere</th>
+                                    <th rowspan="2">BP (Rp)</th>
+                                    <th colspan="2">Nilai RAB (Rp)</th>
+                                    <th colspan="2">Nota Dinas dikirim ke SAR</th>
+                                    <th rowspan="2">Kebutuhan APP</th>
+                                    <th rowspan="2">KKF (Tahun)</th>
+                                    <th rowspan="2">Penyulang</th>
+                                    <th rowspan="2">Beban Penyulang (A)</th>
+                                    <th rowspan="2">Gardu Induk</th>
+                                    <th rowspan="2">Trafo GI</th>
+                                    <th rowspan="2">Kapasitas Trafo (MWA)</th>
+                                    <th rowspan="2">Beban Trafo GI (A)</th>
+                                    <th rowspan="2">Beban Trafo GI Setelah Pelanggan Energiza (MW)</th>
+                                    <th rowspan="2">STATUS BEBAN TRAFO DIBANDING KAPASITAS TRAFO</th>
+                                    <th rowspan="2">TAGGING LOKASI</th>
+                                    <th rowspan="2">KATERANGAN</th>
                                     <th rowspan="2">Status</th>
                                     <th rowspan="2">Aksi</th>
                                     
@@ -126,39 +137,58 @@
                                     <th>Daya Lama</th>
                                     <th>Daya Baru</th>
 
+
+                                    <th>Opsi 1</th>
+                                    <th>Opsi 2</th>
+
+
+                                    <th>Tanggal</th>
+                                    <th style="z-index: 1">No nodin</th>
                                 </tr>
 
 
                             </thead>
                             <tbody>
-                                @foreach ($data as $index => $item)
+                                @foreach ($data as $item)
                                     <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $item->IdPel }}</td>
-                                        <td>{{ $item->NamaPemohon }}</td>
-                                        <td>{{ $item->TglSuratDiterima }}</td>
-                                        <td>{{ $item->NoWhatsapp }}</td>
-                                        <td>{{ $item->AplManajemenSurat }}</td>
-                                        <td>{{ $item->PermoDayaLama }}(VA)</td>
-                                        <td>{{ $item->PermoDayaBaru }}(VA)</td>
-                                        <td>{{ $item->SelisihDaya }}(VA)</td>
-                                        <td>{{ $item->Ampere }}</td>
-                                        <td class="px-4 py-3 text-center"><span
-                                                class="bg-pink-500 text-white px-3 py-1 rounded text-sm">{{ $item->Status }}</span>
+                                        <td>{{ $item->permohonanPbpd->IdPel ?? '-' }}</td>
+                                        <td>{{ $item->permohonanPbpd->NamaPemohon ?? '-' }}</td>
+                                        <td>{{ $item->permohonanPbpd->TglSuratDiterima ?? '-' }}</td>
+                                        <td>{{ $item->permohonanPbpd->NoWhatsapp ?? '-' }}</td>
+                                        <td>{{ $item->permohonanPbpd->AplManajemenSurat ?? '-' }}</td>
+                                        <td>{{ $item->permohonanPbpd->PermoDayaLama ?? '-' }}</td>
+                                        <td>{{ $item->permohonanPbpd->PermoDayaBaru ?? '-' }}</td>
+                                        <td>{{ $item->permohonanPbpd->SelisihDaya ?? '-' }}</td>
+                                        <td>{{ $item->permohonanPbpd->Ampere ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->BP ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->NilaiRabOpsi1 ?? '-'}}</td>
+                                        <td>{{ $item->pbpdTersurvei->NilaiRabOpsi2?? '-' }}</td>
+                                        <td>{{ $item->TglNotaDinas ?? '-' }}</td>
+                                        <td>{{ $item->Nodin ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->KebutuhanApp ?? '-'}}</td>
+                                        <td>{{ $item->pbpdTersurvei->KKF ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->Penyulang ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->BebanPenyulang ?? '-'}}</td>
+                                        <td>{{ $item->pbpdTersurvei->GarduInduk ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->TrafoGI ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->KapasitasTrafo ?? '-'}}</td>
+                                        <td>{{ $item->pbpdTersurvei->BebanTrafoGI ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->BebanTrafoGISetelah ??'-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->StatusBeban ?? '-'}}</td>
+                                        <td>{{ $item->pbpdTersurvei->TaggingLokasi ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->Keterangan ?? '-' }}</td>
+                                        <td>
+                                            <span class="bg-green-700 text-white px-3 py-1 rounded text-sm">
+                                                {{ $item->permohonanPbpd->Status ?? '-' }}
+                                            </span>
                                         </td>
+
+
                                         <td class="px-4 py-3">
                                             <div class="flex space-x-2">
-                                                <!-- Tombol Tambah -->
-                                                <a href="{{ route('pbpdtersurvei.create', ['IdPermohonan' => $item->id]) }}"
-                                                    class="inline-flex items-center gap-2 group bg-[#14a2ba] hover:bg-[#117e91] text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap">
-                                                    <img src="{{ asset('img/icontambah.png') }}" alt="Tambah"
-                                                        class="w-5 h-5">
-                                                    <span class="hidden group-hover:inline text-sm font-medium">Hasil
-                                                        Survey</span>
-                                                </a>
 
                                                 <!-- Tombol Edit -->
-                                                <a href="{{ Route('permohonanpbpd.edit', $item->id) }}"
+                                                <a href="{{ Route('pbpdtersurvei.edit', $item->id) }}"
                                                     class="inline-flex items-center gap-2 group bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap">
                                                     <img src="{{ asset('img/iconedit.png') }}" alt="Edit"
                                                         class="w-5 h-5">
@@ -167,7 +197,7 @@
                                                 </a>
 
                                                 <!-- Tombol Hapus -->
-                                                <form action="{{ Route('permohonanpbpd.destroy', $item->id) }}"
+                                                <form action="{{ Route('pbpdtersurvei.destroy', $item->id) }}"
                                                     method="POST"
                                                     class="inline-flex items-center gap-2 group bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap">
                                                     @csrf
@@ -180,15 +210,11 @@
                                                     </button>
                                                 </form>
 
-                                                <a href="{{ Route('permohonanpbpd.show', $item->id) }}"
-                                                class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">
-                                                Detail</a>
+                                                <a href="{{ route('pbpdtersurvei.show', $item->id) }}"
+                                                class="bg-green-500 text-white px-4 py-1 rounded">Detail</a>
                                             </div>
-                                            
                                         </td>
                                         
-
-
                                     </tr>
                                 @endforeach
                             </tbody>
