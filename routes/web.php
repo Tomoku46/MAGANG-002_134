@@ -13,6 +13,9 @@ Route :: resource('/permohonanpbpd', PbpdController::class);
 Route :: resource('/pbpdtersurvei', PbpdTersurveiController::class);
 Route :: resource('/pbpdterkirim', PbpdTerkirimController::class);
 Route :: resource('/', DashboardController::class);
+
+Route::get('/masterdata/export', [MasterDataController::class, 'export'])->name('masterdata.export');
+Route::get('/masterdata/{id}/pdf', [MasterDataController::class, 'cetakPdf'])->name('masterdata.cetakpdf');
 Route :: resource('/masterdata', MasterDataController::class);
 
 

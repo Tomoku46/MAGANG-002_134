@@ -109,7 +109,13 @@
                         <p> Kumpulan data PBPD</p>
                     </div>
 
-
+                    <!-- Tombol Export Excel -->
+                    <div class="flex justify-end mb-4">
+                        <a href="{{ route('masterdata.export') }}"
+                            class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                            Export Excel
+                        </a>
+                    </div>
 
                     <!-- Container dengan scroll horizontal -->
                     <div class="table-scroll-container">
@@ -163,7 +169,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($data as $item)
-                                    <tr>
+                                    <tr data-id="{{ $item->id }}">
                                         <td>{{ $item->IdPel ?? '-' }}</td>
                                         <td>{{ $item->NamaPemohon ?? '-' }}</td>
                                         <td>{{ $item->TglSuratDiterima ?? '-' }}</td>
@@ -225,6 +231,18 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal Konfirmasi Cetak PDF -->
+    <div id="pdfConfirmModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-80">
+            <h2 class="text-lg font-bold mb-4">Konfirmasi Cetak PDF</h2>
+            <p class="mb-6">Apakah Anda ingin mencetak data ini sebagai PDF?</p>
+            <div class="flex justify-end gap-2">
+                <button id="cancelPdfBtn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Batal</button>
+                <a id="printPdfBtn" href="#" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Cetak</a>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
@@ -253,6 +271,21 @@
                     "emptyTable": "Tidak ada data tersedia",
                     "zeroRecords": "Tidak ditemukan data yang sesuai"
                 }
+            });
+
+            // Double click event on table cell
+            let selectedId = null;
+            $(document).on('dblclick', '.table-scroll-container td', function() {
+                const row = $(this).closest('tr');
+                selectedId = row.data('id');
+                if(selectedId) {
+                    $('#pdfConfirmModal').removeClass('hidden');
+                    $('#printPdfBtn').attr('href', '/masterdata/' + selectedId + '/pdf');
+                }
+            });
+            // Hide modal on cancel
+            $('#cancelPdfBtn').on('click', function() {
+                $('#pdfConfirmModal').addClass('hidden');
             });
         });
     </script>
