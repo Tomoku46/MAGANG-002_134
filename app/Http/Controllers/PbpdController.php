@@ -59,7 +59,7 @@ class PbpdController extends Controller
             'Status' => 'Permohonan',
         ]);
 
-        return redirect()->route('permohonanpbpd.index');
+    return redirect()->route('permohonanpbpd.index')->with('success', 'Data berhasil disimpan!');
     }
 
     /**
@@ -111,7 +111,7 @@ class PbpdController extends Controller
             'Ampere' => $request->Ampere,
             'Status' => 'permohonan',
         ]);
-        return redirect()->route('permohonanpbpd.index');
+    return redirect()->route('permohonanpbpd.index')->with('success', 'Data berhasil diedit!');
     }
 
     /**
@@ -122,7 +122,7 @@ class PbpdController extends Controller
         $hapupbpd = PermohonanPbpd::find($id);
         $hapupbpd->delete();
 
-        return redirect()->route('permohonanpbpd.index');
+    return redirect()->route('permohonanpbpd.index')->with('success', 'Data berhasil dihapus!');
     }
 
     /**
@@ -136,6 +136,6 @@ class PbpdController extends Controller
         PermohonanPbpd::where('id', $request->IdPermohonan)
             ->update(['Status' => 'tersurvei']);
 
-        return redirect()->route('permohonanpbpd.index');
+    return redirect()->route('permohonanpbpd.index')->with('success', 'Data berhasil dihapus!');
     }
 }

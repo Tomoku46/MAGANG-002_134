@@ -61,7 +61,7 @@ class PbpdTersurveiController extends Controller
         PermohonanPbpd::where('id', $request->IdPermohonan)
         ->update(['Status' => 'Tersurvei']);
 
-        return redirect()->route('pbpdtersurvei.index');
+    return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil disimpan!');
     }
 
     public function show($id)
@@ -105,7 +105,7 @@ class PbpdTersurveiController extends Controller
             'Keterangan' => $request->Keterangan,
         ]);
 
-        return redirect()->route('pbpdtersurvei.index');
+    return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil diedit!');
     }
 
     public function destroy($id)
@@ -116,7 +116,7 @@ class PbpdTersurveiController extends Controller
     }
         $delete->delete();
 
-        return redirect()->route('pbpdtersurvei.index');
+    return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil dihapus!');
     }
 
     public function updateStatus(Request $request, $id)
@@ -127,6 +127,6 @@ class PbpdTersurveiController extends Controller
         PermohonanPbpd::where('id', $request->IdPermohonan)
             ->update(['Status' => 'terkirim']);
 
-        return redirect()->route('pbpdtersurvei.index');
+    return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil dihapus!');
     }
 }

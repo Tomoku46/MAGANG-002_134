@@ -47,7 +47,7 @@ class PbpdTerkirimController extends Controller
         PermohonanPbpd::where('id', $request->IdPermohonan)
         ->update(['Status' => 'Terkirim']);
 
-        return redirect()->route('pbpdterkirim.index');
+    return redirect()->route('pbpdterkirim.index')->with('success', 'Data berhasil disimpan!');
     }
 
     public function show($id)
@@ -76,7 +76,7 @@ class PbpdTerkirimController extends Controller
         $pbpdTerkirim->Nodin = $request->Nodin;
         $pbpdTerkirim->save();
 
-        return redirect()->route('pbpdterkirim.index')->with('success', 'Data berhasil diupdate!');
+    return redirect()->route('pbpdterkirim.index')->with('success', 'Data berhasil diedit!');
     }
 
     public function destroy($id)
@@ -84,6 +84,6 @@ class PbpdTerkirimController extends Controller
         $delete = PbpdTerkirim::findOrFail($id);
         $delete->delete();
 
-        return redirect()->route('pbpdterkirim.index');
+    return redirect()->route('pbpdterkirim.index')->with('success', 'Data berhasil dihapus!');
     }
 }
