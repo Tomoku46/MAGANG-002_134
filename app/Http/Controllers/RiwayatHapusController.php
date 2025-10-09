@@ -14,8 +14,19 @@ class RiwayatHapusController extends Controller
 
     public function index()
     {
-        $data = PermohonanPbpd::onlyTrashed()->get();
-        return view('riwayathapus.index', compact('data'));
+        $data = PermohonanPbpd::onlyTrashed()->get()->map(function($item) {
+            $item->asal = 'permohonan';
+            return $item;
+        });
+        $terkirim = \App\Models\PbpdTerkirim::onlyTrashed()
+            ->with(['permohonanPbpd', 'pbpdTersurvei'])
+            ->get()->map(function($item) {
+                $item->asal = 'terkirim';
+                return $item;
+            });
+        $allRiwayat = $data->concat($terkirim);
+
+        return view('riwayathapus.index', compact('allRiwayat'));
     }
 
     /**
@@ -68,13 +79,40 @@ class RiwayatHapusController extends Controller
 
     public function restoreAll()
     {
-        PermohonanPbpd::onlyTrashed()->restore();
+        // Restore semua permohonan
+        \App\Models\PermohonanPbpd::onlyTrashed()->restore();
+
+        // Restore semua tersurvei
+        \App\Models\PbpdTersurvei::onlyTrashed()->restore();
+        \App\Models\PbpdTerkirim::onlyTrashed()->restore();
+
         return redirect()->route('riwayathapus.index')->with('success', 'Semua data berhasil dipulihkan!');
     }
     
-    public function restore($id)
+    public function restore($id, Request $request)
     {
-        \App\Models\PermohonanPbpd::withTrashed()->findOrFail($id)->restore();
+        $asal = $request->get('asal');
+        if ($asal == 'terkirim') {
+            $terkirim = \App\Models\PbpdTerkirim::withTrashed()->findOrFail($id);
+            $terkirim->restore();
+        } else {
+            $permohonan = PermohonanPbpd::withTrashed()->findOrFail($id);
+            $permohonan->restore();
+            // restore relasi jika perlu
+        }
         return redirect()->route('riwayathapus.index')->with('success', 'Data berhasil dipulihkan!');
+    }
+
+    public function forceDelete($id, Request $request)
+    {
+        $asal = $request->get('asal');
+        if ($asal == 'terkirim') {
+            $terkirim = \App\Models\PbpdTerkirim::withTrashed()->findOrFail($id);
+            $terkirim->forceDelete();
+        } else {
+            $permohonan = PermohonanPbpd::withTrashed()->findOrFail($id);
+            $permohonan->forceDelete();
+        }
+        return redirect()->route('riwayathapus.index')->with('success', 'Data berhasil dihapus permanen!');
     }
 }

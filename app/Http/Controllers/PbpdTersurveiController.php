@@ -10,12 +10,9 @@ class PbpdTersurveiController extends Controller
 {
     public function index()
     {
-        $data = PbpdTersurvei::with('permohonanPbpd')
-            ->whereHas('permohonanPbpd', function($q) {
-                $q->where('Status', 'Tersurvei');
-            })
-            ->get();
-
+        $data = PbpdTersurvei::whereHas('permohonanPbpd', function($q){
+            $q->where('Status', 'Tersurvei');
+        })->with('permohonanPbpd')->get(); // hanya data yang deleted_at NULL
         return view('pbpdtersurvei.index', compact('data'));
     }
 
@@ -33,6 +30,7 @@ class PbpdTersurveiController extends Controller
     {
         $request->validate([
             'IdPermohonan' => 'required|exists:permohonan_pbpd,id',
+            'deleted_at' => 'nullable',
         ]);
 
         PbpdTersurvei::create([
@@ -54,14 +52,12 @@ class PbpdTersurveiController extends Controller
             'StatusBeban' => $request->StatusBeban,
             'TaggingLokasi' => $request->TaggingLokasi,
             'Keterangan' => $request->Keterangan,
-            
-            
         ]);
 
         PermohonanPbpd::where('id', $request->IdPermohonan)
-        ->update(['Status' => 'Tersurvei']);
+            ->update(['Status' => 'Tersurvei']);
 
-    return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil disimpan!');
+        return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil disimpan!');
     }
 
     public function show($id)
@@ -105,28 +101,51 @@ class PbpdTersurveiController extends Controller
             'Keterangan' => $request->Keterangan,
         ]);
 
-    return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil diedit!');
+        return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil diedit!');
     }
 
     public function destroy($id)
     {
         $delete = PbpdTersurvei::find($id);
-         if ($delete && $delete->IdPermohonan) {
-        PermohonanPbpd::where('id', $delete->IdPermohonan)->delete();
-    }
+        if ($delete && $delete->IdPermohonan) {
+            PermohonanPbpd::where('id', $delete->IdPermohonan)->delete();
+        }
         $delete->delete();
 
-    return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil dihapus!');
     }
 
     public function updateStatus(Request $request, $id)
     {
-        // Debug
-        // dd($request->IdPermohonan);
-
         PermohonanPbpd::where('id', $request->IdPermohonan)
             ->update(['Status' => 'terkirim']);
 
-    return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil dihapus!');
+    }
+
+    public function restore($id)
+    {
+        $permohonan = \App\Models\PermohonanPbpd::withTrashed()->findOrFail($id);
+        $permohonan->restore();
+
+        // Restore data tersurvei yang terkait
+        $tersurvei = \App\Models\PbpdTersurvei::withTrashed()->where('IdPermohonan', $id)->first();
+        if ($tersurvei) {
+            $tersurvei->restore();
+        }
+
+        // Restore data terkirim yang terkait
+        $terkirim = \App\Models\PbpdTerkirim::withTrashed()->where('IdPermohonan', $id)->first();
+        if ($terkirim) {
+            $terkirim->restore();
+        }
+
+        return redirect()->route('riwayathapus.index')->with('success', 'Data berhasil dipulihkan!');
+    }
+
+    public function restoreAll()
+    {
+        \App\Models\PermohonanPbpd::onlyTrashed()->restore();
+        return redirect()->route('riwayathapus.index')->with('success', 'Semua data berhasil dipulihkan!');
     }
 }

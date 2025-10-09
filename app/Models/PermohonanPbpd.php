@@ -15,7 +15,7 @@ class PermohonanPbpd extends Model
     
     public function PbpdTersurvei()
     {
-        return $this->hasOne(\App\Models\PbpdTersurvei::class, 'IdPermohonan', 'id');
+        return $this->hasOne(\App\Models\PbpdTersurvei::class, 'IdPermohonan', 'id')->withTrashed();
 
     }
     public function pbpdTerkirim() {

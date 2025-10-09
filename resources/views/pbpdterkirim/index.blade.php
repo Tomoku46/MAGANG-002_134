@@ -190,11 +190,10 @@
 
                                                 <!-- Tombol Edit -->
                                                 <a href="{{ Route('pbpdterkirim.edit', $item->id) }}"
-                                                    class="inline-flex items-center gap-2 group bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap btn-edit">
+                                                    class="inline-flex items-center gap-2 group bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap btn-edit" title="Edit Data">
                                                     <img src="{{ asset('img/iconedit.png') }}" alt="Edit"
                                                         class="w-5 h-5">
-                                                    <span class="hidden group-hover:inline text-sm font-medium">Edit
-                                                        Data</span>
+                                                    
                                                 </a>
 
                                                 <!-- Tombol Hapus -->
@@ -205,14 +204,13 @@
                                                     @method('DELETE')
                                                     <button type="button" class="flex items-center gap-2 btn-hapus" data-id="{{ $item->id }}">
                                                         <img src="{{ asset('img/icondelete1.png') }}" alt="Hapus"
-                                                            class="w-5 h-5">
-                                                        <span class="hidden group-hover:inline text-sm font-medium">Hapus
-                                                            Data</span>
+                                                            class="w-5 h-5" title="Hapus Data">
+                                                        
                                                     </button>
                                                 </form>
 
                                                 <a href="{{ route('pbpdterkirim.show', $item->id) }}"
-                                                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
+                                                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded" title="Lihat Detil">Detail</a>
                                             </div>
                                         </td>
 

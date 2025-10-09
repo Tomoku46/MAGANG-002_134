@@ -116,7 +116,7 @@
                                     <th rowspan="2">Ampere</th>
                                     <th rowspan="2">Status</th>
                                     <th rowspan="2">Aksi</th>
-                                    
+
                                 </tr>
                                 <tr>
                                     <th>Tanggal</th>
@@ -150,43 +150,47 @@
                                             <div class="flex space-x-2">
                                                 <!-- Tombol Tambah -->
                                                 <a href="{{ route('pbpdtersurvei.create', ['IdPermohonan' => $item->id]) }}"
+                                                    title="Tambah Hasil Survey"
                                                     class="inline-flex items-center gap-2 group bg-[#14a2ba] hover:bg-[#117e91] text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap">
                                                     <img src="{{ asset('img/icontambah.png') }}" alt="Tambah"
                                                         class="w-5 h-5">
-                                                    <span class="hidden group-hover:inline text-sm font-medium">Hasil
-                                                        Survey</span>
+                                
                                                 </a>
 
                                                 <!-- Tombol Edit -->
-                                                <a href="{{ Route('permohonanpbpd.edit', $item->id) }}"
+                                                <a href="{{ Route('permohonanpbpd.edit', $item->id) }}" title="Edit Data"
                                                     class="inline-flex items-center gap-2 group bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap btn-edit">
                                                     <img src="{{ asset('img/iconedit.png') }}" alt="Edit"
                                                         class="w-5 h-5">
-                                                    <span class="hidden group-hover:inline text-sm font-medium">Edit
-                                                        Data</span>
                                                 </a>
 
                                                 <!-- Tombol Hapus -->
                                                 <form action="{{ Route('permohonanpbpd.destroy', $item->id) }}"
                                                     method="POST"
-                                                    class="inline-flex items-center gap-2 group bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap hapus-form" data-id="{{ $item->id }}">
+                                                    class="inline-flex items-center gap-2 group bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap hapus-form"
+                                                    data-id="{{ $item->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="button" class="flex items-center gap-2 btn-hapus" data-id="{{ $item->id }}">
+                                                    <button type="button" 
+                                                        class="flex items-center gap-2 btn-hapus"
+                                                        title="Hapus Data"
+                                                        data-id="{{ $item->id }}">
                                                         <img src="{{ asset('img/icondelete1.png') }}" alt="Hapus"
                                                             class="w-5 h-5">
-                                                        <span class="hidden group-hover:inline text-sm font-medium">Hapus
-                                                            Data</span>
+                                                        
                                                     </button>
                                                 </form>
 
+                                                <!-- Tombol Detail -->
                                                 <a href="{{ Route('permohonanpbpd.show', $item->id) }}"
-                                                class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">
-                                                Detail</a>
+                                                    title="Lihat Detail"
+                                                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">
+                                                    Detail
+                                                </a>
                                             </div>
-                                            
+
                                         </td>
-                                        
+
 
 
                                     </tr>
@@ -204,7 +208,8 @@
         <div class="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
             <h2 class="text-lg font-bold mb-4 text-green-700">Berhasil!</h2>
             <p class="mb-6">{{ session('success') }}</p>
-            <button id="closeSuccessModal" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Tutup</button>
+            <button id="closeSuccessModal"
+                class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Tutup</button>
         </div>
     </div>
 
@@ -216,7 +221,8 @@
             <p class="mb-6 text-sm" style="opacity:0.8;">Anda dapat memulihkan data ini di riwayat hapus</p>
             <div class="flex justify-end gap-2">
                 <button id="cancelHapusBtn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Batal</button>
-                <button id="confirmHapusBtn" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Pindahkan Ke Riwayat Hapus</button>
+                <button id="confirmHapusBtn" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Pindahkan Ke
+                    Riwayat Hapus</button>
             </div>
         </div>
     </div>

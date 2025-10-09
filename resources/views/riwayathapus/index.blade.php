@@ -169,22 +169,24 @@
 
                             </thead>
                             <tbody>
-                                @foreach ($data as $item)
+                                @foreach ($allRiwayat as $item)
                                     <tr data-id="{{ $item->id }}">
-                                        <td>{{ $item->IdPel ?? '-' }}</td>
-                                        <td>{{ $item->NamaPemohon ?? '-' }}</td>
-                                        <td>{{ $item->TglSuratDiterima ?? '-' }}</td>
-                                        <td>{{ $item->NoWhatsapp ?? '-' }}</td>
-                                        <td>{{ $item->AplManajemenSurat ?? '-' }}</td>
-                                        <td>{{ $item->PermoDayaLama ?? '-' }}</td>
-                                        <td>{{ $item->PermoDayaBaru ?? '-' }}</td>
-                                        <td>{{ $item->SelisihDaya ?? '-' }}</td>
-                                        <td>{{ $item->Ampere ?? '-' }}</td>
+                                        <td>{{ $item->IdPel ?? ($item->permohonanPbpd->IdPel ?? '-') }}</td>
+                                        <td>{{ $item->NamaPemohon ?? ($item->permohonanPbpd->NamaPemohon ?? '-') }}</td>
+                                        <td>{{ $item->TglSuratDiterima ?? ($item->permohonanPbpd->TglSuratDiterima ?? '-') }}
+                                        </td>
+                                        <td>{{ $item->NoWhatsapp ?? ($item->permohonanPbpd->NoWhatsapp ?? '-') }}</td>
+                                        <td>{{ $item->AplManajemenSurat ?? ($item->permohonanPbpd->AplManajemenSurat ?? '-') }}
+                                        </td>
+                                        <td>{{ $item->PermoDayaLama ?? ($item->permohonanPbpd->PermoDayaLama ?? '-') }}</td>
+                                        <td>{{ $item->PermoDayaBaru ?? ($item->permohonanPbpd->PermoDayaBaru ?? '-') }}</td>
+                                        <td>{{ $item->SelisihDaya ?? ($item->permohonanPbpd->SelisihDaya ?? '-') }}</td>
+                                        <td>{{ $item->Ampere ?? ($item->permohonanPbpd->Ampere ?? '-') }}</td>
                                         <td>{{ $item->pbpdTersurvei->BP ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->NilaiRabOpsi1 ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->NilaiRabOpsi2 ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTerkirim->TanggalNota ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTerkirim->Nodin ?? '-' }}</td>
+                                        <td>{{ $item->TanggalNota ?? '-' }}</td>
+                                        <td>{{ $item->Nodin ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->KebutuhanApp ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->KKF ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->Penyulang ?? '-' }}</td>
@@ -200,7 +202,7 @@
                                         <td>
 
                                             <span class="bg-gray-500 text-white px-3 py-1 rounded text-sm">
-                                                {{ $item->Status ?? '-' }}
+                                                {{ $item->Status ?? ($item->permohonanPbpd->Status ?? '-') }}
                                             </span>
                                         </td>
 
@@ -210,6 +212,16 @@
 
                                                 <a href="{{ route('masterdata.show', $item->id) }}"
                                                     class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
+                                                <a href="{{ route('riwayathapus.restore', ['id' => $item->id, 'asal' => $item->asal]) }}"
+                                                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded"
+                                                    onclick="return confirm('Pulihkan data ini?')">
+                                                    Pulihkan
+                                                </a>
+                                                <a href="{{ route('riwayathapus.forceDelete', ['id' => $item->id, 'asal' => $item->asal]) }}"
+                                                    class="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded"
+                                                    onclick="return confirm('Hapus data ini secara permanen? Data tidak dapat dikembalikan!')">
+                                                    Hapus Permanen
+                                                </a>
                                             </div>
                                         </td>
 

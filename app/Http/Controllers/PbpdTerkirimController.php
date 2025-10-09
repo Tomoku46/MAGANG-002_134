@@ -34,6 +34,7 @@ class PbpdTerkirimController extends Controller
         $request->validate([
             'IdPermohonan' => 'required|exists:permohonan_pbpd,id',
             'IdTersurvei' => 'required|exists:pbpd_tersurvei,id',
+            'deleted_at' => 'nullable',
         ]);
 
         PbpdTerkirim::create([
@@ -86,4 +87,33 @@ class PbpdTerkirimController extends Controller
 
     return redirect()->route('pbpdterkirim.index')->with('success', 'Data berhasil dihapus!');
     }
+
+
+    
+    public function restore($id)
+    {
+        $permohonan = \App\Models\PermohonanPbpd::withTrashed()->findOrFail($id);
+        $permohonan->restore();
+
+        // Restore data tersurvei yang terkait
+        $tersurvei = \App\Models\PbpdTersurvei::withTrashed()->where('IdPermohonan', $id)->first();
+        if ($tersurvei) {
+            $tersurvei->restore();
+        }
+
+        // Restore data terkirim yang terkait
+        $terkirim = \App\Models\PbpdTerkirim::withTrashed()->where('IdPermohonan', $id)->first();
+        if ($terkirim) {
+            $terkirim->restore();
+        }
+
+        return redirect()->route('riwayathapus.index')->with('success', 'Data berhasil dipulihkan!');
+    }
+
+    public function restoreAll()
+    {
+        \App\Models\PermohonanPbpd::onlyTrashed()->restore();
+        return redirect()->route('riwayathapus.index')->with('success', 'Semua data berhasil dipulihkan!');
+    }
+
 }

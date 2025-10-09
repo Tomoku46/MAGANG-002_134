@@ -320,3 +320,8 @@
                     </div>
                     <!-- Tambahkan field lain dari $permohonan jika ingin ditampilkan -->
                 @endif
+
+
+<!--terkirim.index-->
+$data = PbpdTerkirim::with(['permohonanPbpd', 'pbpdTersurvei'])->get();
+        return view('pbpdterkirim.index', compact('data'));

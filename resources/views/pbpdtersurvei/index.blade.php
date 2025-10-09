@@ -178,20 +178,20 @@
                                             <div class="flex space-x-2">
                                                 <!-- Tombol Tambah -->
                                                 <a href="{{ route('pbpdterkirim.create', ['IdTersurvei' => $item->id]) }}"
+                                                    title="Kirim Ke Pemasaran"
                                                     class="inline-flex items-center gap-2 group bg-[#14a2ba] hover:bg-[#117e91] text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap">
                                                     <img src="{{ asset('img/icontambah.png') }}" alt="Tambah"
                                                         class="w-5 h-5">
-                                                    <span class="hidden group-hover:inline text-sm font-medium">Kirim
-                                                        Ke Pemasaran</span>
+                            
                                                 </a>
 
                                                 <!-- Tombol Edit -->
                                                 <a href="{{ Route('pbpdtersurvei.edit', $item->id) }}"
+                                                    title="Edit Data"
                                                     class="inline-flex items-center gap-2 group bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap btn-edit">
                                                     <img src="{{ asset('img/iconedit.png') }}" alt="Edit"
                                                         class="w-5 h-5">
-                                                    <span class="hidden group-hover:inline text-sm font-medium">Edit
-                                                        Data</span>
+                                                    
                                                 </a>
 
                                                 <!-- Tombol Hapus -->
@@ -200,16 +200,15 @@
                                                     class="inline-flex items-center gap-2 group bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap hapus-form" data-id="{{ $item->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="button" class="flex items-center gap-2 btn-hapus" data-id="{{ $item->id }}">
+                                                    <button type="button" class="flex items-center gap-2 btn-hapus" data-id="{{ $item->id }}"  title="Hapus Data">
                                                         <img src="{{ asset('img/icondelete1.png') }}" alt="Hapus"
                                                             class="w-5 h-5">
-                                                        <span class="hidden group-hover:inline text-sm font-medium">Hapus
-                                                            Data</span>
+                                                        
                                                     </button>
                                                 </form>
 
                                                 <a href="{{ route('pbpdtersurvei.show', $item->id) }}"
-                                                    class="bg-green-500  hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
+                                                    class="bg-green-500  hover:bg-green-600  text-white px-4 py-1 rounded" title="Detail Data">Detail</a>
                                             </div>
                                         </td>
 
