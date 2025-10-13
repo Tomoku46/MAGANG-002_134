@@ -8,28 +8,48 @@
 
 @section('content')
     <!-- Breadcrumb Navigation -->
-    <div class="bg-white rounded-xl shadow-main p-6 fixed top-[64px] z-40">
-        <nav aria-label="Breadcrumb">
-            <ol class="flex flex-wrap items-center space-x-2 text-base sm:text-lg text-gray-600">
-                <li>
-                    <a href="#permohonan" class="breadcrumb-link text-gray-700 hover:underline">
-                        Data Permohonan
+    <div class="bg-gray-100 rounded-xl shadow-main p-6 fixed top-[64px] z-40 w-full max-w-screen-xl mx-auto">
+    <nav class="flex" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+            <!-- Permohonan -->
+            <li class="inline-flex items-center">
+                <a href="#permohonan"
+                    class="breadcrumb-link inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    Permohonan
+                </a>
+            </li>
+
+            <!-- Tersurvei -->
+            <li>
+                <div class="flex items-center">
+                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 6 10" aria-hidden="true">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 9 4-4-4-4" />
+                    </svg>
+                    <a href="#tersurvei"
+                        class="breadcrumb-link ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2">
+                        Data Survei
                     </a>
-                </li>
-                <li class="text-gray-400">></li>
-                <li>
-                    <a href="#tersurvei" class="breadcrumb-link font-semibold text-gray-900 hover:underline">
-                        Data Tersurvei
+                </div>
+            </li>
+            <!-- Kirim -->
+            <li>
+                <div class="flex items-center">
+                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 6 10" aria-hidden="true">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 9 4-4-4-4" />
+                    </svg>
+                    <a href="#kirim"
+                        class="breadcrumb-link ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2">
+                        Kirim
                     </a>
-                </li>
-                <li class="text-gray-400">></li>
-                <li>
-                    <a href="#kirim" class="breadcrumb-link font-semibold text-gray-900 hover:underline">
-                        Kirim Data
-                    </a>
-            </ol>
-        </nav>
-    </div>
+                </div>
+            </li>
+        </ol>
+    </nav>
+</div>
 
     <!-- Main Content -->
     <main class="bg-white rounded-xl shadow-main p-8 mb-8 max-w-5xl mx-auto">
@@ -215,35 +235,35 @@
                 const target = document.querySelector(targetSelector);
 
                 if (target) {
-                    // Sembunyikan semua section yang ada
+                    // Sembunyikan semua section
                     sections.forEach(s => {
                         if (s) s.classList.add('hidden');
                     });
-                    
+
                     // Tampilkan section yang dituju
                     target.classList.remove('hidden');
 
-                    // Scroll ke atas halaman
+                    // Scroll ke atas
                     window.scrollTo(0, 0);
 
-                    // Perbarui style link breadcrumb yang aktif
+                    // Perbarui style breadcrumb
                     links.forEach(l => {
-                        l.classList.remove('font-semibold', 'text-gray-900');
+                        l.classList.remove('font-semibold', 'text-blue-600', 'underline');
                         l.classList.add('text-gray-700');
                     });
-                    this.classList.add('font-semibold', 'text-gray-900');
+
+                    this.classList.add('font-semibold', 'text-blue-600', 'underline');
                     this.classList.remove('text-gray-700');
                 }
             });
         });
 
-        // Inisialisasi: Tampilkan 'Kirim Permohonan' sebagai default saat halaman dimuat
+        // Inisialisasi: 'Kirim' aktif secara default
         const kirimSection = document.getElementById('kirim');
         const kirimLink = document.querySelector('a[href="#kirim"]');
 
         if (kirimSection && kirimLink) {
             sections.forEach(s => {
-                // Sembunyikan semua section kecuali 'kirim'
                 if (s && s.id !== 'kirim') {
                     s.classList.add('hidden');
                 } else if (s) {
@@ -251,15 +271,15 @@
                 }
             });
 
-            // Atur link yang aktif
+            // Atur warna default
             links.forEach(l => {
-                l.classList.remove('font-semibold', 'text-gray-900');
+                l.classList.remove('font-semibold', 'text-blue-600', 'underline');
                 l.classList.add('text-gray-700');
             });
-            kirimLink.classList.add('font-semibold', 'text-gray-900');
+
+            kirimLink.classList.add('font-semibold', 'text-blue-600', 'underline');
             kirimLink.classList.remove('text-gray-700');
         }
     });
 </script>
 @endsection
-

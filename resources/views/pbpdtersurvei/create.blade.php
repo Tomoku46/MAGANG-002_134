@@ -14,14 +14,9 @@
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <!-- Home -->
             <li class="inline-flex items-center">
-                <a href="#"
-                    class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                    <svg class="w-3 h-3 me-2.5" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 20 20" aria-hidden="true">
-                        <path
-                            d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                    </svg>
-                    Home
+                <a href="#permohonan"
+                    class="breadcrumb-link inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    Permohonan
                 </a>
             </li>
 
@@ -33,25 +28,10 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
                     </svg>
-                    <a href="#"
-                        class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
-                        Projects
+                    <a href="#survei"
+                        class="breadcrumb-link ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2">
+                        Data Survei
                     </a>
-                </div>
-            </li>
-
-            <!-- Current Page -->
-            <li aria-current="page">
-                <div class="flex items-center">
-                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 6 10" aria-hidden="true">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 9 4-4-4-4" />
-                    </svg>
-                    <span
-                        class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-                        Flowbite
-                    </span>
                 </div>
             </li>
         </ol>
@@ -268,58 +248,49 @@
 @endsection
 
 @section('script')
-@section('script')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('.breadcrumb-link');
-            const sections = [document.getElementById('survei'), document.getElementById('permohonan')];
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const links = document.querySelectorAll('.breadcrumb-link');
+  const sections = [document.getElementById('survei'), document.getElementById('permohonan')];
 
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetSelector = this.getAttribute('href');
-                    const target = document.querySelector(targetSelector);
+  links.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetSelector = this.getAttribute('href');
+      const target = document.querySelector(targetSelector);
 
-                    if (target) {
-                        // Sembunyikan semua section
-                        sections.forEach(s => {
-                            if (s) s.classList.add('hidden');
-                        });
-                        // Tampilkan section yang dituju
-                        target.classList.remove('hidden');
+      if (target) {
+        sections.forEach(s => s.classList.add('hidden'));
+        target.classList.remove('hidden');
+        window.scrollTo(0, 0);
 
-                        // Tambahkan baris ini untuk scroll ke atas halaman
-                        window.scrollTo(0, 0);
-
-                        // Perbarui style link breadcrumb yang aktif
-                        links.forEach(l => {
-                            l.classList.remove('font-semibold', 'text-gray-900');
-                            l.classList.add('text-gray-700');
-                        });
-                        this.classList.add('font-semibold', 'text-gray-900');
-                        this.classList.remove('text-gray-700');
-                    }
-                });
-            });
-
-            // Inisialisasi awal saat halaman pertama kali dimuat
-            const surveiSection = document.getElementById('survei');
-            const permohonanSection = document.getElementById('permohonan');
-            const surveiLink = document.querySelector('a[href="#survei"]');
-            const permohonanLink = document.querySelector('a[href="#permohonan"]');
-
-            if (surveiSection && permohonanSection && surveiLink && permohonanLink) {
-                // Tampilkan section 'survei' sebagai default
-                surveiSection.classList.remove('hidden');
-                permohonanSection.classList.add('hidden');
-
-                // Atur link 'Data Survei' sebagai yang aktif
-                surveiLink.classList.add('font-semibold', 'text-gray-900');
-                surveiLink.classList.remove('text-gray-700');
-                permohonanLink.classList.remove('font-semibold', 'text-gray-900');
-                permohonanLink.classList.add('text-gray-700');
-            }
+        links.forEach(l => {
+          l.classList.remove('font-semibold', 'text-blue-600', 'underline');
+          l.classList.add('text-gray-700');
         });
-    </script>
+
+        this.classList.add('font-semibold', 'text-blue-600', 'underline');
+        this.classList.remove('text-gray-700');
+      }
+    });
+  });
+
+  // Default aktif di "Data Survei"
+  const surveiSection = document.getElementById('survei');
+  const permohonanSection = document.getElementById('permohonan');
+  const surveiLink = document.querySelector('a[href="#survei"]');
+  const permohonanLink = document.querySelector('a[href="#permohonan"]');
+
+  if (surveiSection && permohonanSection && surveiLink && permohonanLink) {
+    surveiSection.classList.remove('hidden');
+    permohonanSection.classList.add('hidden');
+
+    surveiLink.classList.add('font-semibold', 'underline');
+    surveiLink.classList.remove('text-gray-700');
+    permohonanLink.classList.remove('font-semibold', 'underline');
+    permohonanLink.classList.add('text-gray-700');
+  }
+});
+</script>
 @endsection
-@endsection
+

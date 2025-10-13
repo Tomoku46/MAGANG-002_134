@@ -216,14 +216,18 @@
 
                                         <td class="px-4 py-3">
                                             <div class="flex space-x-2">
-                                                <a href="{{ route('riwayathapus.restore', ['id' => $item->id, 'asal' => $item->asal]) }}"
-                                                    class="bg-green-500 hover:bg-green-700 text-white px-4 py-1 rounded btn-restore-single"
-                                                    data-id="{{ $item->id }}">
-                                                    Pulihkan
+                                                <!-- Tombol Pulihkan -->
+                                                <a href="{{ Route('riwayathapus.restore', $item->id) }}"
+                                                    class="inline-flex items-center gap-2 group bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap btn-retore" title="Pulihkan Data">
+                                                    <img src="{{ asset('img/iconrestore.png') }}" alt="Pulihkan"
+                                                        class="w-5 h-5">
                                                 </a>
-                                                <button type="button" class="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded btn-delete-single"
-                                                    data-id="{{ $item->id }}">Hapus Permanen</button>
-                                            </div>
+
+                                                <!-- Tombol Hapus -->
+                                                <button type="button" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded btn-delete-single"
+                                                    data-id="{{ $item->id }}" title="Hapus Permanen">
+                                                    <img src="{{ asset('img/icondelete1.png') }}" alt="Hapus Permanen" class="w-5 h-5">
+                                                </button>
                                         </td>
 
                                     </tr>
