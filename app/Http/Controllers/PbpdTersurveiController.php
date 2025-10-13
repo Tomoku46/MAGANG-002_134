@@ -35,6 +35,7 @@ class PbpdTersurveiController extends Controller
 
         PbpdTersurvei::create([
             'IdPermohonan' => $request->IdPermohonan,
+            'Ampere' => $request->Ampere,
             'BP' => $request->BP,
             'NilaiRabOpsi1' => $request->NilaiRabOpsi1,
             'NilaiRabOpsi2' => $request->NilaiRabOpsi2,
@@ -82,6 +83,7 @@ class PbpdTersurveiController extends Controller
         $edittersurvei = PbpdTersurvei::find($id);
         $edittersurvei->update([
             'IdPermohonan' => $request->IdPermohonan,
+            'Ampere' => $request->Ampere,
             'BP' => $request->BP,
             'NilaiRabOpsi1' => $request->NilaiRabOpsi1,
             'NilaiRabOpsi2' => $request->NilaiRabOpsi2,

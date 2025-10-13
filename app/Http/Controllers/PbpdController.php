@@ -39,7 +39,6 @@ class PbpdController extends Controller
             'PermoDayaLama' => 'required',
             'PermoDayaBaru' => 'required',
             'SelisihDaaya' => 'nullable',
-            'Ampere' => 'required',
             'Status' => 'Permohonan',
             'deleted_at' => 'nullable',
         ], [
@@ -55,7 +54,7 @@ class PbpdController extends Controller
             'PermoDayaLama' => $request->PermoDayaLama,
             'PermoDayaBaru' => $request->PermoDayaBaru,
             'SelisihDaya' => $SelisihDaya,
-            'Ampere' => $request->Ampere,
+            
             'Status' => 'Permohonan',
         ]);
 
@@ -94,7 +93,6 @@ class PbpdController extends Controller
             'PermoDayaLama' => 'required',
             'PermoDayaBaru' => 'required',
             'SelisihDaaya' => 'nullable',
-            'Ampere' => 'required',
             'Status' => 'permohonan',
         ]);
         $SelisihDaya = $request->PermoDayaBaru - $request->PermoDayaLama;
@@ -108,7 +106,7 @@ class PbpdController extends Controller
             'PermoDayaLama' => $request->PermoDayaLama,
             'PermoDayaBaru' => $request->PermoDayaBaru,
             'SelisihDaya' => $SelisihDaya,
-            'Ampere' => $request->Ampere,
+            
             'Status' => 'permohonan',
         ]);
     return redirect()->route('permohonanpbpd.index')->with('success', 'Data berhasil diedit!');

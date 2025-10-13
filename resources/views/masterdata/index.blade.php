@@ -178,7 +178,7 @@
                                         <td>{{ $item->PermoDayaLama ?? '-' }}</td>
                                         <td>{{ $item->PermoDayaBaru ?? '-' }}</td>
                                         <td>{{ $item->SelisihDaya ?? '-' }}</td>
-                                        <td>{{ $item->Ampere ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->Ampere ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->BP ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->NilaiRabOpsi1 ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->NilaiRabOpsi2 ?? '-' }}</td>

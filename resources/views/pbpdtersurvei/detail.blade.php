@@ -55,10 +55,6 @@
                         <span class="block text-lg font-bold text-gray-800">{{ $detailtersurvei->permohonanPbpd->SelisihDaya ?? '-' }}</span>
                     </div>
                     <div>
-                        <span class="block text-gray-500 text-sm">Ampere :</span>
-                        <span class="block text-lg font-bold text-gray-800">{{ $detailtersurvei->permohonanPbpd->Ampere ?? '-' }}</span>
-                    </div>
-                    <div>
                         <span class="block text-gray-500 text-sm">Status :</span>
                         <span class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">{{ $detailtersurvei->permohonanPbpd->Status ?? '-' }}</span>
                     </div>
@@ -72,6 +68,10 @@
         <div class="mb-8">
                 <h2 class="text-xl font-semibold text-main mb-4">Data Hasil Survei</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <span class="block text-gray-500 text-sm">Ampere :</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $detailtersurvei->Ampere ?? '-' }}</span>
+                    </div>
                     <div>
                         <span class="block text-gray-500 text-sm">BP :</span>
                         <span class="block text-lg font-bold text-gray-800">{{ $detailtersurvei->BP }}</span>

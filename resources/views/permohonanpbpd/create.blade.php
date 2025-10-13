@@ -79,12 +79,6 @@
                     </div>
 
                 </div>
-                <div class="mb-6">
-                    <label class="block text-base font-medium text-gray-700 mb-2">Ampere</label>
-                    <input type="number" name="Ampere"
-                        class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="A">
-                </div>
                 <button type="submit"
                     class="mt-6 w-full bg-green-600 text-white py-3 rounded-lg font-semibold text-base hover:bg-green-700 transition">
                     Simpan

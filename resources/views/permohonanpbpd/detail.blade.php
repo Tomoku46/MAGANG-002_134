@@ -51,10 +51,6 @@
                         <span class="block text-lg font-bold text-gray-800">{{ $detailpbpd->SelisihDaya }}</span>
                     </div>
                     <div>
-                        <span class="block text-gray-500 text-sm">Ampere</span>
-                        <span class="block text-lg font-bold text-gray-800">{{ $detailpbpd->Ampere }}</span>
-                    </div>
-                    <div>
                         <span class="block text-gray-500 text-sm">Status</span>
                         <span class="bg-pink-500 text-white px-3 py-1 rounded text-sm">{{ $detailpbpd->Status }}</span>
                     </div>

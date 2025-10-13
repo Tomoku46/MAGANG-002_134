@@ -77,14 +77,16 @@
                         <input type="text" name="SelisihDaya" value="{{ $permohonan->SelisihDaya }}" readonly
                             class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
                     </div>
-                    <div class="mb-6">
-                        <label class="block text-base font-medium text-gray-700 mb-2">Ampere</label>
-                        <input type="text" name="Ampere" value="{{ $permohonan->Ampere }}" readonly
-                            class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
-                    </div>
+
                     <!-- Tambahkan field lain dari $permohonan jika ingin ditampilkan -->
                 @endif
                 @method ('PUT')
+                <div class="mb-6">
+                    <label class="block text-base font-medium text-gray-700 mb-2">Ampere</label>
+                    <input type="text" name="Ampere" value="{{ $edittersurvei->Ampere }}"
+                        class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Ampere">
+                </div>
                 <div class="mb-6">
                     <label class="block text-base font-medium text-gray-700 mb-2">BP</label>
                     <input type="number" name="BP" value="{{ $edittersurvei->BP }}"

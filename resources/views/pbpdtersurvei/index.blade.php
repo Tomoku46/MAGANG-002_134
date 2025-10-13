@@ -150,11 +150,10 @@
                                         <td>{{ $item->permohonanPbpd->PermoDayaLama ?? '-' }}</td>
                                         <td>{{ $item->permohonanPbpd->PermoDayaBaru ?? '-' }}</td>
                                         <td>{{ $item->permohonanPbpd->SelisihDaya ?? '-' }}</td>
-                                        <td>{{ $item->permohonanPbpd->Ampere ?? '-' }}</td>
+                                        <td>{{ $item->Ampere }}</td>
                                         <td>{{ $item->BP }}</td>
                                         <td>{{ $item->NilaiRabOpsi1 }}</td>
                                         <td>{{ $item->NilaiRabOpsi2 }}</td>
-
                                         <td>{{ $item->KebutuhanApp }}</td>
                                         <td>{{ $item->KKF }}</td>
                                         <td>{{ $item->Penyulang }}</td>

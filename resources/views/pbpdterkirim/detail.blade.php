@@ -66,7 +66,7 @@
                     <div>
                         <span class="block text-gray-500 text-sm">Ampere :</span>
                         <span
-                            class="block text-lg font-bold text-gray-800">{{ $detail->permohonanPbpd->Ampere ?? '-' }}</span>
+                            class="block text-lg font-bold text-gray-800">{{ $detail->pbpdTersurvei->Ampere ?? '-' }}</span>
                     </div>
                     <div>
                         <span class="block text-gray-500 text-sm">Status :</span>

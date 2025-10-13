@@ -51,6 +51,12 @@
                 @csrf
                 <input type="hidden" name="IdPermohonan" value="{{ $permohonan->id }}">
                 <div class="mb-6">
+                    <label class="block text-base font-medium text-gray-700 mb-2">Ampere</label>
+                    <input type="number" name="Ampere"
+                        class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="A">
+                </div>
+                <div class="mb-6">
                     <label class="block text-base font-medium text-gray-700 mb-2">BP</label>
                     <input type="number" name="BP"
                         class="w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"

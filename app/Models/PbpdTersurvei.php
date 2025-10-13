@@ -16,6 +16,7 @@ class PbpdTersurvei extends Model
     protected $fillable = [
 
         'IdPermohonan',
+        'Ampere',
         'BP',
         'NilaiRabOpsi1',
         'NilaiRabOpsi2',

@@ -114,7 +114,7 @@
                                     <th class="text-center" colspan="3">Surat diterima REN</th>
                                     <th class="text-center" colspan="2">Permohonan Daya (VA)</th>
                                     <th rowspan="2">Selisih Daya</th>
-                                    <th rowspan="2">Ampere</th>
+                                    
                                     <th rowspan="2">Status</th>
                                     <th rowspan="2">Aksi</th>
 
@@ -143,7 +143,7 @@
                                         <td>{{ $item->PermoDayaLama }}(VA)</td>
                                         <td>{{ $item->PermoDayaBaru }}(VA)</td>
                                         <td>{{ $item->SelisihDaya }}(VA)</td>
-                                        <td>{{ $item->Ampere }}</td>
+                                        
                                         <td class="px-4 py-3 text-center"><span
                                                 class="bg-pink-500 text-white px-3 py-1 rounded text-sm">{{ $item->Status }}</span>
                                         </td>
