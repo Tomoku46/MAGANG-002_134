@@ -104,11 +104,16 @@
                 <div class="bg-white py-4 md:py-7  md:px-8 xl:px-10 rounded-md">
                     <div class="flex justify-between items-center p-2 mb-2">
                         <h1 class="text-3xl font-bold text-main">Riwayat Hapus</h1>
-                        <a href="{{ route('riwayathapus.restoreAll') }}"
-                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                            onclick="return confirm('Pulihkan semua data yang terhapus?')">
-                            Pulihkan Semua Data
-                        </a>
+                        <div class="flex items-center gap-2">
+                            <a href="{{ route('riwayathapus.restoreAll') }}"
+                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                                onclick="return confirm('Pulihkan semua data yang terhapus?')">
+                                Pulihkan Semua Data
+                            </a>
+                            <button id="batchDeleteBtn" disabled
+                                class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Hapus
+                                Terpilih</button>
+                        </div>
                     </div>
 
                     <div class="mb-8 px-2">
@@ -124,6 +129,7 @@
                             <thead>
                                 <tr>
 
+                                    <th rowspan="2" style="width:40px;"> <input type="checkbox" id="selectAll"></th>
                                     <th rowspan="2">IdPel</th>
                                     <th rowspan="2">Nama</th>
                                     <th colspan="3">Surat diterima REN</th>
@@ -171,6 +177,7 @@
                             <tbody>
                                 @foreach ($allRiwayat as $item)
                                     <tr data-id="{{ $item->id }}">
+                                        <td><input type="checkbox" class="select-row" data-id="{{ $item->id }}"></td>
                                         <td>{{ $item->IdPel ?? ($item->permohonanPbpd->IdPel ?? '-') }}</td>
                                         <td>{{ $item->NamaPemohon ?? ($item->permohonanPbpd->NamaPemohon ?? '-') }}</td>
                                         <td>{{ $item->TglSuratDiterima ?? ($item->permohonanPbpd->TglSuratDiterima ?? '-') }}
@@ -213,15 +220,12 @@
                                                 <a href="{{ route('masterdata.show', $item->id) }}"
                                                     class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
                                                 <a href="{{ route('riwayathapus.restore', ['id' => $item->id, 'asal' => $item->asal]) }}"
-                                                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded"
-                                                    onclick="return confirm('Pulihkan data ini?')">
+                                                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded btn-restore-single"
+                                                    data-id="{{ $item->id }}">
                                                     Pulihkan
                                                 </a>
-                                                <a href="{{ route('riwayathapus.forceDelete', ['id' => $item->id, 'asal' => $item->asal]) }}"
-                                                    class="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded"
-                                                    onclick="return confirm('Hapus data ini secara permanen? Data tidak dapat dikembalikan!')">
-                                                    Hapus Permanen
-                                                </a>
+                                                <button type="button" class="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded btn-delete-single"
+                                                    data-id="{{ $item->id }}">Hapus Permanen</button>
                                             </div>
                                         </td>
 
@@ -260,7 +264,35 @@
             </div>
         </div>
     </div>
-@endsection
+
+        <!-- Modal Konfirmasi Hapus Permanen (single & batch) -->
+        <div id="deleteConfirmModal" class="fixed inset-0 items-center justify-center bg-black bg-opacity-40 z-50 hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-96">
+                <h2 class="text-lg font-bold mb-4">Konfirmasi Hapus Permanen</h2>
+                <p class="mb-4">Apakah Anda yakin ingin menghapus data yang dipilih secara permanen? Data tidak dapat dikembalikan.</p>
+                <div class="flex justify-end gap-2">
+                    <button id="cancelDeleteBtn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Batal</button>
+                    <form id="deleteForm" action="{{ route('riwayathapus.forceDeleteSelected') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="ids" id="deleteIds">
+                        <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Hapus</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Notifikasi Sukses -->
+        <div id="successModal" class="fixed inset-0 items-center justify-center bg-black bg-opacity-40 z-50 hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-80">
+                <h2 class="text-lg font-bold mb-2">Berhasil</h2>
+                <p id="successMessage" class="mb-4 text-sm text-gray-700">Operasi berhasil.</p>
+                <div class="flex justify-end">
+                    <button id="closeSuccessBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Tutup</button>
+                </div>
+            </div>
+        </div>
+
+    @endsection
 
 @section('script')
     <script>
@@ -303,6 +335,49 @@
             // Hide modal on cancel
             $('#cancelRestoreBtn').on('click', function() {
                 $('#restoreConfirmModal').addClass('hidden');
+            });
+
+            // Selection & batch delete
+            function updateBatchButton() {
+                const anyChecked = $('.select-row:checked').length > 0;
+                $('#batchDeleteBtn').prop('disabled', !anyChecked);
+            }
+            // Select all
+            $(document).on('change', '#selectAll', function() {
+                $('.select-row').prop('checked', $(this).prop('checked'));
+                updateBatchButton();
+            });
+            $(document).on('change', '.select-row', function() {
+                updateBatchButton();
+            });
+
+            // Batch delete click
+            $('#batchDeleteBtn').on('click', function() {
+                const ids = $('.select-row:checked').map(function() { return $(this).data('id'); }).get();
+                if (ids.length === 0) return;
+                $('#deleteIds').val(ids.join(','));
+                $('#deleteConfirmModal').removeClass('hidden').addClass('flex');
+            });
+            // Single delete click
+            $(document).on('click', '.btn-delete-single', function() {
+                const id = $(this).data('id');
+                $('#deleteIds').val(id);
+                $('#deleteConfirmModal').removeClass('hidden').addClass('flex');
+            });
+            $('#cancelDeleteBtn').on('click', function() {
+                $('#deleteConfirmModal').addClass('hidden').removeClass('flex');
+                $('#deleteIds').val('');
+            });
+
+            // Show success modal if session has success message
+            const successMessage = @json(session('success'));
+            if (successMessage) {
+                $('#successMessage').text(successMessage);
+                $('#successModal').removeClass('hidden').addClass('flex');
+            }
+
+            $('#closeSuccessBtn').on('click', function() {
+                $('#successModal').addClass('hidden').removeClass('flex');
             });
         });
     </script>

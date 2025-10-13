@@ -17,6 +17,7 @@ Route::get('/riwayathapus/restoreAll', [RiwayatHapusController::class, 'restoreA
 Route :: resource('/riwayathapus', RiwayatHapusController::class);
 Route::get('/riwayathapus/{id}/restore', [\App\Http\Controllers\RiwayatHapusController::class, 'restore'])->name('riwayathapus.restore');
 Route::get('/riwayathapus/{id}/force-delete', [RiwayatHapusController::class, 'forceDelete'])->name('riwayathapus.forceDelete');
+Route::post('/riwayathapus/force-delete-selected', [RiwayatHapusController::class, 'forceDeleteSelected'])->name('riwayathapus.forceDeleteSelected');
 Route::get('/masterdata/export', [MasterDataController::class, 'export'])->name('masterdata.export');
 Route::get('/masterdata/{id}/pdf', [MasterDataController::class, 'cetakPdf'])->name('masterdata.cetakpdf');
 Route :: resource('/masterdata', MasterDataController::class);

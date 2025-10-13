@@ -1,43 +1,181 @@
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Data Permohonan</title>
     <style>
-        body { font-family: DejaVu Sans, sans-serif; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        th, td { border: 1px solid #333; padding: 8px; text-align: left; }
-        th { background: #eee; }
+        /* ============ GAYA LAYAR ============ */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+            line-height: 1.5;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 25px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+        .header h1 { margin: 0; font-size: 22px; color: #2c3e50; }
+        .header p { margin: 4px 0 0; color: #7f8c8d; font-size: 13px; }
+        .section { margin-bottom: 25px; }
+        .section-title { font-size: 17px; font-weight: bold; color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 6px; margin-bottom: 15px; }
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 25px; }
+        .grid-item { display: flex; flex-direction: column; }
+        .grid-item .label { font-weight: bold; font-size: 13px; color: #555; margin-bottom: 3px; }
+        .grid-item .value { font-size: 13px; color: #333; padding: 6px; background-color: #f5f5f5; border-radius: 4px; word-wrap: break-word; }
+        .full-width { grid-column: 1 / -1; }
+        .footer { margin-top: 20px; text-align: center; font-size: 11px; color: #999; }
+
+        /* ============ GAYA CETAK ============ */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0.7cm;
+            }
+
+            html, body {
+                background: #fff;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                font-family: Arial, sans-serif;
+                font-size: 8.5pt;
+                line-height: 1.15;
+                transform: scale(0.80);
+                transform-origin: top left;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .header {
+                margin-bottom: 8px;
+                padding-bottom: 5px;
+                border-bottom: 1px solid #999;
+            }
+
+            .header h1 { font-size: 12pt; color: #000; }
+            .header p { font-size: 7.5pt; color: #333; }
+
+            .section {
+                margin-bottom: 8px;
+            }
+
+            .section-title {
+                font-size: 9pt;
+                color: #000;
+                border-bottom: 1px solid #000;
+                padding-bottom: 2px;
+                margin-bottom: 5px;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 2px 10px; /* Rapat sekali */
+            }
+
+            .grid-item .label {
+                font-size: 7pt;
+                font-weight: bold;
+                margin-bottom: 1px;
+            }
+
+            .grid-item .value {
+                font-size: 8pt;
+                padding: 2px 4px;
+                background-color: #f0f0f0;
+                border: 1px solid #ccc;
+                border-radius: 2px;
+            }
+
+            .footer {
+                position: fixed;
+                bottom: 0.4cm;
+                left: 0;
+                right: 0;
+                text-align: center;
+                font-size: 7pt;
+                color: #666;
+            }
+
+            /* Hilangkan margin halaman otomatis di browser */
+            @page :first {
+                margin-top: 0.5cm;
+            }
+        }
     </style>
 </head>
 <body>
-    <h2>Detail Master Data</h2>
-    <table>
-        <tr><th>ID Pel</th><td>{{ $detailmaster->IdPel ?? '-' }}</td></tr>
-        <tr><th>Nama Pemohon</th><td>{{ $detailmaster->NamaPemohon ?? '-' }}</td></tr>
-        <tr><th>Tanggal Surat Diterima</th><td>{{ $detailmaster->TglSuratDiterima ?? '-' }}</td></tr>
-        <tr><th>No Whatsapp</th><td>{{ $detailmaster->NoWhatsapp ?? '-' }}</td></tr>
-        <tr><th>Aplikasi Manajemen Surat</th><td>{{ $detailmaster->AplManajemenSurat ?? '-' }}</td></tr>
-        <tr><th>Daya Lama</th><td>{{ $detailmaster->PermoDayaLama ?? '-' }}</td></tr>
-        <tr><th>Daya Baru</th><td>{{ $detailmaster->PermoDayaBaru ?? '-' }}</td></tr>
-        <tr><th>Selisih Daya</th><td>{{ $detailmaster->SelisihDaya ?? '-' }}</td></tr>
-        <tr><th>Ampere</th><td>{{ $detailmaster->Ampere ?? '-' }}</td></tr>
-        <tr><th>Status</th><td>{{ $detailmaster->Status ?? '-' }}</td></tr>
-        <tr><th>BP</th><td>{{ $detailmaster->pbpdTersurvei->BP ?? '-' }}</td></tr>
-        <tr><th>Nilai RAB Opsi 1</th><td>{{ $detailmaster->pbpdTersurvei->NilaiRabOpsi1 ?? '-' }}</td></tr>
-        <tr><th>Nilai RAB Opsi 2</th><td>{{ $detailmaster->pbpdTersurvei->NilaiRabOpsi2 ?? '-' }}</td></tr>
-        <tr><th>Tanggal Nota Dinas</th><td>{{ $detailmaster->pbpdTerkirim->TanggalNota ?? '-' }}</td></tr>
-        <tr><th>Nodin</th><td>{{ $detailmaster->pbpdTerkirim->Nodin ?? '-' }}</td></tr>
-        <tr><th>Kebutuhan APP</th><td>{{ $detailmaster->pbpdTersurvei->KebutuhanApp ?? '-' }}</td></tr>
-        <tr><th>KKF</th><td>{{ $detailmaster->pbpdTersurvei->KKF ?? '-' }}</td></tr>
-        <tr><th>Penyulang</th><td>{{ $detailmaster->pbpdTersurvei->Penyulang ?? '-' }}</td></tr>
-        <tr><th>Beban Penyulang</th><td>{{ $detailmaster->pbpdTersurvei->BebanPenyulang ?? '-' }}</td></tr>
-        <tr><th>Gardu Induk</th><td>{{ $detailmaster->pbpdTersurvei->GarduInduk ?? '-' }}</td></tr>
-        <tr><th>Trafo GI</th><td>{{ $detailmaster->pbpdTersurvei->TrafoGI ?? '-' }}</td></tr>
-        <tr><th>Kapasitas Trafo</th><td>{{ $detailmaster->pbpdTersurvei->KapasitasTrafo ?? '-' }}</td></tr>
-        <tr><th>Beban Trafo GI</th><td>{{ $detailmaster->pbpdTersurvei->BebanTrafoGI ?? '-' }}</td></tr>
-        <tr><th>Beban Trafo GI Setelah Pelanggan Energiza</th><td>{{ $detailmaster->pbpdTersurvei->BebanTrafoGISetelah ?? '-' }}</td></tr>
-        <tr><th>Status Beban</th><td>{{ $detailmaster->pbpdTersurvei->StatusBeban ?? '-' }}</td></tr>
-        <tr><th>Tagging Lokasi</th><td>{{ $detailmaster->pbpdTersurvei->TaggingLokasi ?? '-' }}</td></tr>
-        
-        <!-- Tambahkan kolom lain jika perlu -->
-    </table>
+
+    <div class="container">
+        <div class="header">
+            <h1>Detail Data Permohonan</h1>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Informasi Pemohon</h2>
+            <div class="grid-container">
+                <div class="grid-item"><span class="label">ID Pelanggan:</span><span class="value">{{ $detailmaster->IdPel ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Nama Pemohon:</span><span class="value">{{ $detailmaster->NamaPemohon ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">No. Whatsapp:</span><span class="value">{{ $detailmaster->NoWhatsapp ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Tanggal Surat Diterima:</span><span class="value">{{ $detailmaster->TglSuratDiterima ?? '-' }}</span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Detail Permohonan</h2>
+            <div class="grid-container">
+                <div class="grid-item"><span class="label">Daya Lama:</span><span class="value">{{ $detailmaster->PermoDayaLama ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Daya Baru:</span><span class="value">{{ $detailmaster->PermoDayaBaru ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Selisih Daya:</span><span class="value">{{ $detailmaster->SelisihDaya ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Ampere:</span><span class="value">{{ $detailmaster->Ampere ?? '-' }}</span></div>
+                <div class="grid-item full-width"><span class="label">Status Permohonan:</span><span class="value">{{ $detailmaster->Status ?? '-' }}</span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Data Teknis Survei</h2>
+            <div class="grid-container">
+                <div class="grid-item"><span class="label">BP (Biaya Penyambungan):</span><span class="value">{{ $detailmaster->pbpdTersurvei->BP ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Penyulang:</span><span class="value">{{ $detailmaster->pbpdTersurvei->Penyulang ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Nilai RAB Opsi 1:</span><span class="value">{{ $detailmaster->pbpdTersurvei->NilaiRabOpsi1 ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Beban Penyulang:</span><span class="value">{{ $detailmaster->pbpdTersurvei->BebanPenyulang ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Nilai RAB Opsi 2:</span><span class="value">{{ $detailmaster->pbpdTersurvei->NilaiRabOpsi2 ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Gardu Induk:</span><span class="value">{{ $detailmaster->pbpdTersurvei->GarduInduk ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Kebutuhan APP:</span><span class="value">{{ $detailmaster->pbpdTersurvei->KebutuhanApp ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Trafo GI:</span><span class="value">{{ $detailmaster->pbpdTersurvei->TrafoGI ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">KKF:</span><span class="value">{{ $detailmaster->pbpdTersurvei->KKF ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Kapasitas Trafo:</span><span class="value">{{ $detailmaster->pbpdTersurvei->KapasitasTrafo ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Beban Trafo GI:</span><span class="value">{{ $detailmaster->pbpdTersurvei->BebanTrafoGI ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Beban Trafo GI (Setelah Energize):</span><span class="value">{{ $detailmaster->pbpdTersurvei->BebanTrafoGISetelah ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Status Beban:</span><span class="value">{{ $detailmaster->pbpdTersurvei->StatusBeban ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">Tagging Lokasi:</span><span class="value">{{ $detailmaster->pbpdTersurvei->TaggingLokasi ?? '-' }}</span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Informasi Administrasi</h2>
+            <div class="grid-container">
+                <div class="grid-item"><span class="label">Aplikasi Manajemen Surat:</span><span class="value">{{ $detailmaster->AplManajemenSurat ?? '-' }}</span></div>
+                <div class="grid-item"><span class="label">No. Nota Dinas:</span><span class="value">{{ $detailmaster->pbpdTerkirim->Nodin ?? '-' }}</span></div>
+                <div class="grid-item full-width"><span class="label">Tanggal Nota Dinas:</span><span class="value">{{ $detailmaster->pbpdTerkirim->TanggalNota ?? '-' }}</span></div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

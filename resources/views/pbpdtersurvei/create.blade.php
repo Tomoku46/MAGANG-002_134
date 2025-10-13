@@ -2,19 +2,36 @@
 
 @section('style')
     <style>
-
+        
     </style>
 @endsection
 
 @section('content')
-    <!-- Main Content -->
-    <main>
-        <div class="bg-white rounded-xl shadow-main p-8 mb-8">
-           <div class="flex justify-between items-center p-2">
-                <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Tambah Hasil Survei PBPD</h1>
+    <div class="bg-white rounded-xl shadow-main p-6 fixed top-[64px] z-40">
+        <nav aria-label="Breadcrumb">
+            <ol class="flex flex-wrap items-center space-x-2 text-base sm:text-lg text-gray-600">
+                <li>
+                    <a href="#permohonan" class="breadcrumb-link text-gray-700 hover:underline">
+                        Data Permohonan
+                    </a>
+                </li>
+                <li class="text-gray-400">></li>
+                <li>
+                    <a href="#survei" class="breadcrumb-link font-semibold text-gray-900 hover:underline">
+                        Data Survei
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <main class="mt-[20px] bg-white rounded-xl shadow-main p-8 mb-8 max-w-5xl mx-auto">
+        <div id="survei" class="bg-white rounded-xl shadow-main p-8 mb-8 max-w-5xl mx-auto w-full">
+            <div class="flex justify-between items-center p-2">
+                <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Tambah Hasil Survei</h1>
             </div>
             <div class="mb-8 px-2">
-                <p> Masukkan data hasil survei Permohonan PBPD.</p>
+                <p> Masukkan data hasil survei.</p>
             </div>
             <form action="{{ route('pbpdtersurvei.store') }}" method="POST">
                 @csrf
@@ -161,15 +178,14 @@
                 </div>
                 <button type="submit"
                     class="mt-6 w-full bg-green-600 text-white py-3 rounded-lg font-semibold text-base hover:bg-green-700 transition">
-                    Tambah Data Permohonan PBPD
+                    Simpan
                 </button>
             </form>
         </div>
 
-
-        <div class="bg-white rounded-xl shadow-main p-8 mb-8">
+        <div id="permohonan" class="bg-white rounded-xl shadow-main p-8 mb-8 max-w-5xl mx-auto w-full hidden">
             <div class="mb-8">
-                <h1 class="text-3xl font-bold text-main mb-8">Data Permohonan PBPD</h1>
+                <h1 class="text-3xl font-bold text-main mb-8">Data Permohonan</h1>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <span class="block text-gray-500 text-sm">IDPel</span>
@@ -218,4 +234,58 @@
 @endsection
 
 @section('script')
+@section('script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.breadcrumb-link');
+            const sections = [document.getElementById('survei'), document.getElementById('permohonan')];
+
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetSelector = this.getAttribute('href');
+                    const target = document.querySelector(targetSelector);
+
+                    if (target) {
+                        // Sembunyikan semua section
+                        sections.forEach(s => {
+                            if (s) s.classList.add('hidden');
+                        });
+                        // Tampilkan section yang dituju
+                        target.classList.remove('hidden');
+
+                        // Tambahkan baris ini untuk scroll ke atas halaman
+                        window.scrollTo(0, 0);
+
+                        // Perbarui style link breadcrumb yang aktif
+                        links.forEach(l => {
+                            l.classList.remove('font-semibold', 'text-gray-900');
+                            l.classList.add('text-gray-700');
+                        });
+                        this.classList.add('font-semibold', 'text-gray-900');
+                        this.classList.remove('text-gray-700');
+                    }
+                });
+            });
+
+            // Inisialisasi awal saat halaman pertama kali dimuat
+            const surveiSection = document.getElementById('survei');
+            const permohonanSection = document.getElementById('permohonan');
+            const surveiLink = document.querySelector('a[href="#survei"]');
+            const permohonanLink = document.querySelector('a[href="#permohonan"]');
+
+            if (surveiSection && permohonanSection && surveiLink && permohonanLink) {
+                // Tampilkan section 'survei' sebagai default
+                surveiSection.classList.remove('hidden');
+                permohonanSection.classList.add('hidden');
+
+                // Atur link 'Data Survei' sebagai yang aktif
+                surveiLink.classList.add('font-semibold', 'text-gray-900');
+                surveiLink.classList.remove('text-gray-700');
+                permohonanLink.classList.remove('font-semibold', 'text-gray-900');
+                permohonanLink.classList.add('text-gray-700');
+            }
+        });
+    </script>
+@endsection
 @endsection

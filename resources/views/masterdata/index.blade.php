@@ -103,7 +103,7 @@
             <div class="w-full">
                 <div class="bg-white py-4 md:py-7  md:px-8 xl:px-10 rounded-md">
                     <div class="flex justify-between items-center p-2 mb-2">
-                        <h1 class="text-3xl font-bold text-main">Master Data</h1>
+                        <h1 class="text-3xl font-bold text-main">Daftar Data</h1>
                         <a href="{{ route('masterdata.export') }}"
                             class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                             Export Excel

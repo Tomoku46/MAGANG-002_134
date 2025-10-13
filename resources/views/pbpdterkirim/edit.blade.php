@@ -9,7 +9,7 @@
 @section('content')
     <!-- Main Content -->
     <main>
-        <div class="bg-white rounded-xl shadow-main p-8 mb-8">
+        <div class="bg-white rounded-xl shadow-main p-8 mb-8 max-w-5xl mx-auto">
             <div class="flex justify-between items-center p-2">
                 <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Kirim PBPD</h1>
             </div>
@@ -29,7 +29,7 @@
                 </div>
                 <button type="submit"
                     class="mb-6 w-full bg-green-600 text-white py-3  rounded-lg font-semibold text-base hover:bg-green-700 transition">
-                    Edit Data Permohonan PBPD Terkirim
+                    Simpan
                 </button>
                 @if ($permohonan)
                     <input type="hidden" name="IdPermohonan" value="{{ $permohonan->id }}">

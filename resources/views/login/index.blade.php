@@ -6,7 +6,7 @@
     <title>Login PBPD</title>
     <meta name="author" content="David Grzyb">
     <meta name="description" content="">
-    <link href='img/pln.jpg' rel='shortcut icon'>
+    <link href='img/Logo_PLN.png' rel='shortcut icon'>
     <!-- Tailwind -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
@@ -25,7 +25,7 @@
         <div class="w-full md:w-1/2 flex flex-col">
 
             <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">
-                <img src="{{ asset('img/pln.jpg') }}" alt="Logo" class="h-16"> 
+                <img src="{{ asset('img/Logo_PLN.png') }}" alt="Logo" class="h-16"> 
             </div>
 
             <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">

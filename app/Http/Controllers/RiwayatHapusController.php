@@ -115,4 +115,30 @@ class RiwayatHapusController extends Controller
         }
         return redirect()->route('riwayathapus.index')->with('success', 'Data berhasil dihapus permanen!');
     }
+
+    public function forceDeleteSelected(Request $request)
+    {
+        $idsCsv = $request->input('ids');
+        if (!$idsCsv) {
+            return redirect()->route('riwayathapus.index')->with('success', 'Tidak ada data yang dipilih.');
+        }
+        $ids = explode(',', $idsCsv);
+        foreach ($ids as $id) {
+            $id = trim($id);
+            // Try to find in Terkirim first
+            $found = false;
+            $terkirim = \App\Models\PbpdTerkirim::withTrashed()->find($id);
+            if ($terkirim) {
+                $terkirim->forceDelete();
+                $found = true;
+            }
+            if (!$found) {
+                $permohonan = PermohonanPbpd::withTrashed()->find($id);
+                if ($permohonan) {
+                    $permohonan->forceDelete();
+                }
+            }
+        }
+        return redirect()->route('riwayathapus.index')->with('success', 'Data terpilih berhasil dihapus permanen!');
+    }
 }

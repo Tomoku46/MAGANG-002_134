@@ -9,7 +9,7 @@
 @section('content')
     <!-- Main Content -->
     <main>
-        <div class="bg-white rounded-xl shadow-main p-8 mb-8">
+        <div class="bg-white rounded-xl shadow-main p-8 mb-8 max-w-5xl mx-auto">
             <div class="flex justify-between items-center p-2">
                 <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Edit Permohonan PBPD</h1>
             </div>
@@ -72,8 +72,8 @@
                         placeholder="Ampere">
                 </div>
                 <button type="submit"
-                    class="mt-6 w-full bg-yellow-500 text-white py-3 rounded-lg font-semibold text-base hover:bg-yellow-600 transition">
-                    Edit Perubahan Data Permohonan PBPD
+                    class="mt-6 w-full bg-green-500 text-white py-3 rounded-lg font-semibold text-base hover:bg-yellow-600 transition">
+                    Simpan
                 </button>
             </form>
             <!-- Button Tambah Data Permohonan PBPD -->

@@ -14,7 +14,7 @@
         <div id="sidebar"
             class="bg-white w-64 shadow-md fixed inset-y-0 left-0 transform -translate-x-64 transition-transform duration-300 ease-in-out z-50 h-full">
             <div class="p-4 font-bold text-lg border-b flex justify-between items-center">
-                <span>SMART</span>
+                <span>SMART PBPD</span>
                 <!-- Tombol close -->
                 <button id="closeBtn" class="text-gray-600 hover:text-black lg:hidden">✕</button>
             </div>
@@ -25,8 +25,7 @@
                 <ul class="space-y-3">
                     <p class="font-light">Navigasi</p>
                     <li><a href="{{ url('/dashboard') }}" class="block p-2 rounded hover:bg-gray-200">Dashboard</a></li>
-                    <li><a href="{{ url('/masterdata') }}" class="block p-2 rounded hover:bg-gray-200 mb-7">Master
-                            Data</a></li>
+                    <li><a href="{{ url('/masterdata') }}" class="block p-2 rounded hover:bg-gray-200 mb-7">Daftar PBPD</a></li>
                     <p class="font-light">PBPD</p>
                     <li><a href="{{ url('/permohonanpbpd') }}" class="block p-2 rounded hover:bg-gray-200">Permohonan
                             PBPD</a></li>
@@ -48,7 +47,7 @@
         <!-- Main Section -->
         <div id="mainContent" class="flex-1 flex flex-col transition-all duration-300 ease-in-out ml-0 overflow-hidden">
             <!-- Header -->
-            <header class="bg-[#14a2ba]  shadow p-3 flex items-center justify-between">
+            <header class="bg-gradient-to-r from-[#035B71] to-[#00A2B9] shadow p-3 flex items-center justify-between fixed top-0 w-full z-50">
                 <button id="toggleBtn" class="px-3 py-2 bg-white text-black rounded">
                     ☰
                 </button>
@@ -56,7 +55,7 @@
             </header>
 
             <!-- Content -->
-            <main class="p-6">
+            <main class="p-6 pt-16">
                 @yield('content')
             </main>
         </div>
