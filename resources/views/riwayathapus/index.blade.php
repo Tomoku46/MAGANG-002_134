@@ -216,11 +216,8 @@
 
                                         <td class="px-4 py-3">
                                             <div class="flex space-x-2">
-
-                                                <a href="{{ route('masterdata.show', $item->id) }}"
-                                                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
                                                 <a href="{{ route('riwayathapus.restore', ['id' => $item->id, 'asal' => $item->asal]) }}"
-                                                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded btn-restore-single"
+                                                    class="bg-green-500 hover:bg-green-700 text-white px-4 py-1 rounded btn-restore-single"
                                                     data-id="{{ $item->id }}">
                                                     Pulihkan
                                                 </a>

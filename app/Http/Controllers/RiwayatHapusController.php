@@ -24,7 +24,14 @@ class RiwayatHapusController extends Controller
                 $item->asal = 'terkirim';
                 return $item;
             });
-        $allRiwayat = $data->concat($terkirim);
+        $tersurvei = \App\Models\PbpdTersurvei::onlyTrashed()
+            ->with(['permohonanPbpd'])
+            ->get()->map(function($item) {
+                $item->asal = 'tersurvei';
+                return $item;
+            });
+
+        $allRiwayat = $data->concat($terkirim)->concat($tersurvei);
 
         return view('riwayathapus.index', compact('allRiwayat'));
     }
@@ -95,6 +102,9 @@ class RiwayatHapusController extends Controller
         if ($asal == 'terkirim') {
             $terkirim = \App\Models\PbpdTerkirim::withTrashed()->findOrFail($id);
             $terkirim->restore();
+        } elseif ($asal == 'tersurvei') {
+            $tersurvei = \App\Models\PbpdTersurvei::withTrashed()->findOrFail($id);
+            $tersurvei->restore();
         } else {
             $permohonan = PermohonanPbpd::withTrashed()->findOrFail($id);
             $permohonan->restore();

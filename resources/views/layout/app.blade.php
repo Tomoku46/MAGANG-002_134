@@ -55,7 +55,7 @@
             </header>
 
             <!-- Content -->
-            <main class="p-6 pt-16">
+            <main class="p-6 pt-16 mt-14">
                 @yield('content')
             </main>
         </div>

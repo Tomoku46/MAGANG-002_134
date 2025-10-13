@@ -85,6 +85,7 @@
 
 @section('content')
     <section class="flex w-full">
+        
         <div class="flex flex-col w-full">
             <div class="w-full">
                 <div class="bg-white py-4 md:py-7  md:px-8 xl:px-10 rounded-md">
