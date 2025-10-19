@@ -127,10 +127,6 @@
                         <span class="block text-lg font-bold text-gray-800">{{ $permohonan->SelisihDaya }}</span>
                     </div>
                     <div>
-                        <span class="block text-gray-500 text-sm">Ampere</span>
-                        <span class="block text-lg font-bold text-gray-800">{{ $permohonan->Ampere }}</span>
-                    </div>
-                    <div>
                         <span class="block text-gray-500 text-sm">Status</span>
                         <span class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">{{ $permohonan->Status }}</span>
                     </div>
@@ -143,6 +139,10 @@
             <div id="tersurvei" class="bg-white rounded-xl shadow-main p-8 mb-8 max-w-5xl mx-auto w-full hidden mt-8">
                 <h1 class="text-3xl font-bold text-main mb-8">Data PBPD Tersurvei</h1>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <span class="block text-gray-500 text-sm">Ampere</span>
+                        <span class="block text-lg font-bold text-gray-800">{{ $tersurvei->Ampere }}</span>
+                    </div>
                     <div>
                         <span class="block text-gray-500 text-sm">BP</span>
                         <span class="block text-lg font-bold text-gray-800">{{ $tersurvei->BP }}</span>
