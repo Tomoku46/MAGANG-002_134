@@ -14,24 +14,22 @@ class RiwayatHapusController extends Controller
 
     public function index()
     {
-        $data = PermohonanPbpd::onlyTrashed()->get()->map(function($item) {
+        $deletedPermohonan = \App\Models\PermohonanPbpd::onlyTrashed()->get()->map(function ($item) {
             $item->asal = 'permohonan';
             return $item;
         });
-        $terkirim = \App\Models\PbpdTerkirim::onlyTrashed()
-            ->with(['permohonanPbpd', 'pbpdTersurvei'])
-            ->get()->map(function($item) {
-                $item->asal = 'terkirim';
-                return $item;
-            });
-        $tersurvei = \App\Models\PbpdTersurvei::onlyTrashed()
-            ->with(['permohonanPbpd'])
-            ->get()->map(function($item) {
-                $item->asal = 'tersurvei';
-                return $item;
-            });
 
-        $allRiwayat = $data->concat($terkirim)->concat($tersurvei);
+        $deletedTersurvei = PbpdTersurvei::onlyTrashed()->get()->map(function ($item) {
+            $item->asal = 'tersurvei';
+            return $item;
+        });
+
+        $deletedTerkirim = \App\Models\PbpdTerkirim::onlyTrashed()->get()->map(function ($item) {
+            $item->asal = 'terkirim';
+            return $item;
+        });
+
+        $allRiwayat = $deletedPermohonan->merge($deletedTersurvei)->merge($deletedTerkirim);
 
         return view('riwayathapus.index', compact('allRiwayat'));
     }
@@ -96,20 +94,29 @@ class RiwayatHapusController extends Controller
         return redirect()->route('riwayathapus.index')->with('success', 'Semua data berhasil dipulihkan!');
     }
     
-    public function restore($id, Request $request)
+    public function restore($model, $id)
     {
-        $asal = $request->get('asal');
-        if ($asal == 'terkirim') {
-            $terkirim = \App\Models\PbpdTerkirim::withTrashed()->findOrFail($id);
-            $terkirim->restore();
-        } elseif ($asal == 'tersurvei') {
-            $tersurvei = \App\Models\PbpdTersurvei::withTrashed()->findOrFail($id);
-            $tersurvei->restore();
-        } else {
-            $permohonan = PermohonanPbpd::withTrashed()->findOrFail($id);
-            $permohonan->restore();
-            // restore relasi jika perlu
+        // Pulihkan data berdasarkan model
+        switch ($model) {
+            case 'permohonan':
+                $data = \App\Models\PermohonanPbpd::withTrashed()->findOrFail($id);
+                $data->restore();
+                break;
+
+            case 'tersurvei':
+                $data = \App\Models\PbpdTersurvei::withTrashed()->findOrFail($id);
+                $data->restore();
+                break;
+
+            case 'terkirim':
+                $data = \App\Models\PbpdTerkirim::withTrashed()->findOrFail($id);
+                $data->restore();
+                break;
+
+            default:
+                return redirect()->route('riwayathapus.index')->with('error', 'Model tidak valid!');
         }
+
         return redirect()->route('riwayathapus.index')->with('success', 'Data berhasil dipulihkan!');
     }
 

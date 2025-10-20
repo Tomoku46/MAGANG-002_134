@@ -1,15 +1,12 @@
 <?php
 
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PbpdTerkirim extends Model
 {
-    use HasFactory;
     use SoftDeletes;
 
     protected $table = 'pbpd_terkirim';
@@ -18,17 +15,24 @@ class PbpdTerkirim extends Model
         'IdPermohonan',
         'IdTersurvei',
         'TanggalNota',
-        'Nodin',
+        'Nodin'
     ];
 
-
-    public function pbpdTersurvei()
-    {
-        return $this->belongsTo(PbpdTersurvei::class, 'IdTersurvei')->withTrashed();
-    }
-
+    /**
+     * Relasi ke PermohonanPbpd
+     * Menggunakan `withTrashed()` agar data yang dihapus tetap bisa diakses.
+     */
     public function permohonanPbpd()
     {
-        return $this->belongsTo(\App\Models\PermohonanPbpd::class, 'IdPermohonan');
+        return $this->belongsTo(\App\Models\PermohonanPbpd::class, 'IdPermohonan', 'id')->withTrashed();
+    }
+
+    /**
+     * Relasi ke PbpdTersurvei
+     * Menggunakan `withTrashed()` agar data yang dihapus tetap bisa diakses.
+     */
+    public function pbpdTersurvei()
+    {
+        return $this->belongsTo(\App\Models\PbpdTersurvei::class, 'IdTersurvei', 'id')->withTrashed();
     }
 }

@@ -10,9 +10,9 @@ class PbpdTersurveiController extends Controller
 {
     public function index()
     {
-        $data = PbpdTersurvei::whereHas('permohonanPbpd', function($q){
-            $q->where('Status', 'Tersurvei');
-        })->with('permohonanPbpd')->get(); // hanya data yang deleted_at NULL
+        // Tampilkan hanya data aktif
+        $data = PbpdTersurvei::with('permohonanPbpd')->get();
+
         return view('pbpdtersurvei.index', compact('data'));
     }
 
@@ -108,12 +108,8 @@ class PbpdTersurveiController extends Controller
 
     public function destroy($id)
     {
-        $delete = PbpdTersurvei::find($id);
-        if ($delete && $delete->IdPermohonan) {
-            PermohonanPbpd::where('id', $delete->IdPermohonan)->delete();
-        }
-        $delete->delete();
-
+        $item = PbpdTersurvei::findOrFail($id);
+        $item->delete(); // Soft delete saja, status tetap
         return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil dihapus!');
     }
 
@@ -127,22 +123,18 @@ class PbpdTersurveiController extends Controller
 
     public function restore($id)
     {
-        $permohonan = \App\Models\PermohonanPbpd::withTrashed()->findOrFail($id);
-        $permohonan->restore();
+        $data = PbpdTersurvei::withTrashed()->findOrFail($id);
+        $data->restore();
 
-        // Restore data tersurvei yang terkait
-        $tersurvei = \App\Models\PbpdTersurvei::withTrashed()->where('IdPermohonan', $id)->first();
-        if ($tersurvei) {
-            $tersurvei->restore();
+        // Restore permohonan terkait jika masih terhapus
+        if ($data->IdPermohonan) {
+            $permohonan = PermohonanPbpd::withTrashed()->find($data->IdPermohonan);
+            if ($permohonan && $permohonan->trashed()) {
+                $permohonan->restore();
+            }
         }
 
-        // Restore data terkirim yang terkait
-        $terkirim = \App\Models\PbpdTerkirim::withTrashed()->where('IdPermohonan', $id)->first();
-        if ($terkirim) {
-            $terkirim->restore();
-        }
-
-        return redirect()->route('riwayathapus.index')->with('success', 'Data berhasil dipulihkan!');
+        return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil dipulihkan!');
     }
 
     public function restoreAll()

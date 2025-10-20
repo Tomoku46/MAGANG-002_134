@@ -15,7 +15,7 @@ Route :: resource('/pbpdterkirim', PbpdTerkirimController::class);
 Route :: resource('/dashboard', DashboardController::class);
 Route::get('/riwayathapus/restoreAll', [RiwayatHapusController::class, 'restoreAll'])->name('riwayathapus.restoreAll');
 Route :: resource('/riwayathapus', RiwayatHapusController::class);
-Route::get('/riwayathapus/{id}/restore', [\App\Http\Controllers\RiwayatHapusController::class, 'restore'])->name('riwayathapus.restore');
+
 Route::get('/riwayathapus/{id}/force-delete', [RiwayatHapusController::class, 'forceDelete'])->name('riwayathapus.forceDelete');
 Route::post('/riwayathapus/force-delete-selected', [RiwayatHapusController::class, 'forceDeleteSelected'])->name('riwayathapus.forceDeleteSelected');
 Route::get('/masterdata/export', [MasterDataController::class, 'export'])->name('masterdata.export');
@@ -28,5 +28,6 @@ Route::get('/', function () {
 });
 
 Route::post('/login', [PenggunaController::class, 'login'])->name('pengguna.post');
+Route::get('/riwayathapus/restore/{model}/{id}', [RiwayatHapusController::class, 'restore'])->name('riwayathapus.restore');
 
 

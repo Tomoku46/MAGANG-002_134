@@ -76,7 +76,7 @@
             background: white;
             z-index: 3;
         }
-        
+
 
         .table-scroll-container th,
         .table-scroll-container td {
@@ -136,7 +136,7 @@
                                     <th>Daya Baru</th>
                                     <th>Opsi 1</th>
                                     <th style="z-index: 1">Opsi 2</th>
-                                    
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -171,8 +171,6 @@
                                                 {{ $item->permohonanPbpd->Status ?? '-' }}
                                             </span>
                                         </td>
-
-
                                         <td class="px-4 py-3">
                                             <div class="flex space-x-2">
                                                 <!-- Tombol Tambah -->
@@ -181,33 +179,35 @@
                                                     class="inline-flex items-center gap-2 group bg-[#14a2ba] hover:bg-[#117e91] text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap">
                                                     <img src="{{ asset('img/icontambah.png') }}" alt="Tambah"
                                                         class="w-5 h-5">
-                            
+
                                                 </a>
 
                                                 <!-- Tombol Edit -->
-                                                <a href="{{ Route('pbpdtersurvei.edit', $item->id) }}"
-                                                    title="Edit Data"
+                                                <a href="{{ Route('pbpdtersurvei.edit', $item->id) }}" title="Edit Data"
                                                     class="inline-flex items-center gap-2 group bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap btn-edit">
                                                     <img src="{{ asset('img/iconedit.png') }}" alt="Edit"
                                                         class="w-5 h-5">
-                                                    
+
                                                 </a>
 
                                                 <!-- Tombol Hapus -->
                                                 <form action="{{ Route('pbpdtersurvei.destroy', $item->id) }}"
                                                     method="POST"
-                                                    class="inline-flex items-center gap-2 group bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap hapus-form" data-id="{{ $item->id }}">
+                                                    class="inline-flex items-center gap-2 group bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap hapus-form"
+                                                    data-id="{{ $item->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="button" class="flex items-center gap-2 btn-hapus" data-id="{{ $item->id }}"  title="Hapus Data">
+                                                    <button type="button" class="flex items-center gap-2 btn-hapus"
+                                                        data-id="{{ $item->id }}" title="Hapus Data">
                                                         <img src="{{ asset('img/icondelete1.png') }}" alt="Hapus"
                                                             class="w-5 h-5">
-                                                        
+
                                                     </button>
                                                 </form>
 
                                                 <a href="{{ route('pbpdtersurvei.show', $item->id) }}"
-                                                    class="bg-green-500  hover:bg-green-600  text-white px-4 py-1 rounded" title="Detail Data">Detail</a>
+                                                    class="bg-green-500  hover:bg-green-600  text-white px-4 py-1 rounded"
+                                                    title="Detail Data">Detail</a>
                                             </div>
                                         </td>
 
@@ -226,19 +226,21 @@
         <div class="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
             <h2 class="text-lg font-bold mb-4 text-green-700">Berhasil!</h2>
             <p class="mb-6">{{ session('success') }}</p>
-            <button id="closeSuccessModal" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Tutup</button>
+            <button id="closeSuccessModal"
+                class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Tutup</button>
         </div>
     </div>
 
     <!-- Modal Konfirmasi Hapus -->
-       <div id="hapusConfirmModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 hidden">
+    <div id="hapusConfirmModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 hidden">
         <div class="bg-white rounded-lg shadow-lg p-6 w-100">
             <h2 class="text-lg font-bold mb-4">Konfirmasi Hapus Data</h2>
             <p class="mb-6">Apakah Anda yakin ingin menghapus data ini?</p>
             <p class="mb-6 text-sm" style="opacity:0.8;">Anda dapat memulihkan data ini di riwayat hapus</p>
             <div class="flex justify-end gap-2">
                 <button id="cancelHapusBtn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Batal</button>
-                <button id="confirmHapusBtn" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Pindahkan Ke Riwayat Hapus</button>
+                <button id="confirmHapusBtn" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Pindahkan Ke
+                    Riwayat Hapus</button>
             </div>
         </div>
     </div>

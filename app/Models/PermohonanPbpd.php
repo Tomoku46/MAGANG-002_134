@@ -11,15 +11,33 @@ class PermohonanPbpd extends Model
 
     protected $table = 'permohonan_pbpd';
     
-    protected $fillable = ['IdPel','NamaPemohon', 'TglSuratDiterima', 'NoWhatsapp', 'AplManajemenSurat', 'PermoDayaLama', 'PermoDayaBaru', 'SelisihDaya','Status'];
-    
-    public function PbpdTersurvei()
+    protected $fillable = [
+        'IdPel',
+        'NamaPemohon',
+        'TglSuratDiterima',
+        'NoWhatsapp',
+        'AplManajemenSurat',
+        'PermoDayaLama',
+        'PermoDayaBaru',
+        'SelisihDaya',
+        'Status'
+    ];
+
+    /**
+     * Relasi ke PbpdTersurvei
+     * Menggunakan `withTrashed()` agar data yang dihapus tetap bisa diakses.
+     */
+    public function pbpdTersurvei()
     {
         return $this->hasOne(\App\Models\PbpdTersurvei::class, 'IdPermohonan', 'id')->withTrashed();
+    }
 
+    /**
+     * Relasi ke PbpdTerkirim
+     * Menggunakan `withTrashed()` agar data yang dihapus tetap bisa diakses.
+     */
+    public function pbpdTerkirim()
+    {
+        return $this->hasOne(\App\Models\PbpdTerkirim::class, 'IdPermohonan', 'id')->withTrashed();
     }
-    public function pbpdTerkirim() {
-    return $this->hasOne(\App\Models\PbpdTerkirim::class, 'IdPermohonan');
-    }
-    
 }

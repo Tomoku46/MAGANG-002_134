@@ -175,62 +175,185 @@
 
                             </thead>
                             <tbody>
+                                @php
+                                    $type = request('type', 'permohonan');
+                                @endphp
                                 @foreach ($allRiwayat as $item)
-                                    <tr data-id="{{ $item->id }}">
-                                        <td><input type="checkbox" class="select-row" data-id="{{ $item->id }}"></td>
-                                        <td>{{ $item->IdPel ?? ($item->permohonanPbpd->IdPel ?? '-') }}</td>
-                                        <td>{{ $item->NamaPemohon ?? ($item->permohonanPbpd->NamaPemohon ?? '-') }}</td>
-                                        <td>{{ $item->TglSuratDiterima ?? ($item->permohonanPbpd->TglSuratDiterima ?? '-') }}
-                                        </td>
-                                        <td>{{ $item->NoWhatsapp ?? ($item->permohonanPbpd->NoWhatsapp ?? '-') }}</td>
-                                        <td>{{ $item->AplManajemenSurat ?? ($item->permohonanPbpd->AplManajemenSurat ?? '-') }}
-                                        </td>
-                                        <td>{{ $item->PermoDayaLama ?? ($item->permohonanPbpd->PermoDayaLama ?? '-') }}</td>
-                                        <td>{{ $item->PermoDayaBaru ?? ($item->permohonanPbpd->PermoDayaBaru ?? '-') }}</td>
-                                        <td>{{ $item->SelisihDaya ?? ($item->permohonanPbpd->SelisihDaya ?? '-') }}</td>
-                                        <td>{{ $item->Ampere ?? ($item->permohonanPbpd->Ampere ?? '-') }}</td>
-                                        <td>{{ $item->pbpdTersurvei->BP ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->NilaiRabOpsi1 ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->NilaiRabOpsi2 ?? '-' }}</td>
-                                        <td>{{ $item->TanggalNota ?? '-' }}</td>
-                                        <td>{{ $item->Nodin ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->KebutuhanApp ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->KKF ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->Penyulang ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->BebanPenyulang ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->GarduInduk ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->TrafoGI ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->KapasitasTrafo ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->BebanTrafoGI ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->BebanTrafoGISetelah ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->StatusBeban ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->TaggingLokasi ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->Keterangan ?? '-' }}</td>
-                                        <td>
-
-                                            <span class="bg-gray-500 text-white px-3 py-1 rounded text-sm">
-                                                {{ $item->Status ?? ($item->permohonanPbpd->Status ?? '-') }}
-                                            </span>
-                                        </td>
-
-
-                                        <td class="px-4 py-3">
-                                            <div class="flex space-x-2">
-                                                <!-- Tombol Pulihkan -->
-                                                <a href="{{ Route('riwayathapus.restore', $item->id) }}"
-                                                    class="inline-flex items-center gap-2 group bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap btn-retore" title="Pulihkan Data">
-                                                    <img src="{{ asset('img/iconrestore.png') }}" alt="Pulihkan"
-                                                        class="w-5 h-5">
-                                                </a>
-
-                                                <!-- Tombol Hapus -->
-                                                <button type="button" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded btn-delete-single"
-                                                    data-id="{{ $item->id }}" title="Hapus Permanen">
-                                                    <img src="{{ asset('img/icondelete1.png') }}" alt="Hapus Permanen" class="w-5 h-5">
-                                                </button>
-                                        </td>
-
-                                    </tr>
+                                    @if (($item->asal ?? 'permohonan') === $type)
+                                        <tr data-id="{{ $item->id }}" data-asal="{{ $item->asal ?? 'permohonan' }}">
+                                            <td><input type="checkbox" class="select-row" data-id="{{ $item->id }}">
+                                            </td>
+                                            <td>{{ $item->IdPel ?? '-' }}</td>
+                                            <td>{{ $item->NamaPemohon ?? '-' }}</td>
+                                            <td>{{ $item->TglSuratDiterima ?? '-' }}</td>
+                                            <td>{{ $item->NoWhatsapp ?? '-' }}</td>
+                                            <td>{{ $item->AplManajemenSurat ?? '-' }}</td>
+                                            <td>{{ $item->PermoDayaLama ?? '-' }}</td>
+                                            <td>{{ $item->PermoDayaBaru ?? '-' }}</td>
+                                            <td>{{ $item->SelisihDaya ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->Ampere ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->BP ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->NilaiRabOpsi1 ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->NilaiRabOpsi2 ?? '-' }}</td>
+                                            <td>{{ $item->TanggalNota ?? '-' }}</td>
+                                            <td>{{ $item->Nodin ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->KebutuhanApp ?? '-' }}</td>
+                                            <td>{{ $item->KKF ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->Penyulang ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->BebanPenyulang ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->GarduInduk ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->TrafoGI ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->KapasitasTrafo ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->BebanTrafoGI ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->BebanTrafoGISetelah ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->StatusBeban ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->TaggingLokasi ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->Keterangan ?? '-' }}</td>
+                                            <td>
+                                                <span class="bg-gray-500 text-white px-3 py-1 rounded text-sm">
+                                                    {{ $item->Status ?? ($item->permohonanPbpd->Status ?? '-') }}
+                                                </span>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="flex space-x-2">
+                                                    <!-- Tombol Pulihkan -->
+                                                    <a href="{{ route('riwayathapus.restore', ['model' => $item->asal ?? 'permohonan', 'id' => $item->id]) }}"
+                                                        class="inline-flex items-center gap-2 group bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap btn-retore"
+                                                        title="Pulihkan Data">
+                                                        <img src="{{ asset('img/iconrestore.png') }}" alt="Pulihkan"
+                                                            class="w-5 h-5">
+                                                    </a>
+                                                    <!-- Tombol Hapus -->
+                                                    <button type="button"
+                                                        class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded btn-delete-single"
+                                                        data-id="{{ $item->id }}" title="Hapus Permanen">
+                                                        <img src="{{ asset('img/icondelete1.png') }}" alt="Hapus Permanen"
+                                                            class="w-5 h-5">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                @php
+                                    $type = request('type', 'tersurvei');
+                                @endphp
+                                @foreach ($allRiwayat as $item)
+                                    @if (($item->asal ?? 'tersurvei') === $type)
+                                        <tr data-id="{{ $item->id }}" data-asal="{{ $item->asal ?? 'tersurvei' }}">
+                                            <td><input type="checkbox" class="select-row" data-id="{{ $item->id }}">
+                                            </td>
+                                            <td>{{ $item->permohonanPbpd->IdPel ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->NamaPemohon ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->TglSuratDiterima ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->NoWhatsapp ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->AplManajemenSurat ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->PermoDayaLama ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->PermoDayaBaru ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->SelisihDaya ?? '-' }}</td>
+                                            <td>{{ $item->Ampere ?? '-' }}</td>
+                                            <td>{{ $item->BP ?? '-' }}</td>
+                                            <td>{{ $item->NilaiRabOpsi1 ?? '-' }}</td>
+                                            <td>{{ $item->NilaiRabOpsi2 ?? '-' }}</td>
+                                            <td>{{ $item->TanggalNota ?? '-' }}</td>
+                                            <td>{{ $item->Nodin ?? '-' }}</td>
+                                            <td>{{ $item->KebutuhanApp ?? '-' }}</td>
+                                            <td>{{ $item->KKF ?? '-' }}</td>
+                                            <td>{{ $item->Penyulang ?? '-' }}</td>
+                                            <td>{{ $item->BebanPenyulang ?? '-' }}</td>
+                                            <td>{{ $item->GarduInduk ?? '-' }}</td>
+                                            <td>{{ $item->TrafoGI ?? '-' }}</td>
+                                            <td>{{ $item->KapasitasTrafo ?? '-' }}</td>
+                                            <td>{{ $item->BebanTrafoGI ?? '-' }}</td>
+                                            <td>{{ $item->BebanTrafoGISetelah ?? '-' }}</td>
+                                            <td>{{ $item->StatusBeban ?? '-' }}</td>
+                                            <td>{{ $item->TaggingLokasi ?? '-' }}</td>
+                                            <td>{{ $item->Keterangan ?? '-' }}</td>
+                                            <td>
+                                                <span class="bg-gray-500 text-white px-3 py-1 rounded text-sm">
+                                                    {{ $item->Status ?? ($item->permohonanPbpd->Status ?? '-') }}
+                                                </span>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="flex space-x-2">
+                                                    <!-- Tombol Pulihkan -->
+                                                    <a href="{{ route('riwayathapus.restore', ['model' => $item->asal ?? 'permohonan', 'id' => $item->id]) }}"
+                                                        class="inline-flex items-center gap-2 group bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap btn-retore"
+                                                        title="Pulihkan Data">
+                                                        <img src="{{ asset('img/iconrestore.png') }}" alt="Pulihkan"
+                                                            class="w-5 h-5">
+                                                    </a>
+                                                    <!-- Tombol Hapus -->
+                                                    <button type="button"
+                                                        class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded btn-delete-single"
+                                                        data-id="{{ $item->id }}" title="Hapus Permanen">
+                                                        <img src="{{ asset('img/icondelete1.png') }}" alt="Hapus Permanen"
+                                                            class="w-5 h-5">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                @php
+                                    $type = request('type', 'terkirim');
+                                @endphp
+                                @foreach ($allRiwayat as $item)
+                                    @if (($item->asal ?? 'terkirim') === $type)
+                                        <tr data-id="{{ $item->id }}" data-asal="{{ $item->asal ?? 'terkirim' }}">
+                                            <td><input type="checkbox" class="select-row" data-id="{{ $item->id }}">
+                                            </td>
+                                            <td>{{ $item->permohonanPbpd->IdPel ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->NamaPemohon ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->TglSuratDiterima ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->NoWhatsapp ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->AplManajemenSurat ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->PermoDayaLama ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->PermoDayaBaru ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->SelisihDaya ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->Ampere ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->BP ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->NilaiRabOpsi1 ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->NilaiRabOpsi2 ?? '-' }}</td>
+                                            <td>{{ $item->TanggalNota ?? '-' }}</td>
+                                            <td>{{ $item->Nodin ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->KebutuhanApp ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->KKF ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->Penyulang ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->BebanPenyulang ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->GarduInduk ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->TrafoGI ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->KapasitasTrafo ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->BebanTrafoGI ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->BebanTrafoGISetelah ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->StatusBeban ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->TaggingLokasi ?? '-' }}</td>
+                                            <td>{{ $item->pbpdTersurvei->Keterangan ?? '-' }}</td>
+                                            <td>
+                                                <span class="bg-gray-500 text-white px-3 py-1 rounded text-sm">
+                                                    {{ $item->Status ?? ($item->permohonanPbpd->Status ?? '-') }}
+                                                </span>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="flex space-x-2">
+                                                    <!-- Tombol Pulihkan -->
+                                                    <a href="{{ route('riwayathapus.restore', ['model' => $item->asal ?? 'permohonan', 'id' => $item->id]) }}"
+                                                        class="inline-flex items-center gap-2 group bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap btn-retore"
+                                                        title="Pulihkan Data">
+                                                        <img src="{{ asset('img/iconrestore.png') }}" alt="Pulihkan"
+                                                            class="w-5 h-5">
+                                                    </a>
+                                                    <!-- Tombol Hapus -->
+                                                    <button type="button"
+                                                        class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded btn-delete-single"
+                                                        data-id="{{ $item->id }}" title="Hapus Permanen">
+                                                        <img src="{{ asset('img/icondelete1.png') }}"
+                                                            alt="Hapus Permanen" class="w-5 h-5">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -254,7 +377,8 @@
     </div>
 
     <!-- Modal Konfirmasi Pulihkan Data -->
-    <div id="restoreConfirmModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 hidden">
+    <div id="restoreConfirmModal"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 hidden">
         <div class="bg-white rounded-lg shadow-lg p-6 w-80">
             <h2 class="text-lg font-bold mb-4">Konfirmasi Pulihkan Data</h2>
             <p class="mb-6">Apakah Anda ingin memulihkan data ini?</p>
@@ -266,34 +390,35 @@
         </div>
     </div>
 
-        <!-- Modal Konfirmasi Hapus Permanen (single & batch) -->
-        <div id="deleteConfirmModal" class="fixed inset-0 items-center justify-center bg-black bg-opacity-40 z-50 hidden">
-            <div class="bg-white rounded-lg shadow-lg p-6 w-96">
-                <h2 class="text-lg font-bold mb-4">Konfirmasi Hapus Permanen</h2>
-                <p class="mb-4">Apakah Anda yakin ingin menghapus data yang dipilih secara permanen? Data tidak dapat dikembalikan.</p>
-                <div class="flex justify-end gap-2">
-                    <button id="cancelDeleteBtn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Batal</button>
-                    <form id="deleteForm" action="{{ route('riwayathapus.forceDeleteSelected') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="ids" id="deleteIds">
-                        <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Hapus</button>
-                    </form>
-                </div>
+    <!-- Modal Konfirmasi Hapus Permanen (single & batch) -->
+    <div id="deleteConfirmModal" class="fixed inset-0 items-center justify-center bg-black bg-opacity-40 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-96">
+            <h2 class="text-lg font-bold mb-4">Konfirmasi Hapus Permanen</h2>
+            <p class="mb-4">Apakah Anda yakin ingin menghapus data yang dipilih secara permanen? Data tidak dapat
+                dikembalikan.</p>
+            <div class="flex justify-end gap-2">
+                <button id="cancelDeleteBtn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Batal</button>
+                <form id="deleteForm" action="{{ route('riwayathapus.forceDeleteSelected') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="ids" id="deleteIds">
+                    <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Hapus</button>
+                </form>
             </div>
         </div>
+    </div>
 
-        <!-- Modal Notifikasi Sukses -->
-        <div id="successModal" class="fixed inset-0 items-center justify-center bg-black bg-opacity-40 z-50 hidden">
-            <div class="bg-white rounded-lg shadow-lg p-6 w-80">
-                <h2 class="text-lg font-bold mb-2">Berhasil</h2>
-                <p id="successMessage" class="mb-4 text-sm text-gray-700">Operasi berhasil.</p>
-                <div class="flex justify-end">
-                    <button id="closeSuccessBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Tutup</button>
-                </div>
+    <!-- Modal Notifikasi Sukses -->
+    <div id="successModal" class="fixed inset-0 items-center justify-center bg-black bg-opacity-40 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-80">
+            <h2 class="text-lg font-bold mb-2">Berhasil</h2>
+            <p id="successMessage" class="mb-4 text-sm text-gray-700">Operasi berhasil.</p>
+            <div class="flex justify-end">
+                <button id="closeSuccessBtn"
+                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Tutup</button>
             </div>
         </div>
-
-    @endsection
+    </div>
+@endsection
 
 @section('script')
     <script>
@@ -328,9 +453,11 @@
             $(document).on('dblclick', '.table-scroll-container td', function() {
                 const row = $(this).closest('tr');
                 selectedId = row.data('id');
+                // Ambil asal dari baris yang dipilih
+                const asal = row.data('asal') || '{{ $type }}';
                 if (selectedId) {
                     $('#restoreConfirmModal').removeClass('hidden');
-                    $('#restoreDataBtn').attr('href', '/riwayathapus/' + selectedId + '/restore');
+                    $('#restoreDataBtn').attr('href', '/riwayathapus/restore/' + asal + '/' + selectedId);
                 }
             });
             // Hide modal on cancel
@@ -354,7 +481,9 @@
 
             // Batch delete click
             $('#batchDeleteBtn').on('click', function() {
-                const ids = $('.select-row:checked').map(function() { return $(this).data('id'); }).get();
+                const ids = $('.select-row:checked').map(function() {
+                    return $(this).data('id');
+                }).get();
                 if (ids.length === 0) return;
                 $('#deleteIds').val(ids.join(','));
                 $('#deleteConfirmModal').removeClass('hidden').addClass('flex');

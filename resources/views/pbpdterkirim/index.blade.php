@@ -160,7 +160,7 @@
                                         <td>{{ $item->permohonanPbpd->PermoDayaLama ?? '-' }}</td>
                                         <td>{{ $item->permohonanPbpd->PermoDayaBaru ?? '-' }}</td>
                                         <td>{{ $item->permohonanPbpd->SelisihDaya ?? '-' }}</td>
-                                        <td>{{ $item->permohonanPbpd->Ampere ?? '-' }}</td>
+                                        <td>{{ $item->pbpdTersurvei->Ampere ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->BP ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->NilaiRabOpsi1 ?? '-' }}</td>
                                         <td>{{ $item->pbpdTersurvei->NilaiRabOpsi2 ?? '-' }}</td>
