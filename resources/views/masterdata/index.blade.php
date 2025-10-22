@@ -168,61 +168,131 @@
 
                             </thead>
                             <tbody>
-                                @foreach ($data as $item)
-                                    <tr data-id="{{ $item->id }}">
-                                        <td>{{ $item->IdPel ?? '-' }}</td>
-                                        <td>{{ $item->NamaPemohon ?? '-' }}</td>
-                                        <td>{{ $item->TglSuratDiterima ?? '-' }}</td>
-                                        <td>{{ $item->NoWhatsapp ?? '-' }}</td>
-                                        <td>{{ $item->AplManajemenSurat ?? '-' }}</td>
-                                        <td>{{ $item->PermoDayaLama ?? '-' }}</td>
-                                        <td>{{ $item->PermoDayaBaru ?? '-' }}</td>
-                                        <td>{{ $item->SelisihDaya ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->Ampere ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->BP ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->NilaiRabOpsi1 ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->NilaiRabOpsi2 ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTerkirim->TanggalNota ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTerkirim->Nodin ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->KebutuhanApp ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->KKF ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->Penyulang ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->BebanPenyulang ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->GarduInduk ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->TrafoGI ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->KapasitasTrafo ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->BebanTrafoGI ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->BebanTrafoGISetelah ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->StatusBeban ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->TaggingLokasi ?? '-' }}</td>
-                                        <td>{{ $item->pbpdTersurvei->Keterangan ?? '-' }}</td>
-                                        <td>
+                                @php
+                                    $type = request('type', 'permohonan');
+                                @endphp
+                                @foreach ($allActive as $item)
+                                    @if (($item->asal ?? 'permohonan') === $type)
+                                        <tr data-id="{{ $item->id }}" data-asal="{{ $item->asal ?? 'permohonan' }}">
+                                            <td>{{ $item->IdPel ?? '-' }}</td>
+                                            <td>{{ $item->NamaPemohon ?? '-' }}</td>
+                                            <td>{{ $item->TglSuratDiterima ?? '-' }}</td>
+                                            <td>{{ $item->NoWhatsapp ?? '-' }}</td>
+                                            <td>{{ $item->AplManajemenSurat ?? '-' }}</td>
+                                            <td>{{ $item->PermoDayaLama ?? '-' }}</td>
+                                            <td>{{ $item->PermoDayaBaru ?? '-' }}</td>
+                                            <td>{{ $item->SelisihDaya ?? '-' }}</td>
+                                            <td>{{ $item->Ampere ?? '-' }}</td>
+                                            <td>{{ $item->BP ?? '-' }}</td>
+                                            <td>{{ $item->NilaiRabOpsi1 ?? '-' }}</td>
+                                            <td>{{ $item->NilaiRabOpsi2 ?? '-' }}</td>
+                                            <td>{{ $item->TanggalNota ?? '-' }}</td>
+                                            <td>{{ $item->Nodin ?? '-' }}</td>
+                                            <td>{{ $item->KebutuhanApp ?? '-' }}</td>
+                                            <td>{{ $item->KKF ?? '-' }}</td>
+                                            <td>{{ $item->Penyulang ?? '-' }}</td>
+                                            <td>{{ $item->BebanPenyulang ?? '-' }}</td>
+                                            <td>{{ $item->GarduInduk ?? '-' }}</td>
+                                            <td>{{ $item->TrafoGI ?? '-' }}</td>
+                                            <td>{{ $item->KapasitasTrafo ?? '-' }}</td>
+                                            <td>{{ $item->BebanTrafoGI ?? '-' }}</td>
+                                            <td>{{ $item->BebanTrafoGISetelah ?? '-' }}</td>
+                                            <td>{{ $item->StatusBeban ?? '-' }}</td>
+                                            <td>{{ $item->TaggingLokasi ?? '-' }}</td>
+                                            <td>{{ $item->Keterangan ?? '-' }}</td>
                                             @php
-                                                $status = strtolower($item->Status ?? '');
-                                                $statusClass = 'bg-gray-400';
-                                                if ($status === 'permohonan') {
-                                                    $statusClass = 'bg-pink-500';
-                                                } elseif ($status === 'tersurvei') {
+                                                $status = strtolower(
+                                                    $item->Status ?? ($item->permohonanPbpd->Status ?? '-'),
+                                                );
+                                                $statusClass = 'bg-gray-500'; // default abu-abu
+                                                if ($status === 'tersurvei') {
                                                     $statusClass = 'bg-yellow-500';
                                                 } elseif ($status === 'terkirim') {
                                                     $statusClass = 'bg-green-700';
+                                                } elseif ($status === 'permohonan') {
+                                                    $statusClass = 'bg-pink-500';
                                                 }
                                             @endphp
-                                            <span class="{{ $statusClass }} text-white px-3 py-1 rounded text-sm">
-                                                {{ $item->Status ?? '-' }}
-                                            </span>
-                                        </td>
+                                            <td>
+                                                <span class="{{ $statusClass }} text-white px-3 py-1 rounded text-sm">
+                                                    {{ $item->Status ?? ($item->permohonanPbpd->Status ?? '-') }}
+                                                </span>
+                                            </td>
 
 
-                                        <td class="px-4 py-3">
-                                            <div class="flex space-x-2">
+                                            <td class="px-4 py-3">
+                                                <div class="flex space-x-2">
 
-                                                <a href="{{ route('masterdata.show', $item->id) }}"
-                                                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
-                                            </div>
-                                        </td>
+                                                    <a href="{{ route('masterdata.show', $item->id) }}"
+                                                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
+                                                </div>
+                                            </td>
 
-                                    </tr>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                @php
+                                    $type = request('type', 'tersurvei');
+                                @endphp
+                                @foreach ($allActive as $item)
+                                    @if (($item->asal ?? 'tersurvei') === $type)
+                                        <tr data-id="{{ $item->id }}" data-asal="{{ $item->asal ?? 'tersurvei' }}">
+                                            <td>{{ $item->permohonanPbpd->IdPel ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->NamaPemohon ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->TglSuratDiterima ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->NoWhatsapp ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->AplManajemenSurat ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->PermoDayaLama ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->PermoDayaBaru ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->SelisihDaya ?? '-' }}</td>
+                                            <td>{{ $item->Ampere ?? '-' }}</td>
+                                            <td>{{ $item->BP ?? '-' }}</td>
+                                            <td>{{ $item->NilaiRabOpsi1 ?? '-' }}</td>
+                                            <td>{{ $item->NilaiRabOpsi2 ?? '-' }}</td>
+                                            <td>{{ $item->TanggalNota ?? '-' }}</td>
+                                            <td>{{ $item->Nodin ?? '-' }}</td>
+                                            <td>{{ $item->KebutuhanApp ?? '-' }}</td>
+                                            <td>{{ $item->KKF ?? '-' }}</td>
+                                            <td>{{ $item->Penyulang ?? '-' }}</td>
+                                            <td>{{ $item->BebanPenyulang ?? '-' }}</td>
+                                            <td>{{ $item->GarduInduk ?? '-' }}</td>
+                                            <td>{{ $item->TrafoGI ?? '-' }}</td>
+                                            <td>{{ $item->KapasitasTrafo ?? '-' }}</td>
+                                            <td>{{ $item->BebanTrafoGI ?? '-' }}</td>
+                                            <td>{{ $item->BebanTrafoGISetelah ?? '-' }}</td>
+                                            <td>{{ $item->StatusBeban ?? '-' }}</td>
+                                            <td>{{ $item->TaggingLokasi ?? '-' }}</td>
+                                            <td>{{ $item->Keterangan ?? '-' }}</td>
+                                            @php
+                                                $status = strtolower(
+                                                    $item->Status ?? ($item->permohonanPbpd->Status ?? '-'),
+                                                );
+                                                $statusClass = 'bg-gray-500'; // default abu-abu
+                                                if ($status === 'tersurvei') {
+                                                    $statusClass = 'bg-yellow-500';
+                                                } elseif ($status === 'terkirim') {
+                                                    $statusClass = 'bg-green-700';
+                                                } elseif ($status === 'permohonan') {
+                                                    $statusClass = 'bg-pink-500';
+                                                }
+                                            @endphp
+                                            <td>
+                                                <span class="{{ $statusClass }} text-white px-3 py-1 rounded text-sm">
+                                                    {{ $item->Status ?? ($item->permohonanPbpd->Status ?? '-') }}
+                                                </span>
+                                            </td>
+
+
+                                            <td class="px-4 py-3">
+                                                <div class="flex space-x-2">
+
+                                                    <a href="{{ route('masterdata.show', $item->id) }}"
+                                                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>

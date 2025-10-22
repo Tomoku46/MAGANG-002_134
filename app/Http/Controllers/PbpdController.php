@@ -131,8 +131,8 @@ class PbpdController extends Controller
         // Debug
         // dd($request->IdPermohonan);
 
-        PermohonanPbpd::where('id', $request->IdPermohonan)
-            ->update(['Status' => 'tersurvei']);
+        $permohonan = PermohonanPbpd::findOrFail($id);
+        $permohonan->delete();
 
     return redirect()->route('permohonanpbpd.index')->with('success', 'Data berhasil dihapus!');
     }

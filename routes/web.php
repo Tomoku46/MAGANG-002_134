@@ -29,5 +29,6 @@ Route::get('/', function () {
 
 Route::post('/login', [PenggunaController::class, 'login'])->name('pengguna.post');
 Route::get('/riwayathapus/restore/{model}/{id}', [RiwayatHapusController::class, 'restore'])->name('riwayathapus.restore');
+Route::delete('/riwayathapus/delete/{model}/{id}', [RiwayatHapusController::class, 'destroy'])->name('riwayathapus.destroy');
 
 

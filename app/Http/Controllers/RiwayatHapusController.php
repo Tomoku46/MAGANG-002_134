@@ -77,9 +77,25 @@ class RiwayatHapusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($model, $id)
     {
-       
+        switch ($model) {
+            case 'permohonan':
+                $data = \App\Models\PermohonanPbpd::withTrashed()->findOrFail($id);
+                $data->forceDelete();
+                break;
+            case 'tersurvei':
+                $data = \App\Models\PbpdTersurvei::withTrashed()->findOrFail($id);
+                $data->forceDelete();
+                break;
+            case 'terkirim':
+                $data = \App\Models\PbpdTerkirim::withTrashed()->findOrFail($id);
+                $data->forceDelete();
+                break;
+            default:
+                return redirect()->route('riwayathapus.index')->with('error', 'Model tidak valid!');
+        }
+        return redirect()->route('riwayathapus.index')->with('success', 'Data berhasil dihapus permanen!');
     }
 
     public function restoreAll()

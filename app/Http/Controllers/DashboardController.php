@@ -15,8 +15,8 @@ class DashboardController extends Controller
     public function index()
     {
         $jumlahPermohonan = \App\Models\PermohonanPbpd::where('Status', 'Permohonan')->count();
-        $jumlahTersurvei = \App\Models\PermohonanPbpd::where('Status', 'Tersurvei')->count();
-        $jumlahTerkirim = \App\Models\PermohonanPbpd::where('Status', 'Terkirim')->count();
+        $jumlahTersurvei = \App\Models\PbpdTersurvei::whereNull('deleted_at')->count();
+        $jumlahTerkirim = \App\Models\PbpdTerkirim::whereNull('deleted_at')->count();   
 
         // Data lokasi untuk peta, sesuaikan dengan kebutuhan Anda
         $lokasi = \App\Models\PbpdTersurvei::with('permohonanPbpd')->get();

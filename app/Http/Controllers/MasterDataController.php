@@ -22,10 +22,31 @@ class MasterDataController extends Controller
     }
 public function index()
 {
-    $data = \App\Models\PermohonanPbpd::with(['pbpdTersurvei', 'pbpdTerkirim'])
-        ->whereIn('Status', ['Permohonan', 'Tersurvei', 'Terkirim'])
-        ->get(); // HANYA data yang belum di-soft delete
-    return view('masterdata.index', compact('data'));
+// Ambil semua IdPermohonan yang sudah pernah diinput ke PbpdTersurvei, termasuk yang sudah dihapus
+$sudahTersurvei = \App\Models\PbpdTersurvei::withTrashed()->pluck('IdPermohonan')->toArray();
+
+// Ambil permohonan yang belum pernah diinput ke PbpdTersurvei
+$activePermohonan = \App\Models\PermohonanPbpd::whereNull('deleted_at')
+    ->whereNotIn('id', $sudahTersurvei)
+    ->get()
+    ->map(function ($item) {
+        $item->asal = 'permohonan';
+        return $item;
+    });
+
+$activeTersurvei = \App\Models\PbpdTersurvei::whereNull('deleted_at')->get()->map(function ($item) {
+    $item->asal = 'tersurvei';
+    return $item;
+});
+
+$activeTerkirim = \App\Models\PbpdTerkirim::whereNull('deleted_at')->get()->map(function ($item) {
+    $item->asal = 'terkirim';
+    return $item;
+});
+
+$allActive = $activePermohonan->merge($activeTersurvei)->merge($activeTerkirim);
+
+return view('masterdata.index', compact('allActive'));
 }
 
 public function show($id)

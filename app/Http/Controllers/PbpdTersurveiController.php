@@ -10,8 +10,12 @@ class PbpdTersurveiController extends Controller
 {
     public function index()
     {
-        // Tampilkan hanya data aktif
-        $data = PbpdTersurvei::with('permohonanPbpd')->get();
+        // Ambil data tersurvei yang relasi permohonannya berstatus "Tersurvei"
+        $data = PbpdTersurvei::with('permohonanPbpd')
+            ->whereHas('permohonanPbpd', function($q) {
+                $q->where('Status', 'Tersurvei');
+            })
+            ->get();
 
         return view('pbpdtersurvei.index', compact('data'));
     }
@@ -30,7 +34,7 @@ class PbpdTersurveiController extends Controller
     {
         $request->validate([
             'IdPermohonan' => 'required|exists:permohonan_pbpd,id',
-            'deleted_at' => 'nullable',
+            
         ]);
 
         PbpdTersurvei::create([
@@ -121,21 +125,7 @@ class PbpdTersurveiController extends Controller
         return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil dihapus!');
     }
 
-    public function restore($id)
-    {
-        $data = PbpdTersurvei::withTrashed()->findOrFail($id);
-        $data->restore();
-
-        // Restore permohonan terkait jika masih terhapus
-        if ($data->IdPermohonan) {
-            $permohonan = PermohonanPbpd::withTrashed()->find($data->IdPermohonan);
-            if ($permohonan && $permohonan->trashed()) {
-                $permohonan->restore();
-            }
-        }
-
-        return redirect()->route('pbpdtersurvei.index')->with('success', 'Data berhasil dipulihkan!');
-    }
+  
 
     public function restoreAll()
     {

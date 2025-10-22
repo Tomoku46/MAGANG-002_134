@@ -224,12 +224,19 @@
                                                             class="w-5 h-5">
                                                     </a>
                                                     <!-- Tombol Hapus -->
-                                                    <button type="button"
-                                                        class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded btn-delete-single"
-                                                        data-id="{{ $item->id }}" title="Hapus Permanen">
-                                                        <img src="{{ asset('img/icondelete1.png') }}" alt="Hapus Permanen"
-                                                            class="w-5 h-5">
-                                                    </button>
+                                                    <form
+                                                        action="{{ route('riwayathapus.destroy', ['model' => $item->asal ?? 'permohonan', 'id' => $item->id]) }}"
+                                                        method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded btn-delete-single"
+                                                            title="Hapus Permanen"
+                                                            onclick="return confirm('Yakin ingin menghapus data ini secara permanen?')">
+                                                            <img src="{{ asset('img/icondelete1.png') }}"
+                                                                alt="Hapus Permanen" class="w-5 h-5">
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -284,12 +291,19 @@
                                                             class="w-5 h-5">
                                                     </a>
                                                     <!-- Tombol Hapus -->
-                                                    <button type="button"
-                                                        class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded btn-delete-single"
-                                                        data-id="{{ $item->id }}" title="Hapus Permanen">
-                                                        <img src="{{ asset('img/icondelete1.png') }}" alt="Hapus Permanen"
-                                                            class="w-5 h-5">
-                                                    </button>
+                                                    <form
+                                                        action="{{ route('riwayathapus.destroy', ['model' => $item->asal ?? 'permohonan', 'id' => $item->id]) }}"
+                                                        method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded btn-delete-single"
+                                                            title="Hapus Permanen"
+                                                            onclick="return confirm('Yakin ingin menghapus data ini secara permanen?')">
+                                                            <img src="{{ asset('img/icondelete1.png') }}"
+                                                                alt="Hapus Permanen" class="w-5 h-5">
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -344,12 +358,19 @@
                                                             class="w-5 h-5">
                                                     </a>
                                                     <!-- Tombol Hapus -->
-                                                    <button type="button"
-                                                        class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded btn-delete-single"
-                                                        data-id="{{ $item->id }}" title="Hapus Permanen">
-                                                        <img src="{{ asset('img/icondelete1.png') }}"
-                                                            alt="Hapus Permanen" class="w-5 h-5">
-                                                    </button>
+                                                    <form
+                                                        action="{{ route('riwayathapus.destroy', ['model' => $item->asal ?? 'permohonan', 'id' => $item->id]) }}"
+                                                        method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded btn-delete-single"
+                                                            title="Hapus Permanen"
+                                                            onclick="return confirm('Yakin ingin menghapus data ini secara permanen?')">
+                                                            <img src="{{ asset('img/icondelete1.png') }}"
+                                                                alt="Hapus Permanen" class="w-5 h-5">
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
