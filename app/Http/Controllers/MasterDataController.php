@@ -18,7 +18,7 @@ class MasterDataController extends Controller
     {
         $detailmaster = PermohonanPbpd::with(['pbpdTerkirim', 'pbpdTersurvei'])->findOrFail($id);
         $pdf = Pdf::loadView('masterdata.pdf', compact('detailmaster'));
-        return $pdf->download('masterdata_'.$detailmaster->IdPel.'.pdf');
+        return $pdf->download('detail_data_'.$detailmaster->IdPel.'.pdf');
     }
 public function index()
 {
@@ -34,12 +34,14 @@ $activePermohonan = \App\Models\PermohonanPbpd::whereNull('deleted_at')
         return $item;
     });
 
-$activeTersurvei = \App\Models\PbpdTersurvei::whereNull('deleted_at')->get()->map(function ($item) {
+
+
+$activeTersurvei = \App\Models\PbpdTersurvei::with(['permohonanPbpd.pbpdTerkirim'])->whereNull('deleted_at')->get()->map(function ($item) {
     $item->asal = 'tersurvei';
     return $item;
 });
 
-$activeTerkirim = \App\Models\PbpdTerkirim::whereNull('deleted_at')->get()->map(function ($item) {
+$activeTerkirim = \App\Models\PbpdTerkirim::with(['permohonanPbpd'])->whereNull('deleted_at')->get()->map(function ($item) {
     $item->asal = 'terkirim';
     return $item;
 });
@@ -60,6 +62,6 @@ return view('masterdata.detail', compact('detailmaster'));
         $data = PermohonanPbpd::with(['pbpdTersurvei', 'pbpdTerkirim'])
             ->whereIn('Status', ['Permohonan', 'Tersurvei', 'Terkirim'])
             ->get();
-        return Excel::download(new MasterDataExport($data), 'masterdata.xlsx');
+        return Excel::download(new MasterDataExport($data), 'daftardata.xlsx');
     }
 }

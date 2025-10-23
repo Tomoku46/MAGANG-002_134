@@ -186,8 +186,8 @@
                                             <td>{{ $item->BP ?? '-' }}</td>
                                             <td>{{ $item->NilaiRabOpsi1 ?? '-' }}</td>
                                             <td>{{ $item->NilaiRabOpsi2 ?? '-' }}</td>
-                                            <td>{{ $item->TanggalNota ?? '-' }}</td>
-                                            <td>{{ $item->Nodin ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->pbpdTerkirim->TanggalNota ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->pbpdTerkirim->Nodin ?? '-' }}</td>
                                             <td>{{ $item->KebutuhanApp ?? '-' }}</td>
                                             <td>{{ $item->KKF ?? '-' }}</td>
                                             <td>{{ $item->Penyulang ?? '-' }}</td>
@@ -223,7 +223,7 @@
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
 
-                                                    <a href="{{ route('masterdata.show', $item->id) }}"
+                                                    <a href="{{ route('masterdata.show', ($item->asal === 'permohonan' ? $item->id : ($item->permohonanPbpd->id ?? ''))) }}"
                                                         class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
                                                 </div>
                                             </td>
@@ -236,7 +236,7 @@
                                 @endphp
                                 @foreach ($allActive as $item)
                                     @if (($item->asal ?? 'tersurvei') === $type)
-                                        <tr data-id="{{ $item->id }}" data-asal="{{ $item->asal ?? 'tersurvei' }}">
+                                        <tr data-id="{{ $item->permohonanPbpd->id ?? '' }}" data-asal="{{ $item->asal ?? 'tersurvei' }}">
                                             <td>{{ $item->permohonanPbpd->IdPel ?? '-' }}</td>
                                             <td>{{ $item->permohonanPbpd->NamaPemohon ?? '-' }}</td>
                                             <td>{{ $item->permohonanPbpd->TglSuratDiterima ?? '-' }}</td>
@@ -249,8 +249,8 @@
                                             <td>{{ $item->BP ?? '-' }}</td>
                                             <td>{{ $item->NilaiRabOpsi1 ?? '-' }}</td>
                                             <td>{{ $item->NilaiRabOpsi2 ?? '-' }}</td>
-                                            <td>{{ $item->TanggalNota ?? '-' }}</td>
-                                            <td>{{ $item->Nodin ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->pbpdTerkirim->TanggalNota ?? '-' }}</td>
+                                            <td>{{ $item->permohonanPbpd->pbpdTerkirim->Nodin ?? '-' }}</td>
                                             <td>{{ $item->KebutuhanApp ?? '-' }}</td>
                                             <td>{{ $item->KKF ?? '-' }}</td>
                                             <td>{{ $item->Penyulang ?? '-' }}</td>
@@ -286,7 +286,7 @@
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
 
-                                                    <a href="{{ route('masterdata.show', $item->id) }}"
+                                                    <a href="{{ route('masterdata.show', $item->permohonanPbpd->id ?? '') }}"
                                                         class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">Detail</a>
                                                 </div>
                                             </td>

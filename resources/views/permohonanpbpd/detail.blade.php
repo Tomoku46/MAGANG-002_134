@@ -7,7 +7,7 @@
 
     <body class="bg-gray-100 font-sans">
 
-        <div class="bg-white rounded-xl shadow-main p-8 mb-8">
+        <div class="bg-white rounded-xl shadow-main p-8 mb-8 max-w-5xl mx-auto">
             <div class="flex justify-between items-center p-2">
                 <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Detail</h1>
             </div>
