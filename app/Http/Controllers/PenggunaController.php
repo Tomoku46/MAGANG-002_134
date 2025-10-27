@@ -32,4 +32,12 @@ class PenggunaController extends Controller
             'username' => 'Username atau password salah',
         ])->onlyInput('username');
     }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/')->with('success', 'Anda telah logout.');
+    }
 }

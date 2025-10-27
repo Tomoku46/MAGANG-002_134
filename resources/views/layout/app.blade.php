@@ -25,21 +25,32 @@
                 <ul class="space-y-3">
                     <p class="font-light">Navigasi</p>
                     <li><a href="{{ url('/dashboard') }}" class="block p-2 rounded hover:bg-gray-200">Dashboard</a></li>
-                    <li><a href="{{ url('/masterdata') }}" class="block p-2 rounded hover:bg-gray-200 mb-7">Daftar PBPD</a></li>
-                    <p class="font-light">PBPD</p>
-                    <li><a href="{{ url('/permohonanpbpd') }}" class="block p-2 rounded hover:bg-gray-200">Permohonan
+                    <li><a href="{{ url('/masterdata') }}" class="block p-2 rounded hover:bg-gray-200 mb-7">Daftar
                             PBPD</a></li>
-                    <li><a href="{{ url('pbpdtersurvei') }}" class="block p-2 rounded hover:bg-gray-200">PBPD
-                            Tersurvei</a></li>
-                    <li><a href="{{ url('pbpdterkirim') }}" class="block p-2 rounded hover:bg-gray-200">PBPD
-                            Terkirim</a></li>
-                    <li><a href="{{ url('/riwayathapus') }}" class="block p-2 rounded hover:bg-gray-200">Riwayat
-                            hapus</a></li>
+
+                    @if (session('role') !== 'viewer')
+                        <p class="font-light">PBPD</p>
+                        <li><a href="{{ url('/permohonanpbpd') }}"
+                                class="block p-2 rounded hover:bg-gray-200">Permohonan
+                                PBPD</a></li>
+                        <li><a href="{{ url('pbpdtersurvei') }}" class="block p-2 rounded hover:bg-gray-200">PBPD
+                                Tersurvei</a></li>
+                        <li><a href="{{ url('pbpdterkirim') }}" class="block p-2 rounded hover:bg-gray-200">PBPD
+                                Terkirim</a></li>
+                        <li><a href="{{ url('/riwayathapus') }}" class="block p-2 rounded hover:bg-gray-200">Riwayat
+                                hapus</a></li>
+                    @endif
                 </ul>
 
                 <!-- Logout di bawah -->
                 <ul>
-                    <li><a href="#" class="block p-2 rounded hover:bg-gray-200">Logout</a></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit"
+                                class="block p-2 rounded hover:bg-gray-200 w-full text-left">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -47,7 +58,8 @@
         <!-- Main Section -->
         <div id="mainContent" class="flex-1 flex flex-col transition-all duration-300 ease-in-out ml-0 overflow-hidden">
             <!-- Header -->
-            <header class="bg-gradient-to-r from-[#035B71] to-[#00A2B9] shadow p-3 flex items-center justify-between fixed top-0 w-full z-50">
+            <header
+                class="bg-gradient-to-r from-[#035B71] to-[#00A2B9] shadow p-3 flex items-center justify-between fixed top-0 w-full z-50">
                 <button id="toggleBtn" class="px-3 py-2 bg-white text-black rounded">
                     ☰
                 </button>

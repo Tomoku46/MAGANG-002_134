@@ -322,6 +322,15 @@
                 @endif
 
 
+
 <!--terkirim.index-->
 $data = PbpdTerkirim::with(['permohonanPbpd', 'pbpdTersurvei'])->get();
         return view('pbpdterkirim.index', compact('data'));
+
+        Route::delete('/riwayathapus/delete/{model}/{id}', [RiwayatHapusController::class, 'destroy'])->name('riwayathapus.destroy');
+        Route::get('/riwayathapus/{id}/force-delete', [RiwayatHapusController::class, 'forceDelete'])->name('riwayathapus.forceDelete');
+Route::post('/riwayathapus/force-delete-selected', [RiwayatHapusController::class, 'forceDeleteSelected'])->name('riwayathapus.forceDeleteSelected');
+Route::get('/riwayathapus/restoreAll', [RiwayatHapusController::class, 'restoreAll'])->name('riwayathapus.restoreAll');
+Route :: resource('/riwayathapus', RiwayatHapusController::class);
+Route::get('/riwayathapus/restore/{model}/{id}', [RiwayatHapusController::class, 'restore'])->name('riwayathapus.restore');
+Route::delete('/riwayathapus/delete/{model}/{id}', [RiwayatHapusController::class, 'destroy'])->name('riwayathapus.destroy');
