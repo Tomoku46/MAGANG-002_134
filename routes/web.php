@@ -20,9 +20,9 @@ Route::post('/logout', [PenggunaController::class, 'logout'])->name('logout');
 
 Route::middleware(['checkrole'])->group(function () {
     Route::resource('/dashboard', DashboardController::class);
-    Route::resource('/masterdata', MasterDataController::class);
     Route::get('/masterdata/export', [MasterDataController::class, 'export'])->name('masterdata.export');
     Route::get('/masterdata/{id}/pdf', [MasterDataController::class, 'cetakPdf'])->name('masterdata.cetakpdf');
+    Route::resource('/masterdata', MasterDataController::class);
     Route::resource('/permohonanpbpd', PbpdController::class);
     Route::resource('/pbpdtersurvei', PbpdTersurveiController::class);
     Route::resource('/pbpdterkirim', PbpdTerkirimController::class);

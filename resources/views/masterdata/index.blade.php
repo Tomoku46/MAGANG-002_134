@@ -361,3 +361,7 @@
         });
     </script>
 @endsection
+
+<?php
+Route::resource('/masterdata', MasterDataController::class);
+?>
