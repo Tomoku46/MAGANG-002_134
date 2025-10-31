@@ -229,7 +229,7 @@
                     </div>
                 </div>
                 <button type="submit"
-                    class="mt-6 w-full bg-green-600 text-white py-3 rounded-lg font-semibold text-base hover:bg-green-700 transition">
+                    class="mt-6 w-full bg-green-600 text-white py-3 rounded-lg font-semibold text-base hover:bg-green-700 transition btn-edit-simpan">
                     Simpan
                 </button>
             </form>
@@ -240,4 +240,11 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function() {
+        $('.btn-edit-simpan').on('click', function() {
+            sessionStorage.setItem('showEditSuccess', '1');
+        });
+    });
+</script>
 @endsection

@@ -208,7 +208,7 @@
     <div id="successModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 hidden">
         <div class="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
             <h2 class="text-lg font-bold mb-4 text-green-700">Berhasil!</h2>
-            <p class="mb-6">{{ session('success') }}</p>
+            <p class="mb-6" id="successMessage">Data berhasil diedit!</p>
             <button id="closeSuccessModal"
                 class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Tutup</button>
         </div>
@@ -275,19 +275,11 @@
             });
 
             // Modal konfirmasi sukses
-            @if (session('success'))
-                $('#successModal').removeClass('hidden');
-            @endif
-            // Tampilkan modal edit berhasil jika flag sessionStorage ada (bukan localStorage)
+            // Tampilkan modal sukses di index jika flag sessionStorage ada (setelah simpan di edit)
             if (sessionStorage.getItem('showEditSuccess')) {
                 $('#successModal').removeClass('hidden');
-                $('.mb-6:contains("berhasil")').text('Data berhasil diedit!');
                 sessionStorage.removeItem('showEditSuccess');
             }
-            // Set flag saat tombol edit ditekan
-            $(document).on('click', '.btn-edit', function() {
-                sessionStorage.setItem('showEditSuccess', '1');
-            });
             // Jika user menekan tombol back, hapus flag agar modal tidak muncul
             window.addEventListener('popstate', function() {
                 sessionStorage.removeItem('showEditSuccess');

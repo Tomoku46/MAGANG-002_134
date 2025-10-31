@@ -290,19 +290,11 @@
                 }
             });
             // Modal konfirmasi sukses
-            @if (session('success'))
+            // Tampilkan modal sukses di index jika flag sessionStorage ada (setelah simpan di edit)
+            if (sessionStorage.getItem('showEditSuccess')) {
                 $('#successModal').removeClass('hidden');
-            @endif
-            // Tampilkan modal edit berhasil jika flag localStorage ada
-            if (localStorage.getItem('showEditSuccess')) {
-                $('#successModal').removeClass('hidden');
-                $('.mb-6:contains("berhasil")').text('Data berhasil diedit!');
-                localStorage.removeItem('showEditSuccess');
+                sessionStorage.removeItem('showEditSuccess');
             }
-            // Set flag saat tombol edit ditekan
-            $(document).on('click', '.btn-edit', function() {
-                localStorage.setItem('showEditSuccess', '1');
-            });
             $('#closeSuccessModal').on('click', function() {
                 $('#successModal').addClass('hidden');
             });

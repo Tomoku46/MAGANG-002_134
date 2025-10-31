@@ -1,67 +1,47 @@
 <table>
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Nama Pemohon</th>
+            <th rowspan="2">IDPel</th>
+            <th rowspan="2">Nama Pemohon</th>
             <th colspan="3">Surat diterima REN</th>
             <th colspan="2">Permohonan Daya (VA)</th>
-            <th>Selisih Daya (VA)</th>
-            <th>Ampere</th>
-            <th>BP (Rp))</th>
+            <th rowspan="2">Selisih Daya (VA)</th>
+            <th rowspan="2">Ampere</th>
+            <th rowspan="2">BP (Rp)</th>
             <th colspan="2">Nilai RAB (Rp)</th>
             <th colspan="2">Nota Dinas dikirim ke SAR</th>
-            <th>Status</th>
-            <th>Kebutuhan APP</th>
-            <th>KKF (Tahun)</th>
-            <th>Penyulang</th>
-            <th>Beban Penyulang(A)</th>
-            <th>Beban (MW)</th>
-            <th>Gardu Induk</th>
-            <th>Trafo GI</th>
-            <th>Kapasitas Trafo (MWA)</th>
-            <th>Beban Trafo GI (A)</th>
-            <th>Beban Trafo GI Setelah Pelanggan Energize (MW)</th>
-            <th>Status Beban</th>
-            <th>Tagging Lokasi</th>
-            <th>Keterangan</th>
-            <!-- Tambahkan kolom lain sesuai kebutuhan -->
+            <th rowspan="2">Status</th>
+            <th rowspan="2">Kebutuhan APP</th>
+            <th rowspan="2">KKF (Tahun)</th>
+            <th rowspan="2">Penyulang</th>
+            <th rowspan="2">Beban Penyulang(A)</th>
+            <th rowspan="2">Beban (MW)</th>
+            <th rowspan="2">Gardu Induk</th>
+            <th rowspan="2">Trafo GI</th>
+            <th rowspan="2">Kapasitas Trafo (MWA)</th>
+            <th rowspan="2">Beban Trafo GI (A)</th>
+            <th rowspan="2">Beban Trafo GI Setelah Pelanggan Energize (MW)</th>
+            <th rowspan="2">Status Beban</th>
+            <th rowspan="2">Tagging Lokasi</th>
+            <th rowspan="2">Keterangan</th>
         </tr>
         <tr>
-            <th></th>
-            <th></th>
             <th>Tanggal</th>
             <th>No Whatsapp</th>
             <th>AMS</th>
             <th>Daya Lama</th>
             <th>Daya Baru</th>
-            <th></th>
-            <th></th>
-            <th></th>
             <th>Opsi 1</th>
             <th>Opsi 2</th>
             <th>Tanggal</th>
             <th>No Nodin</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <!-- Tambahkan kolom lain sesuai kebutuhan -->
         </tr>
     </thead>
     <tbody>
         @foreach($data as $item)
         <tr>
             <td>{{ $item->IdPel ?? '-' }}</td>
+            
             <td>{{ $item->NamaPemohon ?? '-' }}</td>
             <td>{{ $item->TglSuratDiterima ?? '-' }}</td>
             <td>{{ $item->NoWhatsapp ?? '-' }}</td>
@@ -89,7 +69,6 @@
             <td>{{ $item->pbpdTersurvei->StatusBeban ?? '-' }}</td>
             <td>{{ $item->pbpdTersurvei->TaggingLokasi ?? '-' }}</td>
             <td>{{ $item->pbpdTersurvei->Keterangan ?? '-' }}</td>
-            <!-- Tambahkan kolom lain sesuai kebutuhan -->
         </tr>
         @endforeach
     </tbody>

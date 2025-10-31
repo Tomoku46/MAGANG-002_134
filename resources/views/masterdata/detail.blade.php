@@ -9,10 +9,10 @@
 
         <div class="bg-white rounded-xl shadow-main p-8 mb-8 max-w-5xl mx-auto">
             <div class="flex justify-between items-center p-2">
-                <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Detail PBPD Tersurvei</h1>
+                <h1 class="text-3xl font-bold text-main mb-4 md:mb-0">Detail Permohonan PBPD</h1>
             </div>
             <div class="mb-8 px-2">
-                <p> Informasi lengkap tentang permohonan yang sudah disurvei.</p>
+                <p> Informasi lengkap tentang permohonan PBPD.</p>
             </div>
 
             <div class="mb-8">

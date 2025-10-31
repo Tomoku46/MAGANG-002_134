@@ -28,7 +28,7 @@
                     <input type="text" name="Nodin"  value="{{ $edit->Nodin }}" class="w-full border rounded-lg px-4 py-3 text-base bg-gray-100">
                 </div>
                 <button type="submit"
-                    class="mb-6 w-full bg-green-600 text-white py-3  rounded-lg font-semibold text-base hover:bg-green-700 transition">
+                    class="mb-6 w-full bg-green-600 text-white py-3  rounded-lg font-semibold text-base hover:bg-green-700 transition btn-edit-simpan">
                     Simpan
                 </button>
                 @if ($permohonan)
@@ -165,4 +165,11 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function() {
+        $('.btn-edit-simpan').on('click', function() {
+            sessionStorage.setItem('showEditSuccess', '1');
+        });
+    });
+</script>
 @endsection
